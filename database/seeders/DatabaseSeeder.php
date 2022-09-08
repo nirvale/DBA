@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             DependenciaSeeder::class,
             ProgramaSeeder::class,
+            OficinaSeeder::class,
         ]);
     }
 }
