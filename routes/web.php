@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/password/reset', function () {
+    return view('auth.passwords.email');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
