@@ -421,7 +421,7 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => true,
+            'active' => false,
             'files' => [
                 [
                     'type' => 'js',
@@ -481,17 +481,17 @@ return [
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => 'vendor/alertify/alertifyjs/alertify.min.js',
+                    'location' => '/vendor/alertify/alertifyjs/alertify.min.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => 'vendor/alertify/alertifyjs/css/alertify.min.css',
+                    'location' => '/vendor/alertify/alertifyjs/css/alertify.min.css',
                 ],
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => 'vendor/alertify/alertifyjs/css/themes/default.min.css',
+                    'location' => '/vendor/alertify/alertifyjs/css/themes/default.min.css',
                 ],
             ],
         ],
