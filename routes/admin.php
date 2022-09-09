@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\HomeController;
 
-route::get('', [HomeController::class, 'index']);
+Route::get('', [HomeController::class, 'index']);
+//manejo de usuarios
+Route::resource('usuario', UserController::class);

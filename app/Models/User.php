@@ -63,7 +63,8 @@ class User extends Authenticatable
 
     public function adminlte_image(){
 
-      return 'https://picsum.photos/200/200';
+      //return 'https://picsum.photos/100/100';
+      return 'persona.png';
 
     }
 
