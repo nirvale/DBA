@@ -10,6 +10,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+// use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Authenticatable
 {
@@ -19,12 +21,15 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;
+    // use softDeletes;
+
 
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
+
     protected $fillable = [
         'name',
         'email',
@@ -64,7 +69,7 @@ class User extends Authenticatable
     public function adminlte_image(){
 
       //return 'https://picsum.photos/100/100';
-      return 'persona.png';
+      return '/persona.png';
 
     }
 

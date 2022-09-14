@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Adscripcion;
 
 class AdscripcionSeeder extends Seeder
 {
@@ -13,6 +14,6 @@ class AdscripcionSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $adscripcion=Adscripcion::create(['CVE_USUARIO' => '1', 'CVE_OFICINA'  => '1','CVE_ESTADO' => '1']);
     }
 }

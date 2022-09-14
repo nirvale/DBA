@@ -12,5 +12,6 @@ class Adscripcion extends Model
     protected $fillable = [
         'CVE_USUARIO',
         'CVE_OFICINA',
+        'CVE_ESTADO',
     ];
 }

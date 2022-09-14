@@ -15,8 +15,9 @@ class CreateAdscripcionsTable extends Migration
     {
         Schema::create('adscripciones', function (Blueprint $table) {
             $table->id();
-            $table->String('CVE_USUARIO')->references('users')->on('id')->onDelete('cascade')->onUpdate('cascade');
+            $table->String('CVE_USUARIO')->index()->references('users')->on('id')->onDelete('cascade')->onUpdate('cascade');
             $table->String('CVE_OFICINA')->references('oficinas')->on('CVE_OFICINA')->onDelete('cascade')->onUpdate('cascade');
+            $table->String('CVE_ESTADO')->references('estados')->on('CVE_ESTADO')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
