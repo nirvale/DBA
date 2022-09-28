@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreEstadoRequest;
-use App\Http\Requests\UpdateEstadoRequest;
-use App\Models\Estado;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreOsRequest;
+use App\Http\Requests\UpdateOsRequest;
+use App\Models\Os;
 
-class EstadoController extends Controller
+class OsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +32,10 @@ class EstadoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreEstadoRequest  $request
+     * @param  \App\Http\Requests\StoreOsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEstadoRequest $request)
+    public function store(StoreOsRequest $request)
     {
         //
     }
@@ -42,10 +43,10 @@ class EstadoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Estado  $estado
+     * @param  \App\Models\Os  $os
      * @return \Illuminate\Http\Response
      */
-    public function show(Estado $estado)
+    public function show(Os $os)
     {
         //
     }
@@ -53,10 +54,10 @@ class EstadoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Estado  $estado
+     * @param  \App\Models\Os  $os
      * @return \Illuminate\Http\Response
      */
-    public function edit(Estado $estado)
+    public function edit(Os $os)
     {
         //
     }
@@ -64,11 +65,11 @@ class EstadoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateEstadoRequest  $request
-     * @param  \App\Models\Estado  $estado
+     * @param  \App\Http\Requests\UpdateOsRequest  $request
+     * @param  \App\Models\Os  $os
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEstadoRequest $request, Estado $estado)
+    public function update(UpdateOsRequest $request, Os $os)
     {
         //
     }
@@ -76,10 +77,10 @@ class EstadoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Estado  $estado
+     * @param  \App\Models\Os  $os
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Estado $estado)
+    public function destroy(Os $os)
     {
         //
     }

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreAdscripcionRequest;
-use App\Http\Requests\UpdateAdscripcionRequest;
-use App\Models\Adscripcion;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRdbmsRequest;
+use App\Http\Requests\UpdateRdbmsRequest;
+use App\Models\Rdbms;
 
-class AdscripcionController extends Controller
+class RdbmsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +32,10 @@ class AdscripcionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreAdscripcionRequest  $request
+     * @param  \App\Http\Requests\StoreRdbmsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAdscripcionRequest $request)
+    public function store(StoreRdbmsRequest $request)
     {
         //
     }
@@ -42,10 +43,10 @@ class AdscripcionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Adscripcion  $adscripcion
+     * @param  \App\Models\Rdbms  $rdbms
      * @return \Illuminate\Http\Response
      */
-    public function show(Adscripcion $adscripcion)
+    public function show(Rdbms $rdbms)
     {
         //
     }
@@ -53,10 +54,10 @@ class AdscripcionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Adscripcion  $adscripcion
+     * @param  \App\Models\Rdbms  $rdbms
      * @return \Illuminate\Http\Response
      */
-    public function edit(Adscripcion $adscripcion)
+    public function edit(Rdbms $rdbms)
     {
         //
     }
@@ -64,11 +65,11 @@ class AdscripcionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateAdscripcionRequest  $request
-     * @param  \App\Models\Adscripcion  $adscripcion
+     * @param  \App\Http\Requests\UpdateRdbmsRequest  $request
+     * @param  \App\Models\Rdbms  $rdbms
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAdscripcionRequest $request, Adscripcion $adscripcion)
+    public function update(UpdateRdbmsRequest $request, Rdbms $rdbms)
     {
         //
     }
@@ -76,10 +77,10 @@ class AdscripcionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Adscripcion  $adscripcion
+     * @param  \App\Models\Rdbms  $rdbms
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Adscripcion $adscripcion)
+    public function destroy(Rdbms $rdbms)
     {
         //
     }

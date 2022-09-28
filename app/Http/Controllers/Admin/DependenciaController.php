@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreOficinaRequest;
-use App\Http\Requests\UpdateOficinaRequest;
-use App\Models\Oficina;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Dependencia;
 
-class OficinaController extends Controller
+class DependenciaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class OficinaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreOficinaRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOficinaRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,21 +42,24 @@ class OficinaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Oficina  $oficina
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Oficina $oficina)
+    public function show($id)
     {
-        //
+        $dependencia = Dependencia::select()
+          ->where('CVE_DEPENDENCIA',$id)
+          ->get();
+        return $dependencia->toJson();
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Oficina  $oficina
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Oficina $oficina)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +67,11 @@ class OficinaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateOficinaRequest  $request
-     * @param  \App\Models\Oficina  $oficina
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateOficinaRequest $request, Oficina $oficina)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +79,10 @@ class OficinaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Oficina  $oficina
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Oficina $oficina)
+    public function destroy($id)
     {
         //
     }

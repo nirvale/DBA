@@ -321,28 +321,29 @@ return [
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-            'url'  => 'admin/settings',
+            'url'  => '/admin/settings',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'change_password',
-            'url'  => 'admin/settings',
+            'url'  => '/admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        ['header' => 'ADMINISTRACIÓN DE USUARIOS'],
+        ['header' => 'ADMINISTRACIÓN'],
         [
             'text' => 'Usuarios',
-            'url'  => 'admin/listausuarios',
+            'url'  => '/admin/listausuarios',
             'icon' => 'fas fa-fw fa-users-cog',
 
         ],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'Sistema',
+            'icon'    => 'fas fa-fw fa-laptop-code',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Esquemas',
+                    'url'  => '/admin/esquemahome',
+                    'icon'    => 'fas fa-fw fa-table',
                 ],
                 [
                     'text'    => 'level_one',
@@ -447,23 +448,23 @@ return [
                 ],
             ],
         ],
-        'DatatablesPlugins' => [
-            'active' => false,
+        'DatatablesResponsive' => [
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => 'vendor/datatables-plugins/js/jquery.dataTables.min.js',
+                    'location' => '/vendor/datatables/plugins/Responsive-2.3.0/js/dataTables.responsive.min.js',
                 ],
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => 'vendor/datatables-plugins/js/dataTables.bootstrap4.min.js',
+                    'location' => '/vendor/datatables/plugins/Responsive-2.3.0/js/responsive.bootstrap5.min.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => true,
-                    'location' => 'vendor/datatables-plugins/css/dataTables.bootstrap4.min.css',
+                    'location' => '/vendor/datatables/plugins/Responsive-2.3.0/css/responsive.bootstrap5.min.css',
                 ],
             ],
         ],

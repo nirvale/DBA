@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreDependenciaRequest;
-use App\Http\Requests\UpdateDependenciaRequest;
-use App\Models\Dependencia;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTipodcRequest;
+use App\Http\Requests\UpdateTipodcRequest;
+use App\Models\Tipodc;
 
-class DependenciaController extends Controller
+class TipodcController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +32,10 @@ class DependenciaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreDependenciaRequest  $request
+     * @param  \App\Http\Requests\StoreTipodcRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDependenciaRequest $request)
+    public function store(StoreTipodcRequest $request)
     {
         //
     }
@@ -42,10 +43,10 @@ class DependenciaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Dependencia  $dependencia
+     * @param  \App\Models\Tipodc  $tipodc
      * @return \Illuminate\Http\Response
      */
-    public function show(Dependencia $dependencia)
+    public function show(Tipodc $tipodc)
     {
         //
     }
@@ -53,10 +54,10 @@ class DependenciaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Dependencia  $dependencia
+     * @param  \App\Models\Tipodc  $tipodc
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dependencia $dependencia)
+    public function edit(Tipodc $tipodc)
     {
         //
     }
@@ -64,11 +65,11 @@ class DependenciaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateDependenciaRequest  $request
-     * @param  \App\Models\Dependencia  $dependencia
+     * @param  \App\Http\Requests\UpdateTipodcRequest  $request
+     * @param  \App\Models\Tipodc  $tipodc
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDependenciaRequest $request, Dependencia $dependencia)
+    public function update(UpdateTipodcRequest $request, Tipodc $tipodc)
     {
         //
     }
@@ -76,10 +77,10 @@ class DependenciaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Dependencia  $dependencia
+     * @param  \App\Models\Tipodc  $tipodc
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dependencia $dependencia)
+    public function destroy(Tipodc $tipodc)
     {
         //
     }

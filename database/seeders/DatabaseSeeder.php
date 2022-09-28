@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 
 
+
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -23,6 +25,15 @@ class DatabaseSeeder extends Seeder
             OficinaSeeder::class,
             EstadoSeeder::class,
             AdscripcionSeeder::class,
+            BackupSeeder::class,
+            EstadoesquemaSeeder::class,
+            TipodcSeeder::class,
+            TipoSeeder::class,
+            RdbmsSeeder::class,
+            OsSeeder::class,
+            DatacenterSeeder::class,
+            BaseSeeder::class,
+
         ]);
     }
 }

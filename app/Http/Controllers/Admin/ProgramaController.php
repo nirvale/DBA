@@ -1,21 +1,28 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreProgramaRequest;
-use App\Http\Requests\UpdateProgramaRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Programa;
 
 class ProgramaController extends Controller
 {
+    public function __construct(Request $request)
+    {
+        $this->middleware(['permission:admin|adming|dba|esquema']);
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+      $programa = Programa::select()
+        ->where('CVE_DEPENDENCIA',$request->CVE_DEPENDENCIA)
+        ->get();
+      return $programa;
     }
 
     /**
@@ -31,10 +38,10 @@ class ProgramaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreProgramaRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProgramaRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,21 +49,24 @@ class ProgramaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Programa  $programa
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Programa $programa)
+    public function show($id)
     {
-        //
+      $programa = Programa::select()
+        ->where('CVE_PROGRAMA',$id)
+        ->get();
+      return $programa->toJson();
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Programa  $programa
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Programa $programa)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +74,11 @@ class ProgramaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateProgramaRequest  $request
-     * @param  \App\Models\Programa  $programa
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProgramaRequest $request, Programa $programa)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +86,10 @@ class ProgramaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Programa  $programa
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Programa $programa)
+    public function destroy($id)
     {
         //
     }

@@ -8,7 +8,7 @@
       <h1 class="card-title"><i class="fas fa-hat-wizard"></i> Sistema de Administración para Bases de Datos - DGTG</h1>
   </div>
   <div class="card-body">
-    <h4 class="card-subtitle fa-start"> <i class="fas fa-users-cog"></i> Módulo de Usuarios</h4>
+    <h4 class="card-subtitle"> <i class="fas fa-users-cog"></i> Módulo de Usuarios</h4>
   </div>
 </div>
 
@@ -107,6 +107,7 @@
               "language": {
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
               },
+              "responsive": true,
               "processing": true,
             //"serverSide": true,
               "ajax":{
@@ -140,7 +141,13 @@
 
     $(document).on("click", "#editarusuario", function(){
       event.preventDefault();
-      fila = $(this).closest("tr");
+      //para tabla responsive
+      var fila = $(this.closest("tr"));
+      if(fila.hasClass("child")){
+          fila = fila.prev();
+      }
+      //console.log(fila); // returning array of row data
+      //fila = $(this).closest("tr"); // tabla estática
       id = fila.find('td:eq(0)').text();
       ofi = fila.find('td:eq(2)').text();
       perf = fila.find('td:eq(3)').text();
@@ -150,7 +157,7 @@
       $('#footermodal').empty();
 
       $.ajax({
-        url: "usuario/"+id+"",
+        url: "/admin/usuario/"+id+"",
         type: 'GET',
         // async: false,
         dataType: 'json',
