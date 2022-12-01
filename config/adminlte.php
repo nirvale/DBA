@@ -375,6 +375,28 @@ return [
                 ],
             ],
         ],
+        ['header' => 'BACKUPS'],
+        [
+            'text'    => 'Bitácoras',
+            'icon'    => 'fas fa-clipboard-list',
+            'submenu' => [
+                [
+                    'text' => 'Diario',
+                    'url'  => '/admin/bdiariahome',
+                    'icon'    => 'fas fa-clipboard-check',
+                ],
+                [
+                    'text' => 'Semanal',
+                    'url'  => '/admin/esquemahome',
+                    'icon'    => 'fas fa-calendar-check',
+                ],
+                [
+                    'text' => 'Manual',
+                    'url'  => '/admin/esquemahome',
+                    'icon'    => 'fas fa-tasks',
+                ],
+              ],
+        ],
         ['header' => 'labels'],
         [
             'text'       => 'important',

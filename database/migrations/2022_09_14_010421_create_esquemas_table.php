@@ -18,7 +18,7 @@ class CreateEsquemasTable extends Migration
             $table->string('ESQUEMA');
             $table->integer('CVE_USUARIO')->references('users')->on('id')->onDelete('restrict')->onUpdate('cascade');
             $table->integer('CVE_BASE')->references('bases')->on('id')->onDelete('restric')->onUpdate('cascade');
-            $table->integer('CVE_DEPENDENCIA')->references('dependencias')->on('CVE_DEPENDENCIA')->onDelete('restrict')->onUpdate('cascade');
+            $table->string('CVE_DEPENDENCIA')->references('dependencias')->on('CVE_DEPENDENCIA')->onDelete('restrict')->onUpdate('cascade');
             $table->integer('CVE_PROGRAMA')->references('programas')->on('CVE_PROGRAMA')->onDelete('restrict')->onUpdate('cascade');
             $table->integer('CVE_BACKUP')->references('backups')->on('id')->onDelete('restrict')->onUpdate('cascade');
             $table->integer('CVE_TIPO')->references('tipo')->on('id')->onDelete('restrict')->onUpdate('cascade');

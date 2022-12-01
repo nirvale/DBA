@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             OsSeeder::class,
             DatacenterSeeder::class,
             BaseSeeder::class,
+            EstadobackupSeeder::class,
 
         ]);
     }
