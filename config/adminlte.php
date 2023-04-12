@@ -318,7 +318,7 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+/*        ['header' => 'account_settings'],
         [
             'text' => 'profile',
             'url'  => '/admin/settings',
@@ -328,7 +328,7 @@ return [
             'text' => 'change_password',
             'url'  => '/admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],
+        ],*/
         ['header' => 'ADMINISTRACIÓN'],
         [
             'text' => 'Usuarios',
@@ -345,7 +345,7 @@ return [
                     'url'  => '/admin/esquemahome',
                     'icon'    => 'fas fa-fw fa-table',
                 ],
-                [
+/*                [
                     'text'    => 'level_one',
                     'url'     => '#',
                     'submenu' => [
@@ -368,11 +368,11 @@ return [
                             ],
                         ],
                     ],
-                ],
-                [
+                ],*/
+/*                [
                     'text' => 'level_one',
                     'url'  => '#',
-                ],
+                ],*/
             ],
         ],
         ['header' => 'BACKUPS'],
@@ -387,12 +387,12 @@ return [
                 ],
                 [
                     'text' => 'Semanal',
-                    'url'  => '/admin/esquemahome',
+                    'url'  => '/admin/bsemanalhome',
                     'icon'    => 'fas fa-calendar-check',
                 ],
                 [
                     'text' => 'Manual',
-                    'url'  => '/admin/esquemahome',
+                    'url'  => '/admin/bmanualhome',
                     'icon'    => 'fas fa-tasks',
                 ],
               ],

@@ -17,10 +17,12 @@ class CreateBdiariariasTable extends Migration
         Schema::create('bdiarias', function (Blueprint $table) {
             $table->id();
             $table->date('FECHA');
-            $table->integer('CVE_ESQUEMA');
-            $table->integer('CVE_ESTADOBACKUP');
+            $table->integer('CVE_ESQUEMA')->references('esquemas')->on('id')->onDelete('restrict')->onUpdate('cascade');
+            //$table->integer('CVE_BASE')->references('bases')->on('id')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer('CVE_ESTADOBACKUP')->references('estadobackups')->on('id')->onDelete('restrict')->onUpdate('cascade');
             $table->json('ARCHIVOS');
             $table->text('OBSERVACIONES');
+            $table->integer('CVE_USER')->references('users')->on('id')->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
         });
     }

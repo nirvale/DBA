@@ -45,7 +45,7 @@
              <a href="" type="button" id="agregaEsquemas" class="btn btn-success" >AGREGAR ESQUEMAS <i class="fas fa-plus-circle"></i></a>
           </div>
         </div>
-      <form>
+      </form>
     </div>
   </div>
 

@@ -136,36 +136,36 @@ class EsquemaController extends Controller
            'OBSERVACIONES' => 'bail|required|max:300',
 
        ]);
-       if ($validated->fails())
-       {
-         return response()->json(['errors'=>$validated->errors()->all()]);
-       }
-       if ($validated) {
-
-         if (isset($request->PWD)) {
-           $encrypted = Crypt::encryptString($request->PWD);
+         if ($validated->fails())
+         {
+           return response()->json(['errors'=>$validated->errors()->all()]);
          }
-         DB::beginTransaction();
-         try {
-          $esquema = ESQUEMA::create([
-          'ESQUEMA' => $request->esquema,
-          'CVE_USUARIO' => $request->CVE_USUARIO,
-          'CVE_BASE' => $request->CVE_BASE,
-          'CVE_TIPO' => $request->CVE_TIPO,
-          'CVE_DEPENDENCIA'=> $request->CVE_DEPENDENCIA,
-          'CVE_PROGRAMA'=> $request->CVE_PROGRAMA,
-          'CVE_BACKUP' => $request->CVE_BACKUP,
-          'CVE_ESTADOESQUEMA' => $request->CVE_ESTADOESQUEMA,
-          'OBSERVACIONES' => $request->OBSERVACIONES,
-          'PWD' => $encrypted,
-            ]);
-          DB::commit();
-         } catch (\Exception $e) {
-           DB::rollBack();
-           return $e;
-         }
+         if ($validated) {
 
-       }
+           if (isset($request->PWD)) {
+             $encrypted = Crypt::encryptString($request->PWD);
+           }
+           DB::beginTransaction();
+           try {
+            $esquema = ESQUEMA::create([
+            'ESQUEMA' => $request->esquema,
+            'CVE_USUARIO' => $request->CVE_USUARIO,
+            'CVE_BASE' => $request->CVE_BASE,
+            'CVE_TIPO' => $request->CVE_TIPO,
+            'CVE_DEPENDENCIA'=> $request->CVE_DEPENDENCIA,
+            'CVE_PROGRAMA'=> $request->CVE_PROGRAMA,
+            'CVE_BACKUP' => $request->CVE_BACKUP,
+            'CVE_ESTADOESQUEMA' => $request->CVE_ESTADOESQUEMA,
+            'OBSERVACIONES' => $request->OBSERVACIONES,
+            'PWD' => $encrypted,
+              ]);
+            DB::commit();
+           } catch (\Exception $e) {
+             DB::rollBack();
+             return $e;
+           }
+
+         }
        return $esquema;
 }
     /**
@@ -249,7 +249,7 @@ class EsquemaController extends Controller
        if ($validated) {
          DB::beginTransaction();
          try {
-          $esquema = ESQUEMA::find($request->id);
+          $esquema = ESQUEMA::FindOrFail($request->id);
           $esquema->esquema = $request->esquema;
           $esquema->CVE_USUARIO = $request->CVE_USUARIO;
           $esquema->CVE_BASE = $request->CVE_BASE;
@@ -262,7 +262,7 @@ class EsquemaController extends Controller
           if (isset($request->PWD)) {
             $esquema->PWD = Crypt::encryptString($request->PWD);
           }
-          $esquema->save();
+          $esquema->push();
           DB::commit();
          } catch (\Exception $e) {
            DB::rollBack();

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DependenciaController;
 use App\Http\Controllers\Admin\ProgramaController;
 use App\Http\Controllers\Admin\BdiariaController;
 use App\Http\Controllers\Admin\BaseController;
+use App\Http\Controllers\Admin\GetlogsController;
 
 Route::get('', [HomeController::class, 'index']);
 //manejo de usuarios
@@ -29,3 +30,7 @@ Route::get('bdiariahome', [BdiariaController::class, 'home'])->name('bdiaria.hom
 //Route::resource('base', BaseController::class);
 //Route::get('basehome', [BaseController::class, 'home'])->name('base.home');
 Route::get('basebydc/{idd}', [BaseController::class, 'dbbydc'])->name('base.bydc');
+
+//traer logs
+
+Route::get('getlogs/{logfile}', [GetlogsController::class, 'download'])->name('getlogs.get');
