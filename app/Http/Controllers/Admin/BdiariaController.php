@@ -26,7 +26,8 @@ class BdiariaController extends Controller
      */
      public function home()
      {
-        $datacenters = Datacenter::pluck('DATACENTER','id');
+        //$datacenters = Datacenter::pluck('DATACENTER','id'); // para mysql funciona, en oracle tiene errores debe cambiarse por minúsculas
+        $datacenters = Datacenter::pluck('datacenter','id');
         return View('admin.bdiaria',compact('datacenters'));
      }
     public function index(Request $request)
