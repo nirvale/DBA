@@ -10,7 +10,7 @@ class Backup extends Model
     use HasFactory;
 
     protected $fillable = [
-        'BACKUP',
-        'DESC_BACKUP',
+        'backup',
+        'desc_backup',
     ];
 }

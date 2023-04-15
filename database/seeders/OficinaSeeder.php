@@ -13,12 +13,12 @@ class OficinaSeeder extends Seeder
      */
     public function run()
     {
-        $oficina = Oficina::create (['CVE_OFICINA' => '1', 'OFICINA'  => 'COORDINACIÓN DE GESTIÓN GUBERNAMENTAL']);
-        $oficina = Oficina::create (['CVE_OFICINA' => '2', 'OFICINA'  => 'DIRECCIÓN GENERAL DE TECNOLOGÍAS PARA LA GESTIÓN']);
-        $oficina = Oficina::create (['CVE_OFICINA' => '3', 'OFICINA'  => 'INFRAESTRUCTURA TECNOLÓGICA']);
-        $oficina = Oficina::create (['CVE_OFICINA' => '4', 'OFICINA'  => 'ADMINISTRACIÓN DE PROYECTOS']);
-        $oficina = Oficina::create (['CVE_OFICINA' => '5', 'OFICINA'  => 'PROYECTOS ESTRATÉGICOS']);
-        $oficina = Oficina::create (['CVE_OFICINA' => '6', 'OFICINA'  => 'PROYECTOS ESPECIALES']);
-        $oficina = Oficina::create (['CVE_OFICINA' => '7', 'OFICINA'  => 'ARQUITECTURA TECNOLÓGICA DE PROGRAMAS']);
+        $oficina = Oficina::create (['cve_oficina' => '1', 'oficina'  => 'COORDINACIÓN DE GESTIÓN GUBERNAMENTAL']);
+        $oficina = Oficina::create (['cve_oficina' => '2', 'oficina'  => 'DIRECCIÓN GENERAL DE TECNOLOGÍAS PARA LA GESTIÓN']);
+        $oficina = Oficina::create (['cve_oficina' => '3', 'oficina'  => 'INFRAESTRUCTURA TECNOLÓGICA']);
+        $oficina = Oficina::create (['cve_oficina' => '4', 'oficina'  => 'ADMINISTRACIÓN DE PROYECTOS']);
+        $oficina = Oficina::create (['cve_oficina' => '5', 'oficina'  => 'PROYECTOS ESTRATÉGICOS']);
+        $oficina = Oficina::create (['cve_oficina' => '6', 'oficina'  => 'PROYECTOS ESPECIALES']);
+        $oficina = Oficina::create (['cve_oficina' => '7', 'oficina'  => 'ARQUITECTURA TECNOLÓGICA DE PROGRAMAS']);
     }
 }

@@ -15,13 +15,13 @@ class CreateBasesTable extends Migration
     {
         Schema::create('bases', function (Blueprint $table) {
             $table->id();
-            $table->string('BASE');
-            $table->integer('CVE_RDBMS')->references('rdbms')->on('id')->onDelete('restrict')->onUpdate('cascade');
-            $table->string('VERSION');
-            $table->integer('CVE_OS')->references('os')->on('id')->onDelete('restrict')->onUpdate('cascade');
-            $table->string('OS_VERSION');
-            $table->integer('CVE_DATACENTER')->references('datacenters')->on('id')->onDelete('restrict')->onUpdate('cascade');
-            $table->integer('CVE_TIPO')->references('tipos')->on('id')->onDelete('restrict')->onUpdate('cascade');
+            $table->string('base');
+            $table->integer('cve_rdbms')->references('rdbms')->on('id')->onDelete('restrict')->onUpdate('cascade');
+            $table->string('version');
+            $table->integer('cve_os')->references('os')->on('id')->onDelete('restrict')->onUpdate('cascade');
+            $table->string('os_version');
+            $table->integer('cve_datacenter')->references('datacenters')->on('id')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer('cve_tipo')->references('tipos')->on('id')->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
         });
     }

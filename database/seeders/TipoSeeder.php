@@ -14,8 +14,8 @@ class TipoSeeder extends Seeder
      */
     public function run()
     {
-        $tipo = Tipo::create(['TIPO' => 'DESARROLLO']);
-        $tipo = Tipo::create(['TIPO' => 'PRUEBAS']);
-        $tipo = Tipo::create(['TIPO' => 'PRODUCCIÓN']);
+        $tipo = Tipo::create(['tipo' => 'DESARROLLO']);
+        $tipo = Tipo::create(['tipo' => 'PRUEBAS']);
+        $tipo = Tipo::create(['tipo' => 'PRODUCCIÓN']);
     }
 }

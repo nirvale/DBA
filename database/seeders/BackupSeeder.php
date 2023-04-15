@@ -14,9 +14,9 @@ class BackupSeeder extends Seeder
      */
     public function run()
     {
-        $backup = Backup::create(['BACKUP' => 'AUTOMÁTICO DIARIO (L-V)','DESC_BACKUP' => 'RESPALDO AUTOMATIZADO PARA EJECUTARSE DE LUNES A VIERNES A LAS 22:00 HORAS']);
-        $backup = Backup::create(['BACKUP' => 'AUTOMÁTICO SEMANAL (S)','DESC_BACKUP' => 'RESPALDO AUTOMATIZADO PARA EJECUTARSE LOS DIAS SÁBADOS A LAS 22:00 HORAS']);
-        $backup = Backup::create(['BACKUP' => 'MANUAL','DESC_BACKUP' => 'RESPALDO MANUAL A PETICIÓN DEL USUARIO']);
-        $backup = Backup::create(['BACKUP' => 'NINGUNO','DESC_BACKUP' => 'ESQUEMA DE PRUEBAS O DESARROLLO, SIN BACKUP']);
+        $backup = Backup::create(['backup' => 'AUTOMÁTICO DIARIO (L-V)','desc_backup' => 'RESPALDO AUTOMATIZADO PARA EJECUTARSE DE LUNES A VIERNES A LAS 22:00 HORAS']);
+        $backup = Backup::create(['backup' => 'AUTOMÁTICO SEMANAL (S)','desc_backup' => 'RESPALDO AUTOMATIZADO PARA EJECUTARSE LOS DIAS SÁBADOS A LAS 22:00 HORAS']);
+        $backup = Backup::create(['backup' => 'MANUAL','desc_backup' => 'RESPALDO MANUAL A PETICIÓN DEL USUARIO']);
+        $backup = Backup::create(['backup' => 'NINGUNO','desc_backup' => 'ESQUEMA DE PRUEBAS O DESARROLLO, SIN BACKUP']);
     }
 }

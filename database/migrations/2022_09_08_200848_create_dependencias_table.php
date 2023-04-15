@@ -15,8 +15,8 @@ class CreateDependenciasTable extends Migration
     {
         Schema::create('dependencias', function (Blueprint $table) {
             //$table->id();
-            $table->String('CVE_DEPENDENCIA')->primary();
-            $table->String('NOMBRE');
+            $table->String('cve_dependencia')->primary();
+            $table->String('nombre');
             $table->timestamps();
         });
     }

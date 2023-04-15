@@ -15,7 +15,7 @@ class CreateRdbmsTable extends Migration
     {
         Schema::create('rdbms', function (Blueprint $table) {
             $table->id();
-            $table->STRING('RDBMS');
+            $table->STRING('rdbms');
             $table->timestamps();
         });
     }

@@ -9,15 +9,15 @@ class Esquema extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'ESQUEMA',
-        'CVE_BASE',
-        'CVE_USUARIO',
-        'CVE_DEPENDENCIA',
-        'CVE_PROGRAMA',
-        'CVE_BACKUP',
-        'CVE_TIPO',
-        'CVE_ESTADOESQUEMA',
-        'PWD',
-        'OBSERVACIONES',
+        'esquema',
+        'cve_base',
+        'cve_usuario',
+        'cve_dependencia',
+        'cve_programa',
+        'cve_backup',
+        'cve_tipo',
+        'cve_estadoesquema',
+        'pwd',
+        'observaciones',
     ];
 }

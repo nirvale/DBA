@@ -15,9 +15,9 @@ class CreateDatacentersTable extends Migration
     {
         Schema::create('datacenters', function (Blueprint $table) {
             $table->id();
-            $table->string('DATACENTER');
-            $table->string('CVE_TIPODC')->references('tipodcs')->on('id')->onDelete('restrict')->onUpdate('cascade');
-            $table->text('DESC_DATACENTER');
+            $table->string('datacenter');
+            $table->string('cve_tipodc')->references('tipodcs')->on('id')->onDelete('restrict')->onUpdate('cascade');
+            $table->text('desc_datacenter');
             $table->timestamps();
         });
     }

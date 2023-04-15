@@ -9,8 +9,8 @@ class Datacenter extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'DATACENTER',
-        'TIPO',
-        'DESC_DATACENTER',
+        'datacenter',
+        'tipo',
+        'desc_datacenter',
     ];
 }

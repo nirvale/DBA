@@ -21,7 +21,7 @@ class BaseController extends Controller
      */
     public function dbbydc($idd)
     {
-      $dbs = Base::select('BASE','id')
+      $dbs = Base::select('base','id')
         ->where('CVE_DATACENTER',$idd)->get();
 
       return $dbs;

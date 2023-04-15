@@ -14,12 +14,12 @@ class BaseSeeder extends Seeder
      */
     public function run()
     {
-      $base = Base::create(['BASE' => 'DBGRID','CVE_RDBMS' => '1','VERSION' => '18C 18.0.0.0.0','CVE_OS' => '2','OS_VERSION' => 'ORACLE LINUX 7','CVE_DATACENTER' => '1','CVE_TIPO' => '3']);
-      $base = Base::create(['BASE' => 'DESARROLLO','CVE_RDBMS' => '1','VERSION' => '19C 18.0.0.0.0','CVE_OS' => '2','OS_VERSION' => 'ORACLE LINUX 7','CVE_DATACENTER' => '1','CVE_TIPO' => '1']);
-      $base = Base::create(['BASE' => 'HERMES SEDAGRO','CVE_RDBMS' => '1','VERSION' => '18C 18.0.0.0.0','CVE_OS' => '2','OS_VERSION' => 'ORACLE LINUX 7','CVE_DATACENTER' => '1','CVE_TIPO' => '2']);
-      $base = Base::create(['BASE' => 'VALHALLA SEDAGRO','CVE_RDBMS' => '1','VERSION' => '18C 18.0.0.0.0','CVE_OS' => '2','OS_VERSION' => 'ORACLE LINUX 7','CVE_DATACENTER' => '1','CVE_TIPO' => '2']);
-      $base = Base::create(['BASE' => 'HERMES HW-CLOUD','CVE_RDBMS' => '1','VERSION' => '19C 18.0.0.0.0','CVE_OS' => '2','OS_VERSION' => 'ORACLE LINUX 7','CVE_DATACENTER' => '2','CVE_TIPO' => '3']);
-      $base = Base::create(['BASE' => 'VALHALLA HW-CLOUD','CVE_RDBMS' => '1','VERSION' => '19C 18.0.0.0.0','CVE_OS' => '2','OS_VERSION' => 'ORACLE LINUX 7','CVE_DATACENTER' => '2','CVE_TIPO' => '3']);
+      $base = Base::create(['base' => 'DBGRID','cve_rdbms' => '1','version' => '18C 18.0.0.0.0','CVE_OS' => '2','os_version' => 'ORACLE LINUX 7','cve_datacenter' => '1','cve_tipo' => '3']);
+      $base = Base::create(['base' => 'DESARROLLO','cve_rdbms' => '1','version' => '19C 18.0.0.0.0','CVE_OS' => '2','os_version' => 'ORACLE LINUX 7','cve_datacenter' => '1','cve_tipo' => '1']);
+      $base = Base::create(['base' => 'HERMES SEDAGRO','cve_rdbms' => '1','version' => '18C 18.0.0.0.0','CVE_OS' => '2','os_version' => 'ORACLE LINUX 7','cve_datacenter' => '1','cve_tipo' => '2']);
+      $base = Base::create(['base' => 'VALHALLA SEDAGRO','cve_rdbms' => '1','version' => '18C 18.0.0.0.0','CVE_OS' => '2','os_version' => 'ORACLE LINUX 7','cve_datacenter' => '1','cve_tipo' => '2']);
+      $base = Base::create(['base' => 'HERMES HW-CLOUD','cve_rdbms' => '1','version' => '19C 18.0.0.0.0','CVE_OS' => '2','os_version' => 'ORACLE LINUX 7','cve_datacenter' => '2','cve_tipo' => '3']);
+      $base = Base::create(['base' => 'VALHALLA HW-CLOUD','cve_rdbms' => '1','version' => '19C 18.0.0.0.0','CVE_OS' => '2','os_version' => 'ORACLE LINUX 7','cve_datacenter' => '2','cve_tipo' => '3']);
 
     }
 }

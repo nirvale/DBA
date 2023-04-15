@@ -9,6 +9,6 @@ class Os extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'OS',
+        'os',
     ];
 }

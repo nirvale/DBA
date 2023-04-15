@@ -20,7 +20,7 @@ class ProgramaController extends Controller
     public function index(Request $request)
     {
       $programa = Programa::select()
-        ->where('CVE_DEPENDENCIA',$request->CVE_DEPENDENCIA)
+        ->where('cve_dependencia',$request->cve_dependencia)
         ->get();
       return $programa;
     }
@@ -55,7 +55,7 @@ class ProgramaController extends Controller
     public function show($id)
     {
       $programa = Programa::select()
-        ->where('CVE_PROGRAMA',$id)
+        ->where('cve_programa',$id)
         ->get();
       return $programa->toJson();
     }

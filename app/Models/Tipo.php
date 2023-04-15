@@ -9,6 +9,6 @@ class Tipo extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'TIPO',
+        'tipo',
     ];
 }

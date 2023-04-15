@@ -15,7 +15,7 @@ class CreateEstadobackupsTable extends Migration
     {
         Schema::create('estadobackups', function (Blueprint $table) {
             $table->id();
-            $table->string('ESTADO_BACKUP');
+            $table->string('estado_backup');
             $table->timestamps();
         });
     }

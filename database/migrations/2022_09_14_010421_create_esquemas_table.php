@@ -15,16 +15,16 @@ class CreateEsquemasTable extends Migration
     {
         Schema::create('esquemas', function (Blueprint $table) {
             $table->id();
-            $table->string('ESQUEMA');
-            $table->integer('CVE_USUARIO')->references('users')->on('id')->onDelete('restrict')->onUpdate('cascade');
-            $table->integer('CVE_BASE')->references('bases')->on('id')->onDelete('restric')->onUpdate('cascade');
-            $table->string('CVE_DEPENDENCIA')->references('dependencias')->on('CVE_DEPENDENCIA')->onDelete('restrict')->onUpdate('cascade');
-            $table->integer('CVE_PROGRAMA')->references('programas')->on('CVE_PROGRAMA')->onDelete('restrict')->onUpdate('cascade');
-            $table->integer('CVE_BACKUP')->references('backups')->on('id')->onDelete('restrict')->onUpdate('cascade');
-            $table->integer('CVE_TIPO')->references('tipo')->on('id')->onDelete('restrict')->onUpdate('cascade');
-            $table->integer('CVE_ESTADOESQUEMA')->references('estadoesquemas')->on('id')->onDelete('restrict')->onUpdate('cascade');
-            $table->text('PWD');
-            $table->text('OBSERVACIONES');
+            $table->string('esquema');
+            $table->integer('cve_usuario')->references('users')->on('id')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer('cve_base')->references('bases')->on('id')->onDelete('restric')->onUpdate('cascade');
+            $table->string('cve_dependencia')->references('dependencias')->on('cve_dependencia')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer('cve_programa')->references('programas')->on('cve_programa')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer('cve_backup')->references('backups')->on('id')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer('cve_tipo')->references('tipo')->on('id')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer('cve_estadoesquema')->references('estadoesquemas')->on('id')->onDelete('restrict')->onUpdate('cascade');
+            $table->text('pwd');
+            $table->text('observaciones');
             $table->timestamps();
         });
     }

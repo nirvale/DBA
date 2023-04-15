@@ -14,8 +14,8 @@ class CreateEstadosTable extends Migration
     public function up()
     {
         Schema::create('estados', function (Blueprint $table) {
-            $table->Integer('CVE_ESTADO')->primary();
-            $table->string('ESTADO');
+            $table->Integer('cve_estado')->primary();
+            $table->string('estado');
             $table->timestamps();
         });
     }

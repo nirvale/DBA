@@ -14,7 +14,7 @@ class DatacenterSeeder extends Seeder
      */
     public function run()
     {
-        $datacenter = Datacenter::create(['DATACENTER' => 'A - SEDAGRO','CVE_TIPODC' => '1','DESC_DATACENTER' => 'CENTRO DE DATOS DE LA CGG']);
-        $datacenter = Datacenter::create(['DATACENTER' => 'B - HUAWEI','CVE_TIPODC' => '2','DESC_DATACENTER' => 'TENANT EN HUAWEI CLOUD']);
+        $datacenter = Datacenter::create(['datacenter' => 'A - SEDAGRO','cve_tipodc' => '1','desc_datacenter' => 'CENTRO DE DATOS DE LA CGG']);
+        $datacenter = Datacenter::create(['datacenter' => 'B - HUAWEI','cve_tipodc' => '2','desc_datacenter' => 'TENANT EN HUAWEI CLOUD']);
     }
 }
