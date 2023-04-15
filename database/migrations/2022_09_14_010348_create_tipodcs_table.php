@@ -15,7 +15,7 @@ class CreateTipodcsTable extends Migration
     {
         Schema::create('tipodcs', function (Blueprint $table) {
             $table->id();
-            $table->string('TIPODC');
+            $table->string('tipodc');
             $table->timestamps();
         });
     }

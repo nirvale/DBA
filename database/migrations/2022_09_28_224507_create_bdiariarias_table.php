@@ -16,13 +16,13 @@ class CreateBdiariariasTable extends Migration
     {
         Schema::create('bdiarias', function (Blueprint $table) {
             $table->id();
-            $table->date('FECHA');
-            $table->integer('CVE_ESQUEMA')->references('esquemas')->on('id')->onDelete('restrict')->onUpdate('cascade');
+            $table->date('fecha');
+            $table->integer('cve_esquema')->references('esquemas')->on('id')->onDelete('restrict')->onUpdate('cascade');
             //$table->integer('CVE_BASE')->references('bases')->on('id')->onDelete('restrict')->onUpdate('cascade');
-            $table->integer('CVE_ESTADOBACKUP')->references('estadobackups')->on('id')->onDelete('restrict')->onUpdate('cascade');
-            $table->json('ARCHIVOS');
-            $table->text('OBSERVACIONES');
-            $table->integer('CVE_USER')->references('users')->on('id')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer('cve_estadobackup')->references('estadobackups')->on('id')->onDelete('restrict')->onUpdate('cascade');
+            $table->json('archivos');
+            $table->text('observaciones');
+            $table->integer('cve_user')->references('users')->on('id')->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
         });
     }

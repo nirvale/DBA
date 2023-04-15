@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Programa extends Model
 {
     use HasFactory;
-    protected $primaryKey ='CVE_PROGRAMA';
+    protected $primaryKey ='cve_programa';
     public $incrementing = false;
     //EN CASO DE QUE LA LLAVE NO SEA NÚMERICA
     protected $keyType = 'string';
     protected $fillable = [
-        'CVE_DEPENDENCIA',
-        'CVE_PROGRAMA',
-        'NOMBRE',
+        'cve_dependencia',
+        'cve_programa',
+        'nombre',
     ];
 }

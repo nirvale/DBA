@@ -15,9 +15,9 @@ class CreateProgramasTable extends Migration
     {
         Schema::create('programas', function (Blueprint $table) {
             //$table->id();
-            $table->String('CVE_DEPENDENCIA');
-            $table->String('CVE_PROGRAMA')->primary();
-            $table->String('PROGRAMA');
+            $table->String('cve_dependencia');
+            $table->String('cve_programa')->primary();
+            $table->String('programa');
             $table->timestamps();
         });
     }

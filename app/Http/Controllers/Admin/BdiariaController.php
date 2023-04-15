@@ -26,41 +26,41 @@ class BdiariaController extends Controller
      */
      public function home()
      {
-        $datacenters = Datacenter::pluck('DATACENTER','id');
+        $datacenters = Datacenter::pluck('datacenter','id');
         return View('admin.bdiaria',compact('datacenters'));
      }
     public function index(Request $request)
     {
 
         if (is_null($request->cve_datacenter) && is_null($request->cve_base)) {
-            $listadoBackups = Bdiaria::select('bdiarias.id','bdiarias.FECHA','esquemas.ESQUEMA','bases.BASE','estadobackups.ESTADO_BACKUP','bdiarias.ARCHIVOS','bdiarias.OBSERVACIONES','users.name')
-                ->join('esquemas','esquemas.id','=','bdiarias.CVE_ESQUEMA')
-                ->join('bases','bases.id','=','esquemas.CVE_BASE')
-                ->join('estadobackups','estadobackups.id','=','bdiarias.CVE_ESTADOBACKUP')
-                ->join('users','users.id','=','bdiarias.CVE_USER')
+            $listadoBackups = Bdiaria::select('bdiarias.id','bdiarias.fecha','esquemas.esquema','bases.base','estadobackups.estado_backup','bdiarias.archivos','bdiarias.observaciones','users.name')
+                ->join('esquemas','esquemas.id','=','bdiarias.cve_esquema')
+                ->join('bases','bases.id','=','esquemas.cve_base')
+                ->join('estadobackups','estadobackups.id','=','bdiarias.cve_estadobackup')
+                ->join('users','users.id','=','bdiarias.cve_user')
                 ->get();
         }elseif (isset($request->cve_datacenter) && is_null($request->cve_base)) {
-            $dbs = DB::table('bases')->where('CVE_DATACENTER',$request->cve_datacenter)->pluck('id');
-            $listadoBackups = Bdiaria::select('bdiarias.id','bdiarias.FECHA','esquemas.ESQUEMA','bases.BASE','estadobackups.ESTADO_BACKUP','bdiarias.ARCHIVOS','bdiarias.OBSERVACIONES','users.name')
-                ->join('esquemas','esquemas.id','=','bdiarias.CVE_ESQUEMA')
-                ->join('bases','bases.id','=','esquemas.CVE_BASE')
-                ->join('estadobackups','estadobackups.id','=','bdiarias.CVE_ESTADOBACKUP')
-                ->join('users','users.id','=','bdiarias.CVE_USER')
-                ->wherein('esquemas.CVE_BASE',$dbs)
+            $dbs = DB::table('bases')->where('cve_datacenter',$request->cve_datacenter)->pluck('id');
+            $listadoBackups = Bdiaria::select('bdiarias.id','bdiarias.fecha','esquemas.esquema','bases.base','estadobackups.estado_backup','bdiarias.archivos','bdiarias.observaciones','users.name')
+                ->join('esquemas','esquemas.id','=','bdiarias.cve_esquema')
+                ->join('bases','bases.id','=','esquemas.cve_base')
+                ->join('estadobackups','estadobackups.id','=','bdiarias.cve_estadobackup')
+                ->join('users','users.id','=','bdiarias.cve_user')
+                ->wherein('esquemas.cve_base',$dbs)
                 ->get();
         }elseif (isset($request->cve_datacenter) && isset($request->cve_base)) {
-            $listadoBackups = Bdiaria::select('bdiarias.id','bdiarias.FECHA','esquemas.ESQUEMA','bases.BASE','estadobackups.ESTADO_BACKUP','bdiarias.ARCHIVOS','bdiarias.OBSERVACIONES','users.name')
-                ->join('esquemas','esquemas.id','=','bdiarias.CVE_ESQUEMA')
-                ->join('bases','bases.id','=','esquemas.CVE_BASE')
-                ->join('estadobackups','estadobackups.id','=','bdiarias.CVE_ESTADOBACKUP')
-                ->join('users','users.id','=','bdiarias.CVE_USER')
-                ->where('esquemas.CVE_BASE',$request->cve_base)
+            $listadoBackups = Bdiaria::select('bdiarias.id','bdiarias.fecha','esquemas.esquema','bases.base','estadobackups.estado_backup','bdiarias.archivos','bdiarias.observaciones','users.name')
+                ->join('esquemas','esquemas.id','=','bdiarias.cve_esquema')
+                ->join('bases','bases.id','=','esquemas.cve_base')
+                ->join('estadobackups','estadobackups.id','=','bdiarias.cve_estadobackup')
+                ->join('users','users.id','=','bdiarias.cve_user')
+                ->where('esquemas.cve_base',$request->cve_base)
                 ->get();
         }
 
 
 
-      // foreach (json_decode($listadoBackups[0]->ARCHIVOS) as $area)
+      // foreach (json_decode($listadoBackups[0]->archivos) as $area)
       //   {
       //   dd($area); // this is your area from json response
       //   }
@@ -98,16 +98,16 @@ class BdiariaController extends Controller
          return response()->json(['errors'=>$validated->errors()->all()]);
         }elseif ($validated) {
             $esquemas = Esquema::select(
-                'esquemas.id as CVE_ESQUEMA',
-                'esquemas.ESQUEMA',
-                'bases.BASE'
+                'esquemas.id as cve_esquema',
+                'esquemas.esquema',
+                'bases.base'
             )
-            ->join('bases','bases.id','esquemas.CVE_BASE')
-            ->where('esquemas.CVE_BASE',$request->cve_base)
-            ->where('esquemas.CVE_BACKUP','1') //backup diarío
+            ->join('bases','bases.id','esquemas.cve_base')
+            ->where('esquemas.cve_base',$request->cve_base)
+            ->where('esquemas.cve_backup','1') //backup diarío
             ->get();
 
-            $estadobackups=Estadobackup::select()->get();
+            $estadobackups=Estadobackup::select('id','estado_backup')->get();
 
 
             return [$esquemas,$estadobackups];
@@ -156,12 +156,12 @@ class BdiariaController extends Controller
 
                 for ($i=0; $i < $request->ndata ; $i++) {
                     $bdiaria = new Bdiaria;
-                    $bdiaria->FECHA = $request->bitdate;
-                    $bdiaria->CVE_ESQUEMA = $request->cve_esquema[$i];
-                    $bdiaria->CVE_ESTADOBACKUP = $request->selEstadoBackup[$i];
-                    $bdiaria->OBSERVACIONES = $request->OBSERVACIONES;
-                    $bdiaria->ARCHIVOS = json_encode($urls);
-                    $bdiaria->CVE_USER = Auth::user()->id;
+                    $bdiaria->fecha = $request->bitdate;
+                    $bdiaria->cve_esquema = $request->cve_esquema[$i];
+                    $bdiaria->cve_estadobackup = $request->selEstadoBackup[$i];
+                    $bdiaria->observaciones = $request->observaciones;
+                    $bdiaria->archivos = json_encode($urls);
+                    $bdiaria->cve_user = Auth::user()->id;
                     //return $bdiaria;
                     $bdiaria->save();
                 }
@@ -170,7 +170,7 @@ class BdiariaController extends Controller
                 DB::rollBack();
                 return $e;
              }
-            return [$bdiaria->FECHA];
+            return [$bdiaria->fecha];
         }
     }
 
@@ -182,14 +182,14 @@ class BdiariaController extends Controller
      */
     public function show($id)
     {
-      $Backup = Bdiaria::select('bdiarias.id','bdiarias.FECHA','esquemas.ESQUEMA','bases.BASE','estadobackups.ESTADO_BACKUP','bdiarias.ARCHIVOS','bdiarias.OBSERVACIONES')
-      ->join('esquemas','esquemas.id','=','bdiarias.CVE_ESQUEMA')
-      ->join('bases','bases.id','=','esquemas.CVE_BASE')
-      ->join('estadobackups','estadobackups.id','=','bdiarias.CVE_ESTADOBACKUP')
+      $Backup = Bdiaria::select('bdiarias.id','bdiarias.fecha','esquemas.esquema','bases.base','estadobackups.estado_backup','bdiarias.archivos','bdiarias.observaciones')
+      ->join('esquemas','esquemas.id','=','bdiarias.cve_esquema')
+      ->join('bases','bases.id','=','esquemas.cve_base')
+      ->join('estadobackups','estadobackups.id','=','bdiarias.cve_estadobackup')
       ->where('bdiarias.id','=',$id )
       ->get();
 
-      $Estadobackups = DB::table('estadobackups')->select('id','ESTADO_BACKUP')->get();
+      $Estadobackups = DB::table('estadobackups')->select('id','estado_backup')->get();
 
       return [$Backup,$Estadobackups];
     }
@@ -204,7 +204,6 @@ class BdiariaController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -214,29 +213,27 @@ class BdiariaController extends Controller
      */
     public function update(Request $request, $id)
     {
-//dd($request);
 
         $validated=\Validator::make($request->all(), [
            'id' => 'bail|required',
            'bdiaria_archivos.*' => 'mimetypes:application/gzip|max: 512',
-           'CVE_ESTADOBACKUP' => 'bail|required|max:1',
-           //'OBSERVACIONES' => 'bail|required|max:300',
+           'cve_estadobackup' => 'bail|required|max:1',
+           //'observaciones' => 'bail|required|max:300',
         ]);
 
         if ($validated->fails())
         {
          return response()->json(['errors'=>$validated->errors()->all()]);
         }elseif ($validated) {
-
         $bdiaria = Bdiaria::FindOrFail($request->id);
-        $urls=json_decode($bdiaria->ARCHIVOS);
+        $urls=json_decode($bdiaria->archivos);
         $h=date("Y-m-d-h-i");
         if ($request->file('bdiaria_archivos')) {
             $logs = $request->file('bdiaria_archivos');
 
             foreach ($logs as $log) {
-                $nombre = str_replace(' ', '_', $request->BASE . '_' . $request->esquema . '_' . $request->fecha . '_' . $h .'.tar.' . $log->getClientOriginalExtension());
-                 //$nombre = $request->BASE . '_' . $request->esquema . '_' . $request->fecha . '_' . $h .'.tar.' . $log->getClientOriginalExtension();
+                $nombre = str_replace(' ', '_', $request->base . '_' . $request->esquema . '_' . $request->fecha . '_' . $h .'.tar.' . $log->getClientOriginalExtension());
+                 //$nombre = $request->base . '_' . $request->esquema . '_' . $request->fecha . '_' . $h .'.tar.' . $log->getClientOriginalExtension();
                  $path = $log->storeAs('bdiarias', $nombre);
                  $urls[] = $nombre;
 
@@ -247,9 +244,9 @@ class BdiariaController extends Controller
 
             DB::beginTransaction();
             try {
-                $bdiaria->CVE_ESTADOBACKUP = $request->CVE_ESTADOBACKUP;
-                $bdiaria->OBSERVACIONES = $request->OBSERVACIONES;
-                $bdiaria->ARCHIVOS = json_encode($urls);
+                $bdiaria->cve_estadobackup = $request->cve_estadobackup;
+                $bdiaria->observaciones = $request->observaciones;
+                $bdiaria->archivos = json_encode($urls);
                 $bdiaria->push();
                 DB::commit();
             } catch (\Exception $e) {

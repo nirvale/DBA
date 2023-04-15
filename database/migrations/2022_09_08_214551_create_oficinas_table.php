@@ -15,8 +15,8 @@ class CreateOficinasTable extends Migration
     {
         Schema::create('oficinas', function (Blueprint $table) {
             //$table->id();
-            $table->String('CVE_OFICINA')->primary();
-            $table->String('OFICINA');
+            $table->String('cve_oficina')->primary();
+            $table->String('oficina');
             $table->timestamps();
         });
     }

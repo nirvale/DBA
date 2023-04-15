@@ -162,7 +162,7 @@
                       for(var i=0; i<len; i++){
 
                          var iddb = response[i].id;
-                         var db = response[i].BASE;
+                         var db = response[i].base;
 
                          var option = "<option value='"+iddb+"'>"+db+"</option>";
 
@@ -202,16 +202,16 @@
               },
               "columns":[
                  {"data": "id" },
-                 {"data": "ESQUEMA" },
+                 {"data": "esquema" },
                  {"data": "name" },
-                 {"data": "BASE" },
-                 {"data": "NOMBRE" },
-                 {"data": "PROGRAMA" },
-                 {"data": "RESPALDO" },
-                 {"data": "TIPO" },
-                 {"data": "ESTADOESQUEMA" },
-                 {"data": "PWD" },
-                 {"data": "OBSERVACIONES" },
+                 {"data": "base" },
+                 {"data": "nombre" },
+                 {"data": "programa" },
+                 {"data": "respaldo" },
+                 {"data": "tipo" },
+                 {"data": "estadoesquema" },
+                 {"data": "pwd" },
+                 {"data": "observaciones" },
                  {"data": "ACTION", className: 'dt-center', },
                  //{"data": "empeval_cantidad_espacios" },
                 //{"defaultContent":   "accion",
@@ -266,16 +266,16 @@
 
           //construir forma
           id =  "<div class='form-group col-md-6 ml-auto'> <input value='"+response[0][0].id+"' name='id' type='text' id='id' class='form-control validate' hidden></div> ";
-          esquema =  "<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='cmb_esquema'>ESQUEMA</label> <input value='"+response[0][0].ESQUEMA+"' name='esquema' type='text' id='esquema' class='form-control validate' placeholder='Nombre del Esquema'></div> ";
-          usuario =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>USUARIO</label> <select class='form-control select2' id='selUsuario' name='CVE_USUARIO'><option value='' disabled selected>Seleciona una usuario..</option>");
-          base =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>BASE</label> <select class='form-control select2' id='selBase' name='CVE_BASE'><option value='' disabled selected>Seleciona una base de datos...</option>");
-          dependencia =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>DEPENDENCIA</label> <select class='form-control select2' id='selDependencia' name='CVE_DEPENDENCIA'><option value='' disabled selected>Seleciona una dependencia...</option>");
-          programa =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>PROGRAMA</label> <select class='form-control select2' id='selPrograma' name='CVE_PROGRAMA'><option value='' disabled selected>Seleciona un programa...</option>");
-          respaldo =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>RESPALDO</label> <select class='form-control select2' id='selRespaldo' name='CVE_BACKUP'><option value='' disabled selected>Seleciona una backup...</option>");
-          tipo =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>TIPO</label> <select class='form-control select2' id='selTipo' name='CVE_TIPO'><option value='' disabled selected>Seleciona un tipo de esquema...</option>");
-          estado =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>ESTADO</label> <select class='form-control select2' id='selEstadoesquema' name='CVE_ESTADOESQUEMA'><option value='' disabled selected>Seleciona un estado del esquema...</option>");
-          observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>OBSERVACIONES</label> <textarea value='' name='OBSERVACIONES' type='text' id='OBSERVACIONES' class='form-control validate' placeholder='Observaciones...'>"+response[0][0].OBSERVACIONES+"</textarea></div> ";
-          pwd =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='cmb_PWD'>PASSWORD</label> <input value='"+response[0][0].PWD+"' name='PWD' type='text' id='PWD' class='form-control validate' placeholder='Contraseña...'></div> ";
+          esquema =  "<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='cmb_esquema'>esquema</label> <input value='"+response[0][0].esquema+"' name='esquema' type='text' id='esquema' class='form-control validate' placeholder='Nombre del Esquema'></div> ";
+          usuario =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>USUARIO</label> <select class='form-control select2' id='selUsuario' name='cve_usuario'><option value='' disabled selected>Seleciona una usuario..</option>");
+          base =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>base</label> <select class='form-control select2' id='selBase' name='cve_base'><option value='' disabled selected>Seleciona una base de datos...</option>");
+          dependencia =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>cve_dependencia</label> <select class='form-control select2' id='selDependencia' name='cve_dependencia'><option value='' disabled selected>Seleciona una dependencia...</option>");
+          programa =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>programa</label> <select class='form-control select2' id='selPrograma' name='cve_programa'><option value='' disabled selected>Seleciona un programa...</option>");
+          respaldo =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>respaldo</label> <select class='form-control select2' id='selRespaldo' name='cve_backup'><option value='' disabled selected>Seleciona una backup...</option>");
+          tipo =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>tipo</label> <select class='form-control select2' id='selTipo' name='cve_tipo'><option value='' disabled selected>Seleciona un tipo de esquema...</option>");
+          estado =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>ESTADO</label> <select class='form-control select2' id='selEstadoesquema' name='cve_estadoesquema'><option value='' disabled selected>Seleciona un estado del esquema...</option>");
+          observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>observaciones</label> <textarea value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'>"+response[0][0].observaciones+"</textarea></div> ";
+          pwd =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='cmb_PWD'>PASSWORD</label> <input value='"+response[0][0].pwd+"' name='pwd' type='text' id='pwd' class='form-control validate' placeholder='Contraseña...'></div> ";
           footermodal = "<button class='btn btn-success' id='updateEsquema' >Guardar</button><button class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>";
 
 
@@ -292,57 +292,57 @@
               }
             $("#modalc1").append(base);
             for (var j = 0; j < response[2].length; j++) {
-                if (bas == response[2][j].BASE) {
+                if (bas == response[2][j].base) {
                   selected='selected';
                 }else {
                   selected='';
                 }
-                $("#selBase").append("<option value='"+response[2][j].id+"' "+selected+ ">"+response[2][j].BASE+"</option>");
+                $("#selBase").append("<option value='"+response[2][j].id+"' "+selected+ ">"+response[2][j].base+"</option>");
               }
             $("#modalc1").append(tipo);
             for (var j = 0; j < response[6].length; j++) {
-                if (tip == response[6][j].TIPO) {
+                if (tip == response[6][j].tipo) {
                   selected='selected';
                 }else {
                   selected='';
                 }
-                $("#selTipo").append("<option value='"+response[6][j].id+"' "+selected+ ">"+response[6][j].TIPO+"</option>");
+                $("#selTipo").append("<option value='"+response[6][j].id+"' "+selected+ ">"+response[6][j].tipo+"</option>");
             }
             $("#modalc1").append(dependencia);
             for (var j = 0; j < response[3].length; j++) {
-                if (dep == response[3][j].NOMBRE) {
+                if (dep == response[3][j].nombre) {
                   selected='selected';
                 }else {
                   selected='';
                 }
-                $("#selDependencia").append("<option value='"+response[3][j].CVE_DEPENDENCIA+"' "+selected+ ">"+response[3][j].NOMBRE+"</option>");
+                $("#selDependencia").append("<option value='"+response[3][j].cve_dependencia+"' "+selected+ ">"+response[3][j].nombre+"</option>");
               }
             $("#modalc1").append(programa);
             for (var j = 0; j < response[4].length; j++) {
-                if (prog == response[4][j].PROGRAMA) {
+                if (prog == response[4][j].programa) {
                   selected='selected';
                 }else {
                   selected='';
                 }
-                $("#selPrograma").append("<option value='"+response[4][j].CVE_PROGRAMA+"' "+selected+ ">"+response[4][j].PROGRAMA+"</option>");
+                $("#selPrograma").append("<option value='"+response[4][j].cve_programa+"' "+selected+ ">"+response[4][j].programa+"</option>");
               }
             $("#modalc1").append(respaldo);
             for (var j = 0; j < response[5].length; j++) {
-                if (resp == response[5][j].BACKUP) {
+                if (resp == response[5][j].backup) {
                   selected='selected';
                 }else {
                   selected='';
                 }
-                $("#selRespaldo").append("<option value='"+response[5][j].id+"' "+selected+ ">"+response[5][j].BACKUP+"</option>");
+                $("#selRespaldo").append("<option value='"+response[5][j].id+"' "+selected+ ">"+response[5][j].backup+"</option>");
               }
               $("#modalc1").append(estado);
               for (var j = 0; j < response[7].length; j++) {
-                  if (est == response[7][j].ESTADOESQUEMA) {
+                  if (est == response[7][j].estadoesquema) {
                     selected='selected';
                   }else {
                     selected='';
                   }
-                  $("#selEstadoesquema").append("<option value='"+response[7][j].id+"' "+selected+ ">"+response[7][j].ESTADOESQUEMA+"</option>");
+                  $("#selEstadoesquema").append("<option value='"+response[7][j].id+"' "+selected+ ">"+response[7][j].estadoesquema+"</option>");
                 }
                 $("#modalc1").append(pwd);
                 $("#modalc2").append(observaciones);
@@ -473,16 +473,16 @@
 
           //construir forma
           //id =  "<div class='form-group col-md-6 ml-auto'> <input value='"+response[0][0].id+"' name='id' type='text' id='id' class='form-control validate' hidden></div> ";
-          esquema =  "<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='cmb_esquema'>ESQUEMA</label> <input value='' name='esquema' type='text' id='esquema' class='form-control validate' placeholder='Nombre del Esquema'></div> ";
-          usuario =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>USUARIO</label> <select class='form-control select2' id='selUsuario' name='CVE_USUARIO'><option value='' disabled selected>Seleciona una usuario..</option>");
-          base =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>BASE</label> <select class='form-control select2' id='selBase' name='CVE_BASE'><option value='' disabled selected>Seleciona una base de datos...</option>");
-          dependencia =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>DEPENDENCIA</label> <select class='form-control select2' id='selDependencia' name='CVE_DEPENDENCIA'><option value='' disabled selected>Seleciona una dependencia...</option>");
-          programa =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>PROGRAMA</label> <select class='form-control select2' id='selPrograma' name='CVE_PROGRAMA'><option value='' disabled selected>Seleciona un programa...</option>");
-          respaldo =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>RESPALDO</label> <select class='form-control select2' id='selRespaldo' name='CVE_BACKUP'><option value='' disabled selected>Seleciona una backup...</option>");
-          tipo =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>TIPO</label> <select class='form-control select2' id='selTipo' name='CVE_TIPO'><option value='' disabled selected>Seleciona un tipo de esquema...</option>");
-          estado =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>ESTADO</label> <select class='form-control select2' id='selEstadoesquema' name='CVE_ESTADOESQUEMA'><option value='' disabled selected>Seleciona un estado del esquema...</option>");
-          observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>OBSERVACIONES</label> <textarea value='' name='OBSERVACIONES' type='text' id='OBSERVACIONES' class='form-control validate' placeholder='Observaciones...'></textarea></div> ";
-          pwd =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='cmb_PWD'>PASSWORD</label> <input value='' name='PWD' type='text' id='PWD' class='form-control validate' placeholder='Contraseña...'></div> ";
+          esquema =  "<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='cmb_esquema'>esquema</label> <input value='' name='esquema' type='text' id='esquema' class='form-control validate' placeholder='Nombre del Esquema'></div> ";
+          usuario =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>USUARIO</label> <select class='form-control select2' id='selUsuario' name='cve_usuario'><option value='' disabled selected>Seleciona una usuario..</option>");
+          base =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>base</label> <select class='form-control select2' id='selBase' name='cve_base'><option value='' disabled selected>Seleciona una base de datos...</option>");
+          dependencia =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>cve_dependencia</label> <select class='form-control select2' id='selDependencia' name='cve_dependencia'><option value='' disabled selected>Seleciona una dependencia...</option>");
+          programa =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>programa</label> <select class='form-control select2' id='selPrograma' name='cve_programa'><option value='' disabled selected>Seleciona un programa...</option>");
+          respaldo =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>respaldo</label> <select class='form-control select2' id='selRespaldo' name='cve_backup'><option value='' disabled selected>Seleciona una backup...</option>");
+          tipo =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>tipo</label> <select class='form-control select2' id='selTipo' name='cve_tipo'><option value='' disabled selected>Seleciona un tipo de esquema...</option>");
+          estado =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>ESTADO</label> <select class='form-control select2' id='selEstadoesquema' name='cve_estadoesquema'><option value='' disabled selected>Seleciona un estado del esquema...</option>");
+          observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>observaciones</label> <textarea value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'></textarea></div> ";
+          pwd =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='cmb_PWD'>PASSWORD</label> <input value='' name='pwd' type='text' id='pwd' class='form-control validate' placeholder='Contraseña...'></div> ";
           footermodal = "<button class='btn btn-success' id='createEsquema' >Crear</button><button class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>";
 
 
@@ -494,27 +494,27 @@
               }
             $("#modalc1").append(base);
             for (var j = 0; j < response[1].length; j++) {
-                $("#selBase").append("<option value='"+response[1][j].id+"' >"+response[1][j].BASE+"</option>");
+                $("#selBase").append("<option value='"+response[1][j].id+"' >"+response[1][j].base+"</option>");
               }
             $("#modalc1").append(tipo);
             for (var j = 0; j < response[5].length; j++) {
-                $("#selTipo").append("<option value='"+response[5][j].id+"' >"+response[5][j].TIPO+"</option>");
+                $("#selTipo").append("<option value='"+response[5][j].id+"' >"+response[5][j].tipo+"</option>");
             }
             $("#modalc1").append(dependencia);
             for (var j = 0; j < response[2].length; j++) {
-                $("#selDependencia").append("<option value='"+response[2][j].CVE_DEPENDENCIA+"' >"+response[2][j].NOMBRE+"</option>");
+                $("#selDependencia").append("<option value='"+response[2][j].cve_dependencia+"' >"+response[2][j].nombre+"</option>");
               }
             $("#modalc1").append(programa);
             for (var j = 0; j < response[3].length; j++) {
-                $("#selPrograma").append("<option value='"+response[3][j].CVE_PROGRAMA+"' >"+response[3][j].PROGRAMA+"</option>");
+                $("#selPrograma").append("<option value='"+response[3][j].cve_programa+"' >"+response[3][j].programa+"</option>");
               }
             $("#modalc1").append(respaldo);
             for (var j = 0; j < response[4].length; j++) {
-                $("#selRespaldo").append("<option value='"+response[4][j].id+"' >"+response[4][j].BACKUP+"</option>");
+                $("#selRespaldo").append("<option value='"+response[4][j].id+"' >"+response[4][j].backup+"</option>");
               }
               $("#modalc1").append(estado);
               for (var j = 0; j < response[6].length; j++) {
-                  $("#selEstadoesquema").append("<option value='"+response[6][j].id+"' >"+response[6][j].ESTADOESQUEMA+"</option>");
+                  $("#selEstadoesquema").append("<option value='"+response[6][j].id+"' >"+response[6][j].estadoesquema+"</option>");
                 }
                 $("#modalc1").append(pwd);
                 $("#modalc2").append(observaciones);
@@ -544,7 +544,7 @@
                      dataType: 'json',
                      data: {
                          _token: $('input[name="_token"]').val(),
-                          CVE_DEPENDENCIA:idd,
+                          cve_dependencia:idd,
                      },
                      success: function(response){
 
@@ -558,8 +558,8 @@
                           // Read data and create <option >
                           for(var i=0; i<len; i++){
 
-                             var idpro = response[i].CVE_PROGRAMA;
-                             var pro = response[i].PROGRAMA;
+                             var idpro = response[i].cve_programa;
+                             var pro = response[i].programa;
 
                              var option = "<option value='"+idpro+"'>"+pro+"</option>";
 

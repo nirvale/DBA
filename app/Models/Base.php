@@ -9,11 +9,11 @@ class Base extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'BASE',
-        'RDBMS',
-        'VERSION',
-        'OS',
-        'OS_VERSION',
-        'DATACENTER',
+        'base',
+        'rdbms',
+        'version',
+        'os',
+        'os_version',
+        'datacenter',
     ];
 }

@@ -9,7 +9,7 @@ class Estadoesquema extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'ESTADOESQUEMA',
+        'estadoesquema',
 
     ];
 }

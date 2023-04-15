@@ -9,6 +9,6 @@ class Tipodc extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'TIPODC',
+        'tipodc',
     ];
 }

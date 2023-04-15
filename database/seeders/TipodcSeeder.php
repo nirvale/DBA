@@ -14,7 +14,7 @@ class TipodcSeeder extends Seeder
      */
     public function run()
     {
-        $tipodc = Tipodc::create(['TIPODC' => 'FISICO']);
-        $tipodc = Tipodc::create(['TIPODC' => 'CLOUD']);
+        $tipodc = Tipodc::create(['tipodc' => 'FISICO']);
+        $tipodc = Tipodc::create(['tipodc' => 'CLOUD']);
     }
 }

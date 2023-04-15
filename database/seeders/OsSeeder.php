@@ -14,8 +14,8 @@ class OsSeeder extends Seeder
      */
     public function run()
     {
-        $os = Os::create(['OS' => 'AIX']);
-        $os = Os::create(['OS' => 'LINUX']);
-        $os = Os::create(['OS' => 'WINDOWS']);
+        $os = Os::create(['os' => 'AIX']);
+        $os = Os::create(['os' => 'LINUX']);
+        $os = Os::create(['os' => 'WINDOWS']);
     }
 }

@@ -10,8 +10,8 @@ class Adscripcion extends Model
     use HasFactory;
     protected $table = 'adscripciones';
     protected $fillable = [
-        'CVE_USUARIO',
-        'CVE_OFICINA',
-        'CVE_ESTADO',
+        'cve_usuario',
+        'cve_oficina',
+        'cve_estado',
     ];
 }

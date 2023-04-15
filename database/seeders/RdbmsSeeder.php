@@ -14,10 +14,10 @@ class RdbmsSeeder extends Seeder
      */
     public function run()
     {
-        $rdbms = Rdbms::create(['RDBMS' => 'ORACLE']);
-        $rdbms = Rdbms::create(['RDBMS' => 'MYSQL']);
-        $rdbms = Rdbms::create(['RDBMS' => 'MARIADB']);
-        $rdbms = Rdbms::create(['RDBMS' => 'POSTGRES']);
-        $rdbms = Rdbms::create(['RDBMS' => 'SQLSERVER']);
+        $rdbms = Rdbms::create(['rdbms' => 'ORACLE']);
+        $rdbms = Rdbms::create(['rdbms' => 'MYSQL']);
+        $rdbms = Rdbms::create(['rdbms' => 'MARIADB']);
+        $rdbms = Rdbms::create(['rdbms' => 'POSTGRES']);
+        $rdbms = Rdbms::create(['rdbms' => 'SQLSERVER']);
     }
 }

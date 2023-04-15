@@ -9,6 +9,6 @@ class Rdbms extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'RDBMS',
+        'rdbms',
     ];
 }

@@ -28,19 +28,19 @@ class UserController extends Controller
     public function index(Request $request)
     {
       // $listadoUsuarios = DB::table('users')
-      //   ->join('adscripciones','adscripciones.CVE_USUARIO','=','users.id')
-      //   ->join('oficinas','oficinas.CVE_OFICINA','=','adscripciones.CVE_OFICINA')
-      //   ->join('estados','estados.CVE_ESTADO','=','adscripciones.CVE_ESTADO')
+      //   ->join('adscripciones','adscripciones.cve_usuario','=','users.id')
+      //   ->join('oficinas','oficinas.cve_oficina','=','adscripciones.cve_oficina')
+      //   ->join('estados','estados.cve_estado','=','adscripciones.cve_estado')
       //   ->join('model_has_roles','model_has_roles.model_id','=','users.id')
       //   ->join('roles','roles.id','=','model_has_roles.role_id')
       // //  ->where('empresas_evaluaciones.empeval_cantidad_espacios','<',-10000)
-      //   ->select('users.id','users.name','users.email','estados.ESTADO','oficinas.OFICINA','roles.name as PERFIL')
+      //   ->select('users.id','users.name','users.email','estados.estado','oficinas.oficina','roles.name as perfil')
       //   ->get();
 
-      $listadoUsuarios = User::select('users.id','users.name','users.email','estados.ESTADO','oficinas.OFICINA','roles.name as PERFIL')
-      ->join('adscripciones','adscripciones.CVE_USUARIO','=','users.id')
-      ->join('oficinas','oficinas.CVE_OFICINA','=','adscripciones.CVE_OFICINA')
-      ->join('estados','estados.CVE_ESTADO','=','adscripciones.CVE_ESTADO')
+      $listadoUsuarios = User::select('users.id','users.name','users.email','estados.estado','oficinas.oficina','roles.name as perfil')
+      ->join('adscripciones','adscripciones.cve_usuario','=','users.id')
+      ->join('oficinas','oficinas.cve_oficina','=','adscripciones.cve_oficina')
+      ->join('estados','estados.cve_estado','=','adscripciones.cve_estado')
       ->join('model_has_roles','model_has_roles.model_id','=','users.id')
       ->join('roles','roles.id','=','model_has_roles.role_id')
       ->get();
@@ -92,9 +92,9 @@ class UserController extends Controller
            //'empr_nombre' => 'bail|required|',
            'nombre' => 'bail|required|max:50',
            //'empeval_fotos.*.file' => 'required|mimes:jpeg,jpg,png|max: 20000',
-           'CVE_OFICINA' => 'bail|required|max:1',
-           'ID_PERFIL' => 'bail|required|max:1',
-           'CVE_ESTADO' => 'bail|required|max:1',
+           'cve_oficina' => 'bail|required|max:1',
+           'id_perfil' => 'bail|required|max:2',
+           'cve_estado' => 'bail|required|max:1',
            'email' => 'bail|required|email:rfc,dns',
            'pwd' => 'bail|required|max:10',
        ]);
@@ -110,13 +110,14 @@ class UserController extends Controller
               'name' => $request->nombre,
               'email' => $request->email,
               'password' => Hash::make($request->pwd)
-          ])->roles()->sync($request->ID_PERFIL);
+          ])->roles()->sync($request->id_perfil);
+
           $newid = User::where('email',$request->email)->get('id');
 
           $adscripcion = Adscripcion::create([
-            'CVE_USUARIO' => $newid[0]->id,
-            'CVE_OFICINA' => $request->CVE_OFICINA,
-            'CVE_ESTADO'  => $request->CVE_ESTADO
+            'cve_usuario' => $newid[0]->id,
+            'cve_oficina' => $request->cve_oficina,
+            'cve_estado'  => $request->cve_estado
 
           ]);
           DB::commit();
@@ -138,17 +139,17 @@ class UserController extends Controller
     public function show($id)
     {
       $usuario = DB::table('users')
-        ->join('adscripciones','adscripciones.CVE_USUARIO','=','users.id')
-        ->join('oficinas','oficinas.CVE_OFICINA','=','adscripciones.CVE_OFICINA')
-        ->join('estados','estados.CVE_ESTADO','=','adscripciones.CVE_ESTADO')
+        ->join('adscripciones','adscripciones.cve_usuario','=','users.id')
+        ->join('oficinas','oficinas.cve_oficina','=','adscripciones.cve_oficina')
+        ->join('estados','estados.cve_estado','=','adscripciones.cve_estado')
         ->join('model_has_roles','model_has_roles.model_id','=','users.id')
         ->join('roles','roles.id','=','model_has_roles.role_id')
         ->where('users.id','=',$id)
-        ->select('users.id','users.name','users.email','estados.ESTADO','oficinas.OFICINA','roles.name as PERFIL')
+        ->select('users.id','users.name','users.email','estados.estado','oficinas.oficina','roles.name as perfil')
         ->get();
 
-      $estados = DB::table('estados')->get();
-      $oficinas = Db::table('oficinas')->get();
+      $estados = DB::table('estados')->get(['cve_estado','estado']);
+      $oficinas = Db::table('oficinas')->get(['cve_oficina','oficina']);
       $roles = DB::table('roles')
         ->get(['id','name']);
 
@@ -180,9 +181,9 @@ class UserController extends Controller
            //'empr_nombre' => 'bail|required|',
            'nombre' => 'bail|required|max:50',
            //'empeval_fotos.*.file' => 'required|mimes:jpeg,jpg,png|max: 20000',
-           'CVE_OFICINA' => 'bail|required|max:1',
-           'ID_PERFIL' => 'bail|required|max:1',
-           'CVE_ESTADO' => 'bail|required|max:1',
+           'cve_oficina' => 'bail|required|max:1',
+           'id_perfil' => 'bail|required|max:2',
+           'cve_estado' => 'bail|required|max:1',
            'email' => 'bail|required|email:rfc,dns',
        ]);
        if ($validated->fails())
@@ -200,12 +201,12 @@ class UserController extends Controller
           }
           $usuario->save();
 
-          $adscripcion = Adscripcion::where('CVE_USUARIO',$request->id)->first();
-          $adscripcion->CVE_OFICINA = $request->CVE_OFICINA;
-          $adscripcion->CVE_ESTADO = $request->CVE_ESTADO;
+          $adscripcion = Adscripcion::where('cve_usuario',$request->id)->first();
+          $adscripcion->cve_oficina = $request->cve_oficina;
+          $adscripcion->cve_estado = $request->cve_estado;
           $adscripcion->save();
 
-          $usuario->roles()->sync($request->ID_PERFIL);
+          $usuario->roles()->sync($request->id_perfil);
           DB::commit();
          } catch (\Exception $e) {
            DB::rollBack();
@@ -225,11 +226,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $usuario = User::find($id);
+        $usuario = User::findOrFail($id);
+        $adscripcion = Adscripcion::where('cve_usuario', $id)->firstOrFail();
         if (isset($usuario)) {
            DB::beginTransaction();
            try {
              $usuario->delete();
+             $adscripcion->delete();
              DB::commit();
            } catch (\Exception $e) {
              return $e;

@@ -14,6 +14,6 @@ class AdscripcionSeeder extends Seeder
      */
     public function run()
     {
-        $adscripcion=Adscripcion::create(['CVE_USUARIO' => '1', 'CVE_OFICINA'  => '1','CVE_ESTADO' => '1']);
+        $adscripcion=Adscripcion::create(['cve_usuario' => '1', 'cve_oficina'  => '1','cve_estado' => '1']);
     }
 }

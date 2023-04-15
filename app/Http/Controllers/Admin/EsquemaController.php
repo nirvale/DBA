@@ -17,7 +17,7 @@ class EsquemaController extends Controller
     }
     public function home()
     {
-        $datacenters = Datacenter::pluck('DATACENTER','id');
+        $datacenters = Datacenter::pluck('datacenter','id');
         return View('admin.esquema',compact('datacenters'));
     }
     /**
@@ -29,42 +29,42 @@ class EsquemaController extends Controller
     {
       if (is_null($request->cve_datacenter) && is_null($request->cve_base) ) {
 
-        $listadoEsquemas = Esquema::select('esquemas.id','esquemas.ESQUEMA','users.name','bases.BASE','dependencias.NOMBRE','programas.PROGRAMA','backups.BACKUP as RESPALDO','tipos.TIPO','estadoesquemas.ESTADOESQUEMA','esquemas.PWD','esquemas.OBSERVACIONES')
-          ->join('users','users.id','=','esquemas.CVE_USUARIO')
-          ->join('bases','bases.id','=','esquemas.CVE_BASE')
-          ->join('dependencias','dependencias.CVE_DEPENDENCIA','=','esquemas.CVE_DEPENDENCIA')
-          ->join('programas','programas.CVE_PROGRAMA','=','esquemas.CVE_PROGRAMA')
-          ->join('backups','backups.id','=','esquemas.CVE_BACKUP')
-          ->join('tipos','tipos.id','=','esquemas.CVE_TIPO')
-          ->join('estadoesquemas','estadoesquemas.id','=','esquemas.CVE_ESTADOESQUEMA')
+        $listadoEsquemas = Esquema::select('esquemas.id','esquemas.esquema','users.name','bases.base','dependencias.nombre','programas.programa','backups.backup as respaldo','tipos.tipo','estadoesquemas.estadoesquema','esquemas.pwd','esquemas.observaciones')
+          ->join('users','users.id','=','esquemas.cve_usuario')
+          ->join('bases','bases.id','=','esquemas.cve_base')
+          ->join('dependencias','dependencias.cve_dependencia','=','esquemas.cve_dependencia')
+          ->join('programas','programas.cve_programa','=','esquemas.cve_programa')
+          ->join('backups','backups.id','=','esquemas.cve_backup')
+          ->join('tipos','tipos.id','=','esquemas.cve_tipo')
+          ->join('estadoesquemas','estadoesquemas.id','=','esquemas.cve_estadoesquema')
           ->get();
       }elseif (isset($request->cve_datacenter) && is_null($request->cve_base) ) {
 
-        $dbs = DB::table('bases')->where('CVE_DATACENTER',$request->cve_datacenter)->pluck('id');
+        $dbs = DB::table('bases')->where('cve_datacenter',$request->cve_datacenter)->pluck('id');
 
-        $listadoEsquemas = Esquema::select('esquemas.id','esquemas.ESQUEMA','users.name','bases.BASE','dependencias.NOMBRE','programas.PROGRAMA','backups.BACKUP as RESPALDO','tipos.TIPO','estadoesquemas.ESTADOESQUEMA','esquemas.PWD','esquemas.OBSERVACIONES')
-          ->join('users','users.id','=','esquemas.CVE_USUARIO')
-          ->join('bases','bases.id','=','esquemas.CVE_BASE')
-          ->join('dependencias','dependencias.CVE_DEPENDENCIA','=','esquemas.CVE_DEPENDENCIA')
-          ->join('programas','programas.CVE_PROGRAMA','=','esquemas.CVE_PROGRAMA')
-          ->join('backups','backups.id','=','esquemas.CVE_BACKUP')
-          ->join('tipos','tipos.id','=','esquemas.CVE_TIPO')
-          ->join('estadoesquemas','estadoesquemas.id','=','esquemas.CVE_ESTADOESQUEMA')
-          ->wherein('esquemas.CVE_BASE',$dbs)
+        $listadoEsquemas = Esquema::select('esquemas.id','esquemas.esquema','users.name','bases.base','dependencias.nombre','programas.programa','backups.backup as respaldo','tipos.tipo','estadoesquemas.estadoesquema','esquemas.pwd','esquemas.observaciones')
+          ->join('users','users.id','=','esquemas.cve_usuario')
+          ->join('bases','bases.id','=','esquemas.cve_base')
+          ->join('dependencias','dependencias.cve_dependencia','=','esquemas.cve_dependencia')
+          ->join('programas','programas.cve_programa','=','esquemas.cve_programa')
+          ->join('backups','backups.id','=','esquemas.cve_backup')
+          ->join('tipos','tipos.id','=','esquemas.cve_tipo')
+          ->join('estadoesquemas','estadoesquemas.id','=','esquemas.cve_estadoesquema')
+          ->wherein('esquemas.cve_base',$dbs)
           ->get();
 
       }elseif (isset($request->cve_datacenter) && isset($request->cve_base) ) {
 
 
-        $listadoEsquemas = Esquema::select('esquemas.id','esquemas.ESQUEMA','users.name','bases.BASE','dependencias.NOMBRE','programas.PROGRAMA','backups.BACKUP as RESPALDO','tipos.TIPO','estadoesquemas.ESTADOESQUEMA','esquemas.PWD','esquemas.OBSERVACIONES')
-          ->join('users','users.id','=','esquemas.CVE_USUARIO')
-          ->join('bases','bases.id','=','esquemas.CVE_BASE')
-          ->join('dependencias','dependencias.CVE_DEPENDENCIA','=','esquemas.CVE_DEPENDENCIA')
-          ->join('programas','programas.CVE_PROGRAMA','=','esquemas.CVE_PROGRAMA')
-          ->join('backups','backups.id','=','esquemas.CVE_BACKUP')
-          ->join('tipos','tipos.id','=','esquemas.CVE_TIPO')
-          ->join('estadoesquemas','estadoesquemas.id','=','esquemas.CVE_ESTADOESQUEMA')
-          ->where('esquemas.CVE_BASE',$request->cve_base)
+        $listadoEsquemas = Esquema::select('esquemas.id','esquemas.esquema','users.name','bases.base','dependencias.nombre','programas.programa','backups.backup as respaldo','tipos.tipo','estadoesquemas.estadoesquema','esquemas.pwd','esquemas.observaciones')
+          ->join('users','users.id','=','esquemas.cve_usuario')
+          ->join('bases','bases.id','=','esquemas.cve_base')
+          ->join('dependencias','dependencias.cve_dependencia','=','esquemas.cve_dependencia')
+          ->join('programas','programas.cve_programa','=','esquemas.cve_programa')
+          ->join('backups','backups.id','=','esquemas.cve_backup')
+          ->join('tipos','tipos.id','=','esquemas.cve_tipo')
+          ->join('estadoesquemas','estadoesquemas.id','=','esquemas.cve_estadoesquema')
+          ->where('esquemas.cve_base',$request->cve_base)
           ->get();
       }
 
@@ -74,8 +74,8 @@ class EsquemaController extends Controller
 
       for ($i=0; $i <= $totalEsquemas-1 ; $i++) {
         try {
-          $decrypted = Crypt::decryptString($listadoEsquemas[$i]->PWD);
-          $listadoEsquemas[$i]->PWD = $decrypted;
+          $decrypted = Crypt::decryptString($listadoEsquemas[$i]->pwd);
+          $listadoEsquemas[$i]->pwd = $decrypted;
           } catch (DecryptException $e) {
               //
           }
@@ -103,12 +103,12 @@ class EsquemaController extends Controller
     public function create()
     {
       $users = DB::table('users')->select('id','name')->get();
-      $bases = DB::table('bases')->select('id','BASE')->get();
-      $dependencias = DB::table('dependencias')->select('CVE_DEPENDENCIA','NOMBRE')->get();
-      $programas = DB::table('programas')->select('CVE_PROGRAMA','PROGRAMA')->get();
-      $backups = DB::table('backups')->select('id','BACKUP')->get();
-      $tipos = DB::table('tipos')->select('id','TIPO')->get();
-      $estadoesquemas = DB::table('estadoesquemas')->select('id','ESTADOESQUEMA')->get();
+      $bases = DB::table('bases')->select('id','base')->get();
+      $dependencias = DB::table('dependencias')->select('cve_dependencia','nombre')->get();
+      $programas = DB::table('programas')->select('cve_programa','programa')->get();
+      $backups = DB::table('backups')->select('id','backup')->get();
+      $tipos = DB::table('tipos')->select('id','tipo')->get();
+      $estadoesquemas = DB::table('estadoesquemas')->select('id','estadoesquema')->get();
 
 
       return [$users,$bases,$dependencias,$programas,$backups,$tipos,$estadoesquemas];
@@ -126,14 +126,14 @@ class EsquemaController extends Controller
            //'empr_nombre' => 'bail|required|',
            'esquema' => 'bail|required|max:50',
            //'empeval_fotos.*.file' => 'required|mimes:jpeg,jpg,png|max: 20000',
-           'CVE_USUARIO' => 'bail|required|max:2',
-           'CVE_BASE' => 'bail|required|max:2',
-           'CVE_TIPO' => 'bail|required|max:2',
-           'CVE_DEPENDENCIA' => 'bail|required|max:10',
-           'CVE_PROGRAMA' => 'bail|required|max:5',
-           'CVE_BACKUP' => 'bail|required|max:1',
-           'CVE_ESTADOESQUEMA' => 'bail|required|max:2',
-           'OBSERVACIONES' => 'bail|required|max:300',
+           'cve_usuario' => 'bail|required|max:2',
+           'cve_base' => 'bail|required|max:2',
+           'cve_tipo' => 'bail|required|max:2',
+           'cve_dependencia' => 'bail|required|max:10',
+           'cve_programa' => 'bail|required|max:5',
+           'cve_backup' => 'bail|required|max:1',
+           'cve_estadoesquema' => 'bail|required|max:2',
+           'observaciones' => 'bail|required|max:300',
 
        ]);
          if ($validated->fails())
@@ -142,22 +142,22 @@ class EsquemaController extends Controller
          }
          if ($validated) {
 
-           if (isset($request->PWD)) {
-             $encrypted = Crypt::encryptString($request->PWD);
+           if (isset($request->pwd)) {
+             $encrypted = Crypt::encryptString($request->pwd);
            }
            DB::beginTransaction();
            try {
-            $esquema = ESQUEMA::create([
-            'ESQUEMA' => $request->esquema,
-            'CVE_USUARIO' => $request->CVE_USUARIO,
-            'CVE_BASE' => $request->CVE_BASE,
-            'CVE_TIPO' => $request->CVE_TIPO,
-            'CVE_DEPENDENCIA'=> $request->CVE_DEPENDENCIA,
-            'CVE_PROGRAMA'=> $request->CVE_PROGRAMA,
-            'CVE_BACKUP' => $request->CVE_BACKUP,
-            'CVE_ESTADOESQUEMA' => $request->CVE_ESTADOESQUEMA,
-            'OBSERVACIONES' => $request->OBSERVACIONES,
-            'PWD' => $encrypted,
+            $esquema = Esquema::create([
+            'esquema' => $request->esquema,
+            'cve_usuario' => $request->cve_usuario,
+            'cve_base' => $request->cve_base,
+            'cve_tipo' => $request->cve_tipo,
+            'cve_dependencia'=> $request->cve_dependencia,
+            'cve_programa'=> $request->cve_programa,
+            'cve_backup' => $request->cve_backup,
+            'cve_estadoesquema' => $request->cve_estadoesquema,
+            'observaciones' => $request->observaciones,
+            'pwd' => $encrypted,
               ]);
             DB::commit();
            } catch (\Exception $e) {
@@ -177,32 +177,32 @@ class EsquemaController extends Controller
     public function show($id)
     {
 
-      $esquema = Esquema::select('esquemas.id','esquemas.ESQUEMA','users.name','bases.BASE','dependencias.NOMBRE','programas.PROGRAMA','backups.BACKUP as RESPALDO','tipos.TIPO','estadoesquemas.ESTADOESQUEMA','esquemas.PWD','esquemas.OBSERVACIONES')
-      ->join('users','users.id','=','esquemas.CVE_USUARIO')
-      ->join('bases','bases.id','=','esquemas.CVE_BASE')
-      ->join('dependencias','dependencias.CVE_DEPENDENCIA','=','esquemas.CVE_DEPENDENCIA')
-      ->join('programas','programas.CVE_PROGRAMA','=','esquemas.CVE_PROGRAMA')
-      ->join('backups','backups.id','=','esquemas.CVE_BACKUP')
-      ->join('tipos','tipos.id','=','esquemas.CVE_TIPO')
-      ->join('estadoesquemas','estadoesquemas.id','=','esquemas.CVE_ESTADOESQUEMA')
+      $esquema = Esquema::select('esquemas.id','esquemas.esquema','users.name','bases.base','dependencias.nombre','programas.programa','backups.backup as respaldo','tipos.tipo','estadoesquemas.estadoesquema','esquemas.pwd','esquemas.observaciones')
+      ->join('users','users.id','=','esquemas.cve_usuario')
+      ->join('bases','bases.id','=','esquemas.cve_base')
+      ->join('dependencias','dependencias.cve_dependencia','=','esquemas.cve_dependencia')
+      ->join('programas','programas.cve_programa','=','esquemas.cve_programa')
+      ->join('backups','backups.id','=','esquemas.cve_backup')
+      ->join('tipos','tipos.id','=','esquemas.cve_tipo')
+      ->join('estadoesquemas','estadoesquemas.id','=','esquemas.cve_estadoesquema')
       ->where('esquemas.id','=',$id)
       ->get();
 
 
       try {
-        $decrypted = Crypt::decryptString($esquema[0]->PWD);
-        $esquema[0]->PWD = $decrypted;
+        $decrypted = Crypt::decryptString($esquema[0]->pwd);
+        $esquema[0]->pwd = $decrypted;
         } catch (DecryptException $e) {
             //
         }
 
       $users = DB::table('users')->select('id','name')->get();
-      $bases = DB::table('bases')->select('id','BASE')->get();
-      $dependencias = DB::table('dependencias')->select('CVE_DEPENDENCIA','NOMBRE')->get();
-      $programas = DB::table('programas')->select('CVE_PROGRAMA','PROGRAMA')->get();
-      $backups = DB::table('backups')->select('id','BACKUP')->get();
-      $tipos = DB::table('tipos')->select('id','TIPO')->get();
-      $estadoesquemas = DB::table('estadoesquemas')->select('id','ESTADOESQUEMA')->get();
+      $bases = DB::table('bases')->select('id','base')->get();
+      $dependencias = DB::table('dependencias')->select('cve_dependencia','nombre')->get();
+      $programas = DB::table('programas')->select('cve_programa','programa')->get();
+      $backups = DB::table('backups')->select('id','backup')->get();
+      $tipos = DB::table('tipos')->select('id','tipo')->get();
+      $estadoesquemas = DB::table('estadoesquemas')->select('id','estadoesquema')->get();
 
 
       return [$esquema,$users,$bases,$dependencias,$programas,$backups,$tipos,$estadoesquemas];
@@ -232,14 +232,14 @@ class EsquemaController extends Controller
            //'empr_nombre' => 'bail|required|',
            'esquema' => 'bail|required|max:50',
            //'empeval_fotos.*.file' => 'required|mimes:jpeg,jpg,png|max: 20000',
-           'CVE_USUARIO' => 'bail|required|max:2',
-           'CVE_BASE' => 'bail|required|max:2',
-           'CVE_TIPO' => 'bail|required|max:2',
-           'CVE_DEPENDENCIA' => 'bail|required|max:10',
-           'CVE_PROGRAMA' => 'bail|required|max:5',
-           'CVE_BACKUP' => 'bail|required|max:1',
-           'CVE_ESTADOESQUEMA' => 'bail|required|max:2',
-           'OBSERVACIONES' => 'bail|required|max:300',
+           'cve_usuario' => 'bail|required|max:2',
+           'cve_base' => 'bail|required|max:2',
+           'cve_tipo' => 'bail|required|max:2',
+           'cve_dependencia' => 'bail|required|max:10',
+           'cve_programa' => 'bail|required|max:5',
+           'cve_backup' => 'bail|required|max:1',
+           'cve_estadoesquema' => 'bail|required|max:2',
+           'observaciones' => 'bail|required|max:300',
 
        ]);
        if ($validated->fails())
@@ -249,18 +249,18 @@ class EsquemaController extends Controller
        if ($validated) {
          DB::beginTransaction();
          try {
-          $esquema = ESQUEMA::FindOrFail($request->id);
+          $esquema = Esquema::FindOrFail($request->id);
           $esquema->esquema = $request->esquema;
-          $esquema->CVE_USUARIO = $request->CVE_USUARIO;
-          $esquema->CVE_BASE = $request->CVE_BASE;
-          $esquema->CVE_TIPO = $request->CVE_TIPO;
-          $esquema->CVE_DEPENDENCIA = $request->CVE_DEPENDENCIA;
-          $esquema->CVE_PROGRAMA = $request->CVE_PROGRAMA;
-          $esquema->CVE_BACKUP = $request->CVE_BACKUP;
-          $esquema->CVE_ESTADOESQUEMA = $request->CVE_ESTADOESQUEMA;
-          $esquema->OBSERVACIONES = $request->OBSERVACIONES;
-          if (isset($request->PWD)) {
-            $esquema->PWD = Crypt::encryptString($request->PWD);
+          $esquema->cve_usuario = $request->cve_usuario;
+          $esquema->cve_base = $request->cve_base;
+          $esquema->cve_tipo = $request->cve_tipo;
+          $esquema->cve_dependencia = $request->cve_dependencia;
+          $esquema->cve_programa = $request->cve_programa;
+          $esquema->cve_backup = $request->cve_backup;
+          $esquema->cve_estadoesquema = $request->cve_estadoesquema;
+          $esquema->observaciones = $request->observaciones;
+          if (isset($request->pwd)) {
+            $esquema->pwd = Crypt::encryptString($request->pwd);
           }
           $esquema->push();
           DB::commit();
