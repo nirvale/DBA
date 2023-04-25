@@ -143,8 +143,11 @@ class EsquemaController extends Controller
          if ($validated) {
 
            if (isset($request->pwd)) {
-             $encrypted = Crypt::encryptString($request->pwd);
+              $encrypted = Crypt::encryptString($request->pwd);
+           }else{
+              $encrypted = Crypt::encryptString('');
            }
+
            DB::beginTransaction();
            try {
             $esquema = Esquema::create([

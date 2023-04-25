@@ -69,8 +69,7 @@ class BdiariaController extends Controller
         if ($request->ajax()) {
           return datatables()->of($listadoBackups)
           ->addColumn('ACTION', function($row){
-              $actionBtn = '<a href="javascript:void(0)" id="editarbackup" class="text-success"><i class="fas fa-user-edit"></i></a>
-                            <a href="javascript:void(0)" id="eliminarbackup" class="text-danger"><i class="fas fa-user-times"></i></a> '
+              $actionBtn = '<a href="javascript:void(0)" id="editarbackup" class="text-success"><i class="fas fa-user-edit"></i></a>'
               ;
             return $actionBtn;
             })
