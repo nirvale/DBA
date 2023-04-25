@@ -146,7 +146,7 @@
 
                // AJAX request
                $.ajax({
-                 url: '/admin/basebydc/'+idd,
+                 url: "{{route('base.bydc','')}}"+"/"+idd,
                  type: 'get',
                  dataType: 'json',
                  success: function(response){
@@ -191,7 +191,7 @@
               "processing": true,
               "serverSide": true,
               "ajax":{
-                 "url": "/admin/esquema",
+                 "url": "{{route('esquema.index')}}",
                  "type": 'GET',
                  //"dataType": 'json',
                  "data":{
@@ -251,7 +251,7 @@
       $('#footermodal').empty();
 
       $.ajax({
-        url: "/admin/esquema/"+id+"",
+        url: "{{route('esquema.show','')}}"+"/"+id,
         type: 'GET',
         // async: false,
         dataType: 'json',
@@ -356,6 +356,49 @@
           });
 
 
+                      // DEPENDENCIA Change
+                $('#selDependencia').change(function(){
+
+                   // cve_programa
+                   var idd = $(this).val();
+                  // console.log(idd);
+
+                   // liberar dropdown
+                   $('#selPrograma').find('option').not(':first').remove();
+
+                   // AJAX request
+                   $.ajax({
+                     url: "{{route('programa.index')}}",
+                     type: 'get',
+                     dataType: 'json',
+                     data: {
+                         _token: $('input[name="_token"]').val(),
+                          cve_dependencia:idd,
+                     },
+                     success: function(response){
+
+                        len = 0;
+                       if(response != null){
+                          len = response.length;
+
+                       }
+
+                       if(len > 0){
+                          // Read data and create <option >
+                          for(var i=0; i<len; i++){
+
+                             var idpro = response[i].cve_programa;
+                             var pro = response[i].programa;
+
+                             var option = "<option value='"+idpro+"'>"+pro+"</option>";
+
+                             $("#selPrograma").append(option);
+                          }
+                       }
+
+                     }
+                   });
+                 });
 
 
         },
@@ -387,7 +430,7 @@
       alertify.confirm('ACTUALIZACIÓN DE DATOS DE ESQUEMA ','Actuaizar esquema: '+data.get('esquema')+'', function(){
 
         $.ajax({
-          url: '/admin/esquema/'+data.get('id'),
+          url: "{{route('esquema.update','')}}"+"/"+data.get('id'),
           type: 'POST',
           headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
           processData: false,
@@ -458,7 +501,7 @@
       $('#footermodal').empty();
 
       $.ajax({
-        url: "/admin/esquema/create",
+        url: "{{route('esquema.create')}}",
         type: 'GET',
         // async: false,
         dataType: 'json',
@@ -539,7 +582,7 @@
 
                    // AJAX request
                    $.ajax({
-                     url: '/admin/programa/',
+                     url: "{{route('programa.index')}}",
                      type: 'get',
                      dataType: 'json',
                      data: {
@@ -602,7 +645,7 @@
       alertify.confirm('CREAR NUEVO ESQUEMA ','Se va a crear el siguiente usuario de BD: '+data.get('esquema')+'', function(){
 
         $.ajax({
-          url: '/admin/esquema',
+          url: "{{route('esquema.store')}}",
           type: 'POST',
           headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
           processData: false,
@@ -684,7 +727,7 @@
       alertify.confirm('ELIMINACIÓN DE DATOS DE USUARIO DE BASE DE DATOS ','Eliminar esquema: '+nombre+'', function(){
 
         $.ajax({
-          url: '/admin/esquema/'+id ,
+          url: "{{route('esquema.destroy','')}}"+"/"+id ,
           type: 'DELETE',
           headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
           processData: false,

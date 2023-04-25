@@ -111,7 +111,7 @@
               "processing": true,
             //"serverSide": true,
               "ajax":{
-                 "url": "/admin/usuario",
+                 "url": "{{ route('usuario.index') }}",
                  "type": 'GET',
                  //"dataType": 'json',
                  "data":{
@@ -157,7 +157,7 @@
       $('#footermodal').empty();
 
       $.ajax({
-        url: "/admin/usuario/"+id+"",
+        url: "{{ route('usuario.show','') }}"+"/"+id,
         type: 'GET',
         // async: false,
         dataType: 'json',
@@ -249,7 +249,7 @@
       alertify.confirm('ACTUALIZACIÓN DE DATOS DE USUARIO ','Actuaizar usuario: '+data.get('nombre')+'', function(){
 
         $.ajax({
-          url: '/admin/usuario/'+data.get('id'),
+          url: "{{ route('usuario.index','') }}"+"/"+data.get('id'),
           type: 'POST',
           headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
           processData: false,
@@ -319,7 +319,7 @@
       $('#footermodal').empty();
 
       $.ajax({
-        url: "/admin/usuario/create",
+        url: "{{route('usuario.create')}}",
         type: 'GET',
         // async: false,
         dataType: 'json',
@@ -398,7 +398,7 @@
       alertify.confirm('CREAR NUEVO USUARIO ','Se va a crear el siguiente usuario: '+data.get('nombre')+'', function(){
 
         $.ajax({
-          url: '/admin/usuario',
+          url: "{{route('usuario.store')}}",
           type: 'POST',
           headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
           processData: false,
@@ -476,7 +476,7 @@
       alertify.confirm('ELIMINACIÓN DE DATOS DE USUARIO ','Eliminar usuario: '+nombre+'', function(){
 
         $.ajax({
-          url: '/admin/usuario/'+id ,
+          url: "{{route('usuario.destroy','')}}"+"/"+id ,
           type: 'DELETE',
           headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
           processData: false,

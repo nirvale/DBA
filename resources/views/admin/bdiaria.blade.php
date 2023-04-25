@@ -145,7 +145,7 @@
 
                  // AJAX request
                  $.ajax({
-                   url: '/admin/basebydc/'+idd,
+                   url: "{{route('base.bydc','')}}"+"/"+idd,
                    type: 'get',
                    dataType: 'json',
                    success: function(response){
@@ -190,7 +190,7 @@
               "processing": true,
               "serverSide": true,
               "ajax":{
-                 "url": "/admin/bdiaria",
+                 "url": "{{route('bdiaria.index')}}",
                  "type": 'GET',
                  //"dataType": 'json',
                  "data":{
@@ -212,7 +212,8 @@
                           //console.log(urls.length);
                           var urls2 = '';
                           for (var i = 0; i < urls.length; i++) {
-                            urls2 =  urls2 + '<a href="/admin/getlogs/'+urls[i]+'">logfile '+ (i+1) +'</a> <br>';
+                            //urls2 =  urls2 + '<a href="/admin/getlogs/'+urls[i]+'">logfile '+ (i+1) +'</a> <br>';
+                            urls2 =  urls2 + '<a href="{{route('getlogs.get','')}}'+'/'+urls[i]+'">logfile '+ (i+1) +'</a> <br>';
                         }
                       return urls2;
                     }
@@ -259,7 +260,7 @@
       $('#footermodal').empty();
 
       $.ajax({
-        url: "/admin/bdiaria/"+id+"",
+        url: "{{route('bdiaria.show','')}}"+"/"+id,
         type: 'GET',
         // async: false,
         dataType: 'json',
@@ -317,7 +318,7 @@
 
                     for (var i = 0; i < urls.length; i++) {
 
-                      $("#modalc2").append("<div class='col-md-12 ml-auto' ><a href='/admin/getlogs/"+urls[i]+"'>"+urls[i]+"</a><br></div>");
+                      $("#modalc2").append("<div class='col-md-12 ml-auto' ><a href='{{route('getlogs.get','')}}"+"/"+urls[i]+"'>"+urls[i]+"</a><br></div>");
 
                     }
             $("#footermodal").append(footermodal);
@@ -360,7 +361,7 @@
       alertify.confirm('ACTUALIZACIÓN DE INFORMACIÓN DE BACKUP ','Actualizar backup: '+data.get('esquema')+'', function(){
 
         $.ajax({
-          url: '/admin/bdiaria/'+data.get('id'),
+          url: "{{route('bdiaria.update','')}}"+"/"+data.get('id'),
           type: 'POST',
           headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
           processData: false,
@@ -435,7 +436,7 @@
       $('#footermodal').empty();
 
       $.ajax({
-        url: "/admin/bdiaria/create",
+        url: "{{route('bdiaria.create')}}",
         type: 'GET',
         // async: false,
         dataType: 'json',
@@ -545,7 +546,7 @@
 
                        // AJAX request
                        $.ajax({
-                         url: '/admin/programa/',
+                         url: '{{route('programa.index')}}',
                          type: 'get',
                          dataType: 'json',
                          data: {
@@ -611,7 +612,7 @@
       alertify.confirm('CREAR NUEVA BITÁCORA ','Se va a crear la bitácora: '+data.get('base[0]')+'', function(){
 
         $.ajax({
-          url: '/admin/bdiaria',
+          url: '{{route('bdiaria.store')}}',
           type: 'POST',
           headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
           processData: false,
@@ -672,89 +673,6 @@
       });
 
     });
-
-    $(document).on("click", "#eliminaresquema", function(){
-      event.preventDefault();
-
-      //para tabla responsive
-      var fila = $(this.closest("tr"));
-      if(fila.hasClass("child")){
-          fila = fila.prev();
-      }
-      id = fila.find('td:eq(0)').text();
-      nombre = fila.find('td:eq(1)').text();
-      alertify.minimalDialog || alertify.dialog('minimalDialog',function(){
-        return {
-            main:function(content){
-                this.setContent(content);
-            }
-        };
-      });
-      alertify.confirm('ELIMINACIÓN DE DATOS DE USUARIO DE BASE DE DATOS ','Eliminar esquema: '+nombre+'', function(){
-
-        $.ajax({
-          url: '/admin/bdiaria/'+id ,
-          type: 'DELETE',
-          headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
-          processData: false,
-          contentType: false,
-          dataType: 'json',
-          cache:false,
-        //  data:data,
-
-          success: function(response) {
-            //validando formulario
-            if(response.errors)
-            {
-
-
-              $.each(response.errors, function(key, value){
-                var msg = alertify.error(value+"<br><button class='btn btn-danger'>Cerrar</button>",10000);
-                msg.callback = function (isClicked) {
-                        if(isClicked)
-                            console.log('notification dismissed by user');
-                        else
-                            console.log('notification auto-dismissed');
-                };
-              });
-              $(response.errors).empty();
-            }
-            else
-            {
-              $('#modalbackup').modal('hide');
-              alertify.success ("Se eliminó con éxito el esquema: <br>"+nombre );
-              if ($('.sorting_1').length)
-              {
-                $('#tablaBackups').DataTable().ajax.reload();
-              }
-              console.log(response);
-            }
-
-
-          },
-          error: function(response) {
-
-            alertify.error("Error eliminando esquema: <br>"+nombre );
-              for (var value of data.values()) {
-                console.log(value);
-                }
-            console.log(response);
-          //  console.log(xhr.status);
-          //  console.log(xhr.responseText);
-          //  console.log(thrownError);
-
-          },
-        });
-
-      },function(){
-
-
-        alertify.error('Eliminación Cancelada');
-
-      });
-
-    });
-
 
 
   });
