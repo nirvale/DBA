@@ -249,7 +249,7 @@
       alertify.confirm('ACTUALIZACIÓN DE DATOS DE USUARIO ','Actuaizar usuario: '+data.get('nombre')+'', function(){
 
         $.ajax({
-          url: "{{ route('usuario.index','') }}"+"/"+data.get('id'),
+          url: "{{ route('usuario.update','') }}"+"/"+data.get('id'),
           type: 'POST',
           headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
           processData: false,
