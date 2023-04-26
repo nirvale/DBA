@@ -13,15 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
+});*/
+
+Route::get('dba', function () {
+    return view('admin.index');
 });
 
-Route::get('/password/reset', function () {
+Route::get('password/reset', function () {
     return view('auth.passwords.email');
 });
 
-Route::middleware([
+/*Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
@@ -30,3 +34,4 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+*/

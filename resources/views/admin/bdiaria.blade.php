@@ -282,7 +282,7 @@
           archivos =   "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='bdiaria_archivos' >archivos (Selección multiple - Sólo arcvhivos tar.gz son pérmitidos)</label><input type='file' class='filestyle' data-text='archivos' data-btnClass='btn-success'  data-buttonBefore='true' data-badge='true' data-placeholder='Ningún archivo seleccionado...' name='bdiaria_archivos[]' id='bdiaria_archivos' multiple ></div>";
           observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>observaciones</label> <textarea value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'>"+response[0][0].observaciones+"</textarea></div> ";
           footermodal = "<button class='btn btn-success' id='updateBackup' >Guardar</button><button class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>";
-          $.getScript( "/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {
+          $.getScript( "/dba/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {
           // console.log( data ); // Data returned
           // console.log( textStatus ); // Success
           // console.log( jqxhr.status ); // 200
@@ -477,7 +477,7 @@
               usuario =  ("<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='sel'>revisor</label> <select readonly class='form-control select2' id='selUsuario' name='selUsuario'><option value='{{ Auth::user()->id}}'>{{ Auth::user()->name }}</option>");
               ndata =  ("<div class='form-group col-md-12 ml-auto'><input hidden value='"+response[0].length+"' name='ndata' type='text' id='ndata' class='form-control validate'></div>");
               footermodal = "<button class='btn btn-success' id='createBitacora' >Crear</button><button class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>";
-              $.getScript( "/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {
+              $.getScript( "/dba/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {
               // console.log( data ); // Data returned
               // console.log( textStatus ); // Success
               // console.log( jqxhr.status ); // 200

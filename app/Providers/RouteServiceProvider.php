@@ -19,7 +19,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     //public const HOME = '/dashboard';
     //configuracion para la url principal con adminlte
-    public const HOME = '/admin';
+    public const HOME = 'admin';
 
 
     /**
