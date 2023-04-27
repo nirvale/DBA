@@ -130,7 +130,7 @@ class EsquemaController extends Controller
            'cve_base' => 'bail|required|max:2',
            'cve_tipo' => 'bail|required|max:2',
            'cve_dependencia' => 'bail|required|max:10',
-           'cve_programa' => 'bail|required|max:5',
+           'cve_programa' => 'bail|required|max:8',
            'cve_backup' => 'bail|required|max:1',
            'cve_estadoesquema' => 'bail|required|max:2',
            'observaciones' => 'bail|required|max:300',
