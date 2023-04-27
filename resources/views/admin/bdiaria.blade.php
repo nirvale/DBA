@@ -653,7 +653,7 @@
           },
           error: function(response) {
 
-            alertify.error("Error creando usuario de BD: <br>"+data.get('base[0]'));
+            alertify.error("Error creando bitácora de BD: <br>"+data.get('base[0]'));
               for (var value of data.values()) {
                 console.log(value);
                 }
