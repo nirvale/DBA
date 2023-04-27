@@ -329,7 +329,7 @@ return [
             'url'  => '/admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],*/
-        ['header' => 'ADMINISTRACIÓN'],
+        ['header' => 'ADMINISTRACIÓN','can' => ['Dios', 'Administrador']],
         [
             'text' => 'Usuarios',
             'url'  => '/admin/listausuarios',
