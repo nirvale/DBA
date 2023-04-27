@@ -329,13 +329,15 @@ return [
             'url'  => '/admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],*/
-        ['header' => 'ADMINISTRACIÓN','can' => ['Dios', 'Administrador']],
+        ['header' => 'SISTEMA','can' => ['adming']],
         [
             'text' => 'Usuarios',
             'url'  => '/admin/listausuarios',
             'icon' => 'fas fa-fw fa-users-cog',
+            'can'  => ['adming'],
 
         ],
+        ['header' => 'ADMINISTRACIÓN','can' => ['adming','admin','esquema','infraestructura']],
         [
             'text'    => 'Sistema',
             'icon'    => 'fas fa-fw fa-laptop-code',
@@ -344,6 +346,7 @@ return [
                     'text' => 'Esquemas',
                     'url'  => '/admin/esquemahome',
                     'icon'    => 'fas fa-fw fa-table',
+                    'can' => ['adming','admin','esquema'],
                 ],
 /*                [
                     'text'    => 'level_one',
@@ -397,7 +400,7 @@ return [
                 ],
               ],
         ],
-        ['header' => 'labels'],
+   /*     ['header' => 'labels'],
         [
             'text'       => 'important',
             'icon_color' => 'red',
@@ -412,7 +415,7 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
-        ],
+        ],*/
     ],
 
     /*
