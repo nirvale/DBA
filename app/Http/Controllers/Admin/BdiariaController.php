@@ -130,6 +130,7 @@ class BdiariaController extends Controller
             'bdiaria_archivos' => 'bail|required',
             'bdiaria_archivos.*' => 'bail|required|mimetypes:application/gzip|max: 512',
             'base.*' => 'bail|required',
+            'observaciones.*' => 'bail|required',
             'cve_esquema.*' => 'bail|required|max:5',
             'esquema.*' => 'bail|required',
             'selEstadoBackup.*' => ['bail','required', 'max: 1', Rule::In(['1','2','3'])],
