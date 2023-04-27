@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\Auth;
 // use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -75,6 +76,10 @@ class User extends Authenticatable
 
     public function adminlte_desc(){
 
-      return 'Administrador de Base de Datos';
+        $idu = Auth::user();
+
+        $rol = $idu->getRoleNames();
+
+      return $rol[0];
     }
 }
