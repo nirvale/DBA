@@ -26,12 +26,16 @@
                   <div class="form-group col-md-3">
                     {{ Form::label('inputDatacenter', 'CENTROS DE DATOS')}}
                     {{ Form::select('inputDatacenter',  $datacenters ,null, ['class' => 'form-control select2','id' => 'inputDatacenter','placeholder' => 'Todos los centros de datos...'],) }}
-
                   </div>
                   <div class="form-group col-md-3">
 
                     {{ Form::label('inputDatabase', 'BASES DE DATOS')}}
                     {{ Form::select('inputDatabase', ['' => 'Todas las bases de datos...'],null, ['class' => 'form-control select2','id' => 'inputDatabase'],) }}
+                  </div>
+                  <div class="form-group col-md-3">
+
+                    {{ Form::label('inputEsquema', 'ESQUEMA')}}
+                    {{ Form::select('inputEsquema', ['' => 'Todos los esquemas...'],null, ['class' => 'form-control select2','id' => 'inputEsquema'],) }}
                   </div>
                   <div class="form-group col-md-3">
                     <label for="none">&nbsp</label>
@@ -121,12 +125,16 @@
 
 @section('js')
   <script>
+          $("#inputDatacenter").val("");
+          $("#inputDatabase").val("");
+          $("#inputEsquema").val("");
 
           function limpiarFiltros(){
           event.preventDefault();
 
           $("#inputDatacenter").val("");
           $("#inputDatabase").val("");
+          $("#inputEsquema").val("");
 
           }
 
@@ -139,6 +147,7 @@
 
              // liberar dropdown
              $('#inputDatabase').find('option').not(':first').remove();
+             $('#inputEsquema').find('option').not(':first').remove();
 
              if (idd!='' ) {
 
@@ -173,6 +182,48 @@
                  });
             }
            });
+                // databse Change
+          $('#inputDatabase').change(function(){
+
+             // cve_base
+             var ide = $(this).val();
+             console.log(ide);
+
+             // liberar dropdown
+             $('#inputEsquema').find('option').not(':first').remove();
+
+             if (ide!='' ) {
+
+                 // AJAX request
+                 $.ajax({
+                   url: "{{route('esquema.bydb','')}}"+"/"+ide,
+                   type: 'get',
+                   dataType: 'json',
+                   success: function(response){
+
+                      len = 0;
+                     if(response.length != null){
+                        len = response.length;
+
+                     }
+
+                     if(len > 0){
+                        // Read data and create <option >
+                        for(var i=0; i<len; i++){
+
+                           var idesq = response[i].id;
+                           var esq = response[i].esquema;
+
+                           var option = "<option value='"+idesq+"'>"+esq+"</option>";
+
+                           $("#inputEsquema").append(option);
+                        }
+                     }
+
+                   }
+                 });
+            }
+           });
 
 
 
@@ -197,6 +248,7 @@
                    // al_id:{{ Auth::user()->id }},
                   cve_datacenter:$("#inputDatacenter").val(),
                   cve_base:$("#inputDatabase").val(),
+                  cve_esquema:$("#inputEsquema").val(),
                  }
               },
 
@@ -275,12 +327,12 @@
 
           //construir forma
           id =  " <input value='"+response[0][0].id+"' name='id' type='text' id='id' class='form-control validate' hidden>";
-          fecha =  "<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='cmb_fecha'>fecha</label> <input value='"+response[0][0].fecha+"' name='fecha' type='date' id='fecha' class='form-control validate' readonly placeholder='fecha'></div> ";
-          esquema =  "<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='cmb_esquema'>esquema</label> <input value='"+response[0][0].esquema+"' name='esquema' type='text' id='esquema' class='form-control validate' readonly placeholder='Nombre del Esquema'></div> ";
-          base =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>base</label> <input value='"+response[0][0].base+"' name='base' type='text' id='base' class='form-control validate' readonly placeholder='Nombre de la base de datos...'>");
-          estado =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>estado</label> <select class='form-control select2' id='selEstadoBackup' name='cve_estadobackup'><option value='' disabled selected>Seleciona un estado del esquema...</option>");
-          archivos =   "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='bdiaria_archivos' >archivos (Selección multiple - Sólo arcvhivos tar.gz son pérmitidos)</label><input type='file' class='filestyle' data-text='archivos' data-btnClass='btn-success'  data-buttonBefore='true' data-badge='true' data-placeholder='Ningún archivo seleccionado...' name='bdiaria_archivos[]' id='bdiaria_archivos' multiple ></div>";
-          observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>observaciones</label> <textarea value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'>"+response[0][0].observaciones+"</textarea></div> ";
+          fecha =  "<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='cmb_fecha'>FECHA</label> <input value='"+response[0][0].fecha+"' name='fecha' type='date' id='fecha' class='form-control validate' readonly placeholder='fecha'></div> ";
+          esquema =  "<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='cmb_esquema'>ESQUEMA</label> <input value='"+response[0][0].esquema+"' name='esquema' type='text' id='esquema' class='form-control validate' readonly placeholder='Nombre del Esquema'></div> ";
+          base =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>BASE</label> <input value='"+response[0][0].base+"' name='base' type='text' id='base' class='form-control validate' readonly placeholder='Nombre de la base de datos...'>");
+          estado =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>ESTADO</label> <select class='form-control select2' id='selEstadoBackup' name='cve_estadobackup'><option value='' disabled selected>Seleciona un estado del esquema...</option>");
+          archivos =   "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='bdiaria_archivos' >ARCHIVOS (Selección multiple - Sólo arcvhivos tar.gz son pérmitidos)</label><input type='file' class='filestyle' data-text='archivos' data-btnClass='btn-success'  data-buttonBefore='true' data-badge='true' data-placeholder='Ningún archivo seleccionado...' name='bdiaria_archivos[]' id='bdiaria_archivos' multiple ></div>";
+          observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>OBSERVACIONES</label> <textarea value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'>"+response[0][0].observaciones+"</textarea></div> ";
           footermodal = "<button class='btn btn-success' id='updateBackup' >Guardar</button><button class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>";
           $.getScript( "/dba/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {
           // console.log( data ); // Data returned
@@ -466,15 +518,15 @@
               $(response.errors).empty();
             }else{
               //construir forma
-              fecha =  ("<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='bitdate'>fecha</label><input value='' name='bitdate' type='date' id='bitdate' class='form-control validate'> </div>");
+              fecha =  ("<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='bitdate'>FECHA</label><input value='' name='bitdate' type='date' id='bitdate' class='form-control validate'> </div>");
 
               cve_esquema =  "<div class='form-group col-md-1 ml-auto' id='bitcveesquema'><label data-error='error' data-success='ok' for='cve_esquema'>ID</label> </div> ";
-              esquema =  "<div class='form-group col-md-4 ml-auto' id='bitesquema'><label data-error='error' data-success='ok' for='esquema'>esquema</label> </div> ";
-              base =  "<div class='form-group col-md-4 ml-auto' id='bitbase'><label data-error='error' data-success='ok' for='cmb_base'>base</label></div> ";
-              estado =  ("<div class='form-group col-md-3 ml-auto' id='bitestado'><label data-error='error' data-success='ok' for='sel'>estado</label> </div>");
-              archivos =   "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='bdiaria_archivos' >archivos (Selección multiple - Sólo arcvhivos tar.gz son pérmitidos)</label><input type='file' class='filestyle' data-text='archivos' data-btnClass='btn-success'  data-buttonBefore='true' data-badge='true' data-placeholder='Ningún archivo seleccionado...' name='bdiaria_archivos[]' id='bdiaria_archivos' multiple ></div>";
-              observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>observaciones</label> <textarea value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'></textarea></div> ";
-              usuario =  ("<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='sel'>revisor</label> <select readonly class='form-control select2' id='selUsuario' name='selUsuario'><option value='{{ Auth::user()->id}}'>{{ Auth::user()->name }}</option>");
+              esquema =  "<div class='form-group col-md-4 ml-auto' id='bitesquema'><label data-error='error' data-success='ok' for='esquema'>ESQUEMA</label> </div> ";
+              base =  "<div class='form-group col-md-4 ml-auto' id='bitbase'><label data-error='error' data-success='ok' for='cmb_base'>BASE</label></div> ";
+              estado =  ("<div class='form-group col-md-3 ml-auto' id='bitestado'><label data-error='error' data-success='ok' for='sel'>ESTADO</label> </div>");
+              archivos =   "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='bdiaria_archivos' >ARCHIVOS (Selección multiple - Sólo arcvhivos tar.gz son pérmitidos)</label><input type='file' class='filestyle' data-text='archivos' data-btnClass='btn-success'  data-buttonBefore='true' data-badge='true' data-placeholder='Ningún archivo seleccionado...' name='bdiaria_archivos[]' id='bdiaria_archivos' multiple ></div>";
+              observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>OBSERVACIONES</label> <textarea value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'></textarea></div> ";
+              usuario =  ("<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='sel'>REVISOR</label> <select readonly class='form-control select2' id='selUsuario' name='selUsuario'><option value='{{ Auth::user()->id}}'>{{ Auth::user()->name }}</option>");
               ndata =  ("<div class='form-group col-md-12 ml-auto'><input hidden value='"+response[0].length+"' name='ndata' type='text' id='ndata' class='form-control validate'></div>");
               footermodal = "<button class='btn btn-success' id='createBitacora' >Crear</button><button class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>";
               $.getScript( "/dba/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {

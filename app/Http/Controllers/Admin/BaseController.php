@@ -22,7 +22,9 @@ class BaseController extends Controller
     public function dbbydc($idd)
     {
       $dbs = Base::select('base','id')
-        ->where('CVE_DATACENTER',$idd)->get();
+        ->where('cve_datacenter',$idd)
+        ->orderBy('base','asc')
+        ->get();
 
       return $dbs;
     }

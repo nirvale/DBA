@@ -102,10 +102,10 @@ class EsquemaController extends Controller
      */
     public function create()
     {
-      $users = DB::table('users')->select('id','name')->get();
-      $bases = DB::table('bases')->select('id','base')->get();
-      $dependencias = DB::table('dependencias')->select('cve_dependencia','nombre')->get();
-      $programas = DB::table('programas')->select('cve_programa','programa')->get();
+      $users = DB::table('users')->select('id','name')->orderBy('name','asc')->get();
+      $bases = DB::table('bases')->select('id','base')->orderBy('base','asc')->get();
+      $dependencias = DB::table('dependencias')->select('cve_dependencia','nombre')->orderBy('nombre','asc')->get();
+      $programas = DB::table('programas')->select('cve_programa','programa')->orderBy('programa','asc')->get();
       $backups = DB::table('backups')->select('id','backup')->get();
       $tipos = DB::table('tipos')->select('id','tipo')->get();
       $estadoesquemas = DB::table('estadoesquemas')->select('id','estadoesquema')->get();
@@ -199,10 +199,10 @@ class EsquemaController extends Controller
             //
         }
 
-      $users = DB::table('users')->select('id','name')->get();
-      $bases = DB::table('bases')->select('id','base')->get();
-      $dependencias = DB::table('dependencias')->select('cve_dependencia','nombre')->get();
-      $programas = DB::table('programas')->select('cve_programa','programa')->get();
+      $users = DB::table('users')->select('id','name')->orderBy('name','asc')->get();
+      $bases = DB::table('bases')->select('id','base')->orderBy('base','asc')->get();
+      $dependencias = DB::table('dependencias')->select('cve_dependencia','nombre')->orderBy('nombre','asc')->get();
+      $programas = DB::table('programas')->select('cve_programa','programa')->orderBy('programa','asc')->get();
       $backups = DB::table('backups')->select('id','backup')->get();
       $tipos = DB::table('tipos')->select('id','tipo')->get();
       $estadoesquemas = DB::table('estadoesquemas')->select('id','estadoesquema')->get();
@@ -297,5 +297,16 @@ class EsquemaController extends Controller
       }
 
       return $esquema;
+    }
+
+        public function esquemabydb($idbase)
+    {
+
+        $esquemas = Esquema::select('esquema','id')
+          ->where('cve_base',$idbase)
+          ->orderBy('esquema','asc')
+          ->get();
+
+        return $esquemas;
     }
 }

@@ -30,6 +30,7 @@ Route::get('bdiariahome', [BdiariaController::class, 'home'])->name('bdiaria.hom
 //Route::resource('base', BaseController::class);
 //Route::get('basehome', [BaseController::class, 'home'])->name('base.home');
 Route::get('basebydc/{idd}', [BaseController::class, 'dbbydc'])->name('base.bydc');
+Route::get('esquemabydb/{idd}', [EsquemaController::class, 'esquemabydb'])->name('esquema.bydb');
 
 //traer logs
 
