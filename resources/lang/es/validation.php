@@ -133,6 +133,19 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'bitcheck' => [
+            'required' => 'La bitácora para la fecha seleccionada YA EXISTE, contacte al administrador',
+        ],
+        'bitchecke' => [
+            'required' => 'La bitácora para el día seleccionado NO EXISTE',
+        ],
+        'cve_fecha' => [
+            'before' => 'La fecha de la bitácora que intenta crear está en el futuro',
+        ],
+         'cve_fechae' => [
+            'before' => 'La fecha de la bitácora que intenta editar está en el futuro',
+        ],
+
     ],
 
     /*
@@ -146,6 +159,22 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'bitcheck' => 'Verificación de bitácora',
+        'dbtobit' => 'BASE DE DATOS',
+        'cve_fecha' => 'FECHA',
+        'cve_fechae' => 'FECHA',
+        'bitdate' => 'FECHA',
+        'selUsuario' => 'USUARIO',
+        'bdiaria_archivos' => 'ARCHIVOS',
+        'base' => 'BASE',
+        'observaciones' => 'OBSERVACIONES',
+        'cve_esquema' => 'ESQUEMA',
+        'esquema' => 'ESQUEMA',
+        'selEstadoBackup' => 'ESTADO DE BACKUP',
+        'cve_datacenter' => 'CENTRO DE DATOS',
+        'cve_base' => 'BASE DE DATOS',
+
+    ],
 
 ];

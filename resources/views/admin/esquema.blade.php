@@ -122,7 +122,8 @@
 
 @section('js')
   <script>
-
+        $("#inputDatacenter").val("");
+        $("#inputDatabase").val("");
         function limpiarFiltros(){
         event.preventDefault();
 
