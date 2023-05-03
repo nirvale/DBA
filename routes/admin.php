@@ -25,8 +25,10 @@ Route::resource('programa', ProgramaController::class)->only(['show','index']);
 //crud backups
 Route::resource('bdiaria', BdiariaController::class);
 Route::get('bdiariahome', [BdiariaController::class, 'home'])->name('bdiaria.home');
+Route::get('createe', [BdiariaController::class, 'createe'])->name('bdiaria.createe');
+Route::post('updateb', [BdiariaController::class, 'updateb'])->name('bdiaria.updateb');
 
-//crud databases
+//crud databasesRoute::get('createe', [BdiariaController::class, 'createe'])->name('bdiaria.createe');
 //Route::resource('base', BaseController::class);
 //Route::get('basehome', [BaseController::class, 'home'])->name('base.home');
 Route::get('basebydc/{idd}', [BaseController::class, 'dbbydc'])->name('base.bydc');
