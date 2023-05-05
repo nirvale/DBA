@@ -145,6 +145,9 @@ return [
          'cve_fechae' => [
             'before' => 'La fecha de la bitácora que intenta editar está en el futuro',
         ],
+        'daysem' => [
+           'Rule' => 'El día de la semana es incorrecto',
+       ],
 
     ],
 
@@ -174,6 +177,7 @@ return [
         'selEstadoBackup' => 'ESTADO DE BACKUP',
         'cve_datacenter' => 'CENTRO DE DATOS',
         'cve_base' => 'BASE DE DATOS',
+        'daysem' => 'FECHA Y DÍA DE LA SEMANA',
 
     ],
 

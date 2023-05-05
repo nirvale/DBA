@@ -1,4 +1,5 @@
-<x-guest-layout>
+@extends('adminlte::auth.verify')
+{{-- <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
@@ -43,3 +44,4 @@
         </div>
     </x-jet-authentication-card>
 </x-guest-layout>
+ --}}
