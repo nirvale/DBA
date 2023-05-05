@@ -11,10 +11,10 @@ class GetlogsController extends Controller
 {
     public function __construct(Request $request)
     {
-        $this->middleware(['permission:admin|adming|dba|esquema']);
+        $this->middleware(['permission:down_logs']);
     }
 
-    public function download($log)
+    public function downloadd($log)
     {
 
          if(Auth::check()) {
@@ -26,6 +26,29 @@ class GetlogsController extends Controller
         }
 
     }
+    public function downloads($log)
+    {
+
+         if(Auth::check()) {
+            // filename should be a relative path inside storage/app to your file like 'userfiles/report1253.pdf'
+            //return $log;
+            return Storage::download('/bsemanales/'.$log);
+        }else{
+            return abort('403');
+        }
+    }
+    public function downloadm($log)
+    {
+
+         if(Auth::check()) {
+            // filename should be a relative path inside storage/app to your file like 'userfiles/report1253.pdf'
+            //return $log;
+            return Storage::download('/bmanuales/'.$log);
+        }else{
+            return abort('403');
+        }
+    }
+
 
 
 }

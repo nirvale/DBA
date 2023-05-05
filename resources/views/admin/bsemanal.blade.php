@@ -8,7 +8,7 @@
       <h1 class="card-title"><i class="fas fa-hat-wizard"></i> Sistema de Administración para Bases de Datos - DGTG</h1>
   </div>
   <div class="card-body">
-    <h4 class="card-subtitle"><i class="fas fa-table"></i> Módulo para Bitácora de Respaldos Diarios</h4>
+    <h4 class="card-subtitle"><i class="fas fa-table"></i> Módulo para Bitácora de Respaldos Semanales</h4>
   </div>
 </div>
 
@@ -128,7 +128,7 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="/dba/css/admin_custom.css">
 @stop
 
 @section('js')
@@ -251,7 +251,7 @@
               "processing": true,
               "serverSide": true,
               "ajax":{
-                 "url": "{{route('bdiaria.index')}}",
+                 "url": "{{route('bsemanal.index')}}",
                  "type": 'GET',
                  //"dataType": 'json',
                  "data":{
@@ -276,7 +276,7 @@
                           var urls2 = '';
                           for (var i = 0; i < urls.length; i++) {
                             //urls2 =  urls2 + '<a href="/admin/getlogs/'+urls[i]+'">logfile '+ (i+1) +'</a> <br>';
-                            urls2 =  urls2 + '<a href="{{route('getlogs.get.d','')}}'+'/'+urls[i]+'">logfile '+ (i+1) +'</a> <br>';
+                            urls2 =  urls2 + '<a href="{{route('getlogs.get.s','')}}'+'/'+urls[i]+'">logfile '+ (i+1) +'</a> <br>';
                         }
                       return urls2;
                     }
@@ -323,7 +323,7 @@
       $('#footermodal').empty();
 
       $.ajax({
-        url: "{{route('bdiaria.show','')}}"+"/"+id,
+        url: "{{route('bsemanal.show','')}}"+"/"+id,
         type: 'GET',
         // async: false,
         dataType: 'json',
@@ -342,11 +342,11 @@
           esquema =  "<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='cmb_esquema'>ESQUEMA</label> <input value='"+response[0][0].esquema+"' name='esquema' type='text' id='esquema' class='form-control validate' readonly placeholder='Nombre del Esquema'></div> ";
           base =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>BASE</label> <input value='"+response[0][0].base+"' name='base' type='text' id='base' class='form-control validate' readonly placeholder='Nombre de la base de datos...'>");
           estado =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>ESTADO</label> <select class='form-control select2' id='selEstadoBackup' name='cve_estadobackup'><option value='' disabled selected>Seleciona un estado del esquema...</option>");
-          archivos =   "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='bdiaria_archivos' >ARCHIVOS (Selección multiple - Sólo arcvhivos tar.gz son permitidos)</label><input type='file' class='filestyle' data-text='archivos' data-btnClass='btn-success'  data-buttonBefore='true' data-badge='true' data-placeholder='Ningún archivo seleccionado...' name='bdiaria_archivos[]' id='bdiaria_archivos' multiple ></div>";
+          archivos =   "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='bsemanal_archivos' >ARCHIVOS (Selección multiple - Sólo arcvhivos tar.gz son permitidos)</label><input type='file' class='filestyle' data-text='archivos' data-btnClass='btn-success'  data-buttonBefore='true' data-badge='true' data-placeholder='Ningún archivo seleccionado...' name='bsemanal_archivos[]' id='bsemanal_archivos' multiple ></div>";
           observacionesb =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>OBSERVACIONES EN BITÁCORA</label> <textarea readonly value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'>"+response[0][0].observaciones+"</textarea></div> ";
           observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>AGREGAR OBSERVACIONES</label> <textarea value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'></textarea></div> ";
           footermodal = "<button class='btn btn-success' id='updateBackup' >Guardar</button><button class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>";
-          $.getScript( "/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {
+          $.getScript( "/dba/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {
           // console.log( data ); // Data returned
           // console.log( textStatus ); // Success
           // console.log( jqxhr.status ); // 200
@@ -383,7 +383,7 @@
 
                     for (var i = 0; i < urls.length; i++) {
 
-                      $("#modalc2").append("<div class='col-md-12 ml-auto' ><a href='{{route('getlogs.get.d','')}}"+"/"+urls[i]+"'>"+urls[i]+"</a><br></div>");
+                      $("#modalc2").append("<div class='col-md-12 ml-auto' ><a href='{{route('getlogs.get.s','')}}"+"/"+urls[i]+"'>"+urls[i]+"</a><br></div>");
 
                     }
             $("#footermodal").append(footermodal);
@@ -426,7 +426,7 @@
       alertify.confirm('ACTUALIZACIÓN DE INFORMACIÓN DE BACKUP ','Actualizar backup: '+data.get('esquema')+'', function(){
 
         $.ajax({
-          url: "{{route('bdiaria.update','')}}"+"/"+data.get('id'),
+          url: "{{route('bsemanal.update','')}}"+"/"+data.get('id'),
           type: 'POST',
           headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
           processData: false,
@@ -501,7 +501,7 @@
       $('#footermodal').empty();
 
       $.ajax({
-        url: "{{route('bdiaria.create')}}",
+        url: "{{route('bsemanal.create')}}",
         type: 'GET',
         // async: false,
         dataType: 'json',
@@ -538,12 +538,12 @@
               esquema =  "<div class='form-group col-md-4 ml-auto' id='bitesquema'><label data-error='error' data-success='ok' for='esquema'>ESQUEMA</label> </div> ";
               base =  "<div class='form-group col-md-4 ml-auto' id='bitbase'><label data-error='error' data-success='ok' for='cmb_base'>BASE</label></div> ";
               estado =  ("<div class='form-group col-md-3 ml-auto' id='bitestado'><label data-error='error' data-success='ok' for='sel'>ESTADO</label> </div>");
-              archivos =   "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='bdiaria_archivos' >ARCHIVOS (Selección multiple - Sólo arcvhivos tar.gz son permitidos)</label><input type='file' class='filestyle' data-text='archivos' data-btnClass='btn-success'  data-buttonBefore='true' data-badge='true' data-placeholder='Ningún archivo seleccionado...' name='bdiaria_archivos[]' id='bdiaria_archivos' multiple ></div>";
+              archivos =   "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='bsemanal_archivos' >ARCHIVOS (Selección multiple - Sólo arcvhivos tar.gz son permitidos)</label><input type='file' class='filestyle' data-text='archivos' data-btnClass='btn-success'  data-buttonBefore='true' data-badge='true' data-placeholder='Ningún archivo seleccionado...' name='bsemanal_archivos[]' id='bsemanal_archivos' multiple ></div>";
               observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>OBSERVACIONES</label> <textarea value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'></textarea></div> ";
               usuario =  ("<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='sel'>REVISOR</label> <select readonly class='form-control select2' id='selUsuario' name='selUsuario'><option value='{{ Auth::user()->id}}'>{{ Auth::user()->name }}</option>");
               ndata =  ("<div class='form-group col-md-12 ml-auto'><input hidden value='"+response[0].length+"' name='ndata' type='text' id='ndata' class='form-control validate'></div>");
               footermodal = "<button class='btn btn-success' id='createBitacora' >Crear</button><button class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>";
-              $.getScript( "/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {
+              $.getScript( "/dba/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {
               // console.log( data ); // Data returned
               // console.log( textStatus ); // Success
               // console.log( jqxhr.status ); // 200
@@ -551,7 +551,7 @@
               });
 
 
-                $('#tituloModal').html("<i class='fas fa-edit'></i> - Crear Bitácora ");
+                $('#tituloModal').html("<i class='fas fa-edit'></i> - Crear Bitácora Semanal ");
                 $("#modalc1").append(fecha);
                 $("#modalc1").append(cve_esquema);
 
@@ -599,7 +599,7 @@
               $('#modalbackup').on('hide.bs.modal', function () {
               //  alertify.warning('Edición Cancelada');
               });
-                    //
+
                     //       // DEPENDENCIA Change
                     // $('#selDependencia').change(function(){
                     //
@@ -664,7 +664,7 @@
       $('#footermodal').empty();
 
       $.ajax({
-        url: "{{route('bdiaria.createe')}}",
+        url: "{{route('bsemanal.createe')}}",
         type: 'GET',
         // async: false,
         dataType: 'json',
@@ -697,11 +697,11 @@
               //construir forma
               fecha =  ("<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='bitdate'>FECHA</label><input readonly value='"+$("#inputFecha").val()+"' name='bitdate' type='date' id='bitdate' class='form-control validate'> </div>");
 
-              cve_bdiaria =  "<div class='form-group col-md-1 ml-auto' id='bitcvebdiaria'><label data-error='error' data-success='ok' for='cve_bdiaria'>ID</label> </div> ";
+              cve_bsemanal =  "<div class='form-group col-md-1 ml-auto' id='bitcvebsemanal'><label data-error='error' data-success='ok' for='cve_bsemanal'>ID</label> </div> ";
               esquema =  "<div class='form-group col-md-4 ml-auto' id='bitesquema'><label data-error='error' data-success='ok' for='esquema'>ESQUEMA</label> </div> ";
               base =  "<div class='form-group col-md-4 ml-auto' id='bitbase'><label data-error='error' data-success='ok' for='cmb_base'>BASE</label></div> ";
               estado =  ("<div class='form-group col-md-3 ml-auto' id='bitestado'><label data-error='error' data-success='ok' for='sel'>ESTADO</label> </div>");
-              archivos =   "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='bdiaria_archivos' >ARCHIVOS (Selección multiple - Sólo arcvhivos tar.gz son permitidos)</label><input type='file' class='filestyle' data-text='archivos' data-btnClass='btn-success'  data-buttonBefore='true' data-badge='true' data-placeholder='Ningún archivo seleccionado...' name='bdiaria_archivos[]' id='bdiaria_archivos' multiple ></div>";
+              archivos =   "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='bsemanal_archivos' >ARCHIVOS (Selección multiple - Sólo arcvhivos tar.gz son permitidos)</label><input type='file' class='filestyle' data-text='archivos' data-btnClass='btn-success'  data-buttonBefore='true' data-badge='true' data-placeholder='Ningún archivo seleccionado...' name='bsemanal_archivos[]' id='bsemanal_archivos' multiple ></div>";
               observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>OBSERVACIONES</label> <textarea value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'></textarea></div> ";
               usuario =  ("<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='sel'>REVISOR</label> <select readonly class='form-control select2' id='selUsuario' name='selUsuario'><option value='{{ Auth::user()->id}}'>{{ Auth::user()->name }}</option>");
               ndata =  ("<div class='form-group col-md-12 ml-auto'><input hidden value='"+response[0].length+"' name='ndata' type='text' id='ndata' class='form-control validate'></div>");
@@ -716,10 +716,10 @@
 
                 $('#tituloModal').html("<i class='fas fa-edit'></i> - Editar Bitácora ");
                 $("#modalc1").append(fecha);
-                $("#modalc1").append(cve_bdiaria);
+                $("#modalc1").append(cve_bsemanal);
 
                   for (var i = 0; i < response[0].length; i++) {
-                    $("#bitcvebdiaria").append("<input value='"+response[0][i].cve_bdiaria+"' name='cve_bdiaria["+i+"]' type='text' id='cve_bdiaria"+i+"' class='form-control validate' readonly>");
+                    $("#bitcvebsemanal").append("<input value='"+response[0][i].cve_bsemanal+"' name='cve_bsemanal["+i+"]' type='text' id='cve_bsemanal"+i+"' class='form-control validate' readonly>");
                   }
 
                 $("#modalc1").append(esquema);
@@ -846,7 +846,7 @@
       alertify.confirm('CREAR NUEVA BITÁCORA ','Se va a crear la bitácora: '+data.get('base[0]')+'', function(){
 
         $.ajax({
-          url: '{{route('bdiaria.store')}}',
+          url: '{{route('bsemanal.store')}}',
           type: 'POST',
           headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
           processData: false,
@@ -929,7 +929,7 @@
       alertify.confirm('ACTUALIZAR BITÁCORA ','Se va actualizar la bitácora: '+data.get('base[0]')+'', function(){
 
         $.ajax({
-          url: '{{route('bdiaria.updateb')}}',
+          url: '{{route('bsemanal.updateb')}}',
           type: 'POST',
           headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
           processData: false,

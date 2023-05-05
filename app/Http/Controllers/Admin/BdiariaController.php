@@ -12,6 +12,7 @@ use Illuminate\Validation\Rule;
 use App\Models\Esquema;
 use App\Models\Estadobackup;
 use Auth;
+use Carbon\Carbon;
 
 class BdiariaController extends Controller
 {
@@ -138,9 +139,12 @@ class BdiariaController extends Controller
      */
     public function create(Request $request)
     {
+        $request->merge(['daysem'=> Carbon::parse($request->cve_fecha)->dayOfWeek]);
         $validated=\Validator::make($request->all(), [
            'cve_datacenter' => 'bail|required|max:1',
            'cve_base' => ['bail','required','max:2'],
+           'cve_fecha' => 'bail|required|before:today',
+           'daysem' => ['bail','required','max:1', Rule::notIn(['0','6'])],
         ]);
         if ($validated->fails()) {
             return response()->json(['errors'=>$validated->errors()->all()]);
@@ -167,6 +171,7 @@ class BdiariaController extends Controller
                'dbtobit' => ['bail','required','max:2', Rule::notIn(['1','2','4','5'])],
                'cve_fecha' => 'bail|required|before:today',
                'bitcheck' => 'bail|required|max:1',
+               'daysem' => ['bail','required','max:1', Rule::notIn(['0','6'])],
             ]);
 
             if ($validated->fails())
@@ -193,7 +198,7 @@ class BdiariaController extends Controller
 
     }
 
-        public function createe(Request $request)
+    public function createe(Request $request)
     {
 
          $validated=\Validator::make($request->all(), [
@@ -264,7 +269,8 @@ class BdiariaController extends Controller
      */
     public function store(Request $request)
     {
-       $validated=\Validator::make($request->all(), [
+        $request->merge(['daysem'=> Carbon::parse($request->bitdate)->dayOfWeek]);
+        $validated=\Validator::make($request->all(), [
             'bitdate' => 'bail|required|date',
             'selUsuario' => 'bail|required|integer',
             'bdiaria_archivos' => 'bail|required',
@@ -274,6 +280,7 @@ class BdiariaController extends Controller
             'cve_esquema.*' => 'bail|required|max:5',
             'esquema.*' => 'bail|required',
             'selEstadoBackup.*' => ['bail','required', 'max: 1', Rule::In(['1','2','3'])],
+            'daysem' => ['bail','required','max:1', Rule::notIn(['0','6'])]
 
         ]);
 
@@ -333,17 +340,6 @@ class BdiariaController extends Controller
         {
          return response()->json(['errors'=>$validated->errors()->all()]);
         }elseif ($validated) {
-          //dd($request);
-/*            $esquemas =Bdiaria::select('bdiarias.id as cve_bdiaria','bdiarias.fecha','esquemas.esquema','bases.base','estadobackups.estado_backup','bdiarias.archivos','bdiarias.observaciones','users.name')
-                    ->join('esquemas','esquemas.id','=','bdiarias.cve_esquema')
-                    ->join('bases','bases.id','=','esquemas.cve_base')
-                    ->join('estadobackups','estadobackups.id','=','bdiarias.cve_estadobackup')
-                    ->join('users','users.id','=','bdiarias.cve_user')
-                    ->where('esquemas.cve_base',$request->cve_base)
-                    ->where('bdiarias.fecha',$request->cve_fechae)
-                    ->withCasts(['fecha' => 'date:Y-m-d'])
-                    ->get();
-            $urls=json_decode($bdiaria->archivos);*/
             $h=date("Ymd_his");
             $logs = $request->file('bdiaria_archivos');
             foreach ($logs as $log) {
