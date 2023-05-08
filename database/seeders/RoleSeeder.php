@@ -41,6 +41,7 @@ class RoleSeeder extends Seeder
       Permission::create([ 'guard_name' => 'web' , 'name' => 'imiprimir_esquema'])->syncRoles($r_god,$r_admin,$r_dbas,$r_dbaj);
       Permission::create([ 'guard_name' => 'web' , 'name' => 'editar_esquema'])->syncRoles($r_god,$r_dbas,$r_dbaj);
       Permission::create([ 'guard_name' => 'web' , 'name' => 'crear_esquema'])->syncRoles($r_god,$r_dbas,$r_dbaj);
+      Permission::create([ 'guard_name' => 'web' , 'name' => 'eliminar_esquema'])->syncRoles($r_god,$r_dbas,$r_dbaj);
       Permission::create([ 'guard_name' => 'web' , 'name' => 'infraestructura'])->syncRoles($r_god,$r_admin,$r_dbas);
       Permission::create([ 'guard_name' => 'web' , 'name' => 'app'])->syncRoles($r_god,$r_admin,$r_dbas,$r_dbaj);
       Permission::create([ 'guard_name' => 'web' , 'name' => 'developer'])->syncRoles($r_god,$r_admin,$r_developer);
