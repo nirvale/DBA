@@ -12,7 +12,7 @@ class BaseController extends Controller
 {
     public function __construct(Request $request)
     {
-        $this->middleware(['permission:admin|adming|dba|esquema']);
+        $this->middleware(['role_or_permission:Administrador de Base de Datos|DBA Junior|admin|adming']);
     }
     /**
      * Display a listing of the resource.
