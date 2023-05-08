@@ -334,7 +334,7 @@ return [
             'text' => 'Usuarios',
             'url'  => '/admin/listausuarios',
             'icon' => 'fas fa-fw fa-users-cog',
-            'can'  => ['adming'],
+            'can'  => ['adming','admin'],
 
         ],
         ['header' => 'ADMINISTRACIÓN','can' => ['adming','admin','esquema','infraestructura']],
@@ -346,7 +346,7 @@ return [
                     'text' => 'Esquemas',
                     'url'  => '/admin/esquemahome',
                     'icon'    => 'fas fa-fw fa-table',
-                    'can' => ['adming','admin','esquema'],
+                    'can' => ['adming','admin','ver_esquema','editar_esquema','crear_esquema','imprimir_esquema','eliminar_esquema'],
                 ],
 /*                [
                     'text'    => 'level_one',

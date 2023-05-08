@@ -8,12 +8,14 @@ use App\Models\Esquema;
 use App\Models\Datacenter;
 use Illuminate\Support\Facades\Crypt;
 use DB;
+use Auth;
+
 
 class EsquemaController extends Controller
 {
     public function __construct(Request $request)
     {
-        $this->middleware(['permission:admin|adming|dba|esquema']);
+        $this->middleware(['permission:admin|adming|dba|ver_esquema|editar_esquema|crear_esquema|imprimir_esquema|eliminar_esquema']);
     }
     public function home()
     {
