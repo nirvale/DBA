@@ -337,7 +337,7 @@ return [
             'can'  => ['adming','admin'],
 
         ],
-        ['header' => 'ADMINISTRACIÓN','can' => ['adming','admin','esquema','infraestructura']],
+        ['header' => 'ADMINISTRACIÓN','can' => ['adming','admin','ver_esquema','infraestructura']],
         [
             'text'    => 'Sistema',
             'icon'    => 'fas fa-fw fa-laptop-code',
@@ -378,7 +378,7 @@ return [
                 ],*/
             ],
         ],
-        ['header' => 'BACKUPS'],
+        ['header' => 'BACKUPS','can' => ['adming','admin','ver_bitacora','infraestructura']],
         [
             'text'    => 'Bitácoras',
             'icon'    => 'fas fa-clipboard-list',
@@ -387,16 +387,19 @@ return [
                     'text' => 'Diario',
                     'url'  => '/admin/bdiariahome',
                     'icon'    => 'fas fa-clipboard-check',
+                    'can' => ['adming','admin','ver_bitacora','editar_bitacora','crear_bitacora','imprimir_bitacora','eliminar_bitacora'],
                 ],
                 [
                     'text' => 'Semanal',
                     'url'  => '/admin/bsemanalhome',
                     'icon'    => 'fas fa-calendar-check',
+                    'can' => ['adming','admin','ver_bitacora','editar_bitacora','crear_bitacora','imprimir_bitacora','eliminar_bitacora'],
                 ],
                 [
                     'text' => 'Manual',
                     'url'  => '/admin/bmanualhome',
                     'icon'    => 'fas fa-tasks',
+                    'can' => ['adming','admin','ver_bitacora','editar_bitacora','crear_bitacora','imprimir_bitacora','eliminar_bitacora'],
                 ],
               ],
         ],
