@@ -18,7 +18,7 @@ class BsemanalController extends Controller
 {
     public function __construct(Request $request)
     {
-        $this->middleware(['permission:admin|adming|dba|esquema']);
+        $this->middleware(['permission:admin|adming|editar_bitacora']);
     }
     /**
      * Display a listing of the resource.
