@@ -19,7 +19,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     //public const HOME = '/dashboard';
     //configuracion para la url principal con adminlte
-    public const HOME = 'admin';
+    public const HOME = '/home';
+
 
 
     /**
@@ -50,10 +51,19 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
 
+            Route::middleware('web')
+                //->namespace($this->namespace)
+                ->group(base_path('routes/public.php'));
+
             Route::prefix('admin')
                 ->middleware('web', 'auth:sanctum')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/admin.php'));
+
+            Route::prefix('dbam')
+                ->middleware('web', 'auth:sanctum')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/dbam.php'));
         });
     }
 
