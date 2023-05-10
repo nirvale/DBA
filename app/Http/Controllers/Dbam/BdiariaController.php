@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Dbam;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,9 +16,9 @@ use Carbon\Carbon;
 
 class BdiariaController extends Controller
 {
-  public function __construct(Request $request)
+    public function __construct(Request $request)
     {
-        $this->middleware(['permission:admin|adming|editar_bitacora']);
+        $this->middleware(['role_or_permission:Administrador de Base de Datos|DBA Junior|admin|adming']);
     }
     /**
      * Display a listing of the resource.
@@ -28,7 +28,7 @@ class BdiariaController extends Controller
      public function home()
      {
         $datacenters = Datacenter::pluck('datacenter','id');
-        return View('admin.bdiaria',compact('datacenters'));
+        return View('dbam.bdiaria',compact('datacenters'));
      }
     public function index(Request $request)
     {
@@ -290,12 +290,13 @@ class BdiariaController extends Controller
         }elseif ($validated) {
             $h=date("Ymd_his");
             $logs = $request->file('bdiaria_archivos');
+            $i=1;
             foreach ($logs as $log) {
-                $nombre = str_replace(' ', '_', $request->base[0] . '_DIARIO_' . str_replace('-', '', $request->bitdate ). '_' . $h .'.tar.' . $log->getClientOriginalExtension());
-                // $nombre = $request->base[0] . '_diario_' . $request->fecha . '_' . $h .'.tar.' . $log->getClientOriginalExtension();
+                $nombre = str_replace(' ', '_', $request->base[0] . '-DIARIO-' . str_replace('-', '', $request->bitdate ). '_' . $h .'-'.$i.'.tar.' . $log->getClientOriginalExtension());
+                // $nombre = $request->base[0] . '-DIARIO-' . $request->fecha . '_' . $h .'.tar.' . $log->getClientOriginalExtension();
                 $path = $log->storeAs('bdiarias', $nombre);
                 $urls[] = $nombre;
-
+                $i++;
                }
 
             DB::beginTransaction();
@@ -342,12 +343,13 @@ class BdiariaController extends Controller
         }elseif ($validated) {
             $h=date("Ymd_his");
             $logs = $request->file('bdiaria_archivos');
+            $i=1;
             foreach ($logs as $log) {
-                $nombre = str_replace(' ', '_', $request->base[0] . '_DIARIO_' . str_replace('-', '', $request->bitdate ). '_' . $h .'.tar.' . $log->getClientOriginalExtension());
-                // $nombre = $request->base[0] . '_diario_' . $request->fecha . '_' . $h .'.tar.' . $log->getClientOriginalExtension();
+                $nombre = str_replace(' ', '_', $request->base[0] . '-DIARIO-' . str_replace('-', '', $request->bitdate ). '_' . $h .'-'.$i.'.tar.' . $log->getClientOriginalExtension());
+                // $nombre = $request->base[0] . '-DIARIO-' . $request->fecha . '_' . $h .'.tar.' . $log->getClientOriginalExtension();
                 $path = $log->storeAs('bdiarias', $nombre);
                 $urls0[] = $nombre;
-
+                $i++;
                }
 
             DB::beginTransaction();
@@ -433,13 +435,13 @@ class BdiariaController extends Controller
         $h=date("Ymd_his");
         if ($request->file('bdiaria_archivos')) {
             $logs = $request->file('bdiaria_archivos');
-
+            $i=1;
             foreach ($logs as $log) {
-                $nombre = str_replace(' ', '_', $request->base . '-' . $request->esquema. '-' . str_replace('-', '', $request->fecha ) . '-' . $h .'.tar.' . $log->getClientOriginalExtension());
+                $nombre = str_replace(' ', '_', $request->base . '-' . $request->esquema. '-' . str_replace('-', '', $request->fecha ) . '-' . $h .'-'.$i.'.tar.' . $log->getClientOriginalExtension());
                  //$nombre = $request->base . '_' . $request->esquema . '_' . $request->fecha . '_' . $h .'.tar.' . $log->getClientOriginalExtension();
                  $path = $log->storeAs('bdiarias', $nombre);
                  $urls[] = $nombre;
-
+                 $i++;
                }
 
         }

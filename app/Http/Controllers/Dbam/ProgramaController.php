@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Dbam;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ class ProgramaController extends Controller
 {
     public function __construct(Request $request)
     {
-        $this->middleware(['permission:admin|adming|dba|esquema']);
+        $this->middleware(['role_or_permission:Administrador de Base de Datos|DBA Junior|admin|adming']);
     }
     /**
      * Display a listing of the resource.

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Dbam;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,12 +15,12 @@ class EsquemaController extends Controller
 {
     public function __construct(Request $request)
     {
-        $this->middleware(['permission:admin|adming|dba|ver_esquema|editar_esquema|crear_esquema|imprimir_esquema|eliminar_esquema']);
+        $this->middleware(['role_or_permission:Administrador de Base de Datos|DBA Junior|admin|adming']);
     }
     public function home()
     {
         $datacenters = Datacenter::pluck('datacenter','id');
-        return View('admin.esquema',compact('datacenters'));
+        return View('dbam.esquema',compact('datacenters'));
     }
     /**
      * Display a listing of the resource.

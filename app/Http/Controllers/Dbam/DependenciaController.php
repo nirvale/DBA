@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Dbam;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,6 +8,11 @@ use App\Models\Dependencia;
 
 class DependenciaController extends Controller
 {
+
+    public function __construct(Request $request)
+    {
+        $this->middleware(['role_or_permission:Administrador de Base de Datos|DBA Junior|admin|adming']);
+    }
     /**
      * Display a listing of the resource.
      *

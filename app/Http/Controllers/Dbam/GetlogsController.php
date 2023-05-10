@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Dbam;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Storage;
 
 class GetlogsController extends Controller
 {
-    public function __construct(Request $request)
-    {
-        $this->middleware(['permission:down_logs']);
-    }
+  public function __construct(Request $request)
+  {
+      $this->middleware(['role_or_permission:Administrador de Base de Datos|DBA Junior|adming|down_logs']);
+  }
 
     public function downloadd($log)
     {
