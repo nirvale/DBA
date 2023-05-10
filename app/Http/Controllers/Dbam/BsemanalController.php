@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Dbam;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bsemanal;
@@ -18,7 +18,7 @@ class BsemanalController extends Controller
 {
     public function __construct(Request $request)
     {
-        $this->middleware(['permission:admin|adming|editar_bitacora']);
+        $this->middleware(['role_or_permission:Administrador de Base de Datos|DBA Junior|admin|adming']);
     }
     /**
      * Display a listing of the resource.
@@ -28,7 +28,7 @@ class BsemanalController extends Controller
     public function home()
     {
         $datacenters = Datacenter::pluck('datacenter','id');
-        return View('admin.bsemanal',compact('datacenters'));
+        return View('dbam.bsemanal',compact('datacenters'));
     }
     /**
      * Display a listing of the resource.
@@ -226,12 +226,13 @@ class BsemanalController extends Controller
           }elseif ($validated) {
               $h=date("Ymd_his");
               $logs = $request->file('bsemanal_archivos');
+              $i=1;
               foreach ($logs as $log) {
-                  $nombre = str_replace(' ', '_', $request->base[0] . '_SEMANAL_' . str_replace('-', '', $request->bitdate ). '_' . $h .'.tar.' . $log->getClientOriginalExtension());
-                  // $nombre = $request->base[0] . '_diario_' . $request->fecha . '_' . $h .'.tar.' . $log->getClientOriginalExtension();
+                  $nombre = str_replace(' ', '_', $request->base[0] . '-SEMANAL-' . str_replace('-', '', $request->bitdate ). '_' . $h .'-'.$i.'.tar.' . $log->getClientOriginalExtension());
+                  // $nombre = $request->base[0] . '-SEMANAL-' . $request->fecha . '_' . $h .'.tar.' . $log->getClientOriginalExtension();
                   $path = $log->storeAs('bsemanales', $nombre);
                   $urls[] = $nombre;
-
+                $i++;
                  }
 
               DB::beginTransaction();
@@ -315,13 +316,13 @@ class BsemanalController extends Controller
          $h=date("Ymd_his");
          if ($request->file('bsemanal_archivos')) {
              $logs = $request->file('bsemanal_archivos');
-
+             $i=1;
              foreach ($logs as $log) {
-                 $nombre = str_replace(' ', '_', $request->base . '-' . $request->esquema. '-' . str_replace('-', '', $request->fecha ) . '-' . $h .'.tar.' . $log->getClientOriginalExtension());
+                 $nombre = str_replace(' ', '_', $request->base . '-' . $request->esquema. '-' . str_replace('-', '', $request->fecha ) . '-' . $h .'-'.$i.'.tar.' . $log->getClientOriginalExtension());
                   //$nombre = $request->base . '_' . $request->esquema . '_' . $request->fecha . '_' . $h .'.tar.' . $log->getClientOriginalExtension();
                   $path = $log->storeAs('bsemanales', $nombre);
                   $urls[] = $nombre;
-
+                  $i++;
                 }
 
          }
@@ -387,7 +388,7 @@ class BsemanalController extends Controller
               return response()->json(['errors'=>$validated->errors()->all()]);
              }elseif ($validated) {
 
-                 $esquemas =Bsemanal::select('bsemanales.id as cve_bdiaria','bsemanales.fecha','esquemas.esquema','bases.base','estadobackups.estado_backup','bsemanales.archivos','bsemanales.observaciones','users.name')
+                 $esquemas =Bsemanal::select('bsemanales.id as cve_bsemanal','bsemanales.fecha','esquemas.esquema','bases.base','estadobackups.estado_backup','bsemanales.archivos','bsemanales.observaciones','users.name')
                      ->join('esquemas','esquemas.id','=','bsemanales.cve_esquema')
                      ->join('bases','bases.id','=','esquemas.cve_base')
                      ->join('estadobackups','estadobackups.id','=','bsemanales.cve_estadobackup')
@@ -429,37 +430,38 @@ class BsemanalController extends Controller
          }elseif ($validated) {
              $h=date("Ymd_his");
              $logs = $request->file('bsemanal_archivos');
+             $i=1;
              foreach ($logs as $log) {
-                 $nombre = str_replace(' ', '_', $request->base[0] . '_DIARIO_' . str_replace('-', '', $request->bitdate ). '_' . $h .'.tar.' . $log->getClientOriginalExtension());
-                 // $nombre = $request->base[0] . '_diario_' . $request->fecha . '_' . $h .'.tar.' . $log->getClientOriginalExtension();
+                 $nombre = str_replace(' ', '_', $request->base[0] . '-SEMANAL-' . str_replace('-', '', $request->bitdate ). '_' . $h .'-'.$i.'.tar.' . $log->getClientOriginalExtension());
+                 // $nombre = $request->base[0] . '-SEMANAL-' . $request->fecha . '_' . $h .'.tar.' . $log->getClientOriginalExtension();
                  $path = $log->storeAs('bsemanales', $nombre);
                  $urls0[] = $nombre;
-
+                 $i++;
                 }
 
              DB::beginTransaction();
              try {
 
                  for ($i=0; $i < $request->ndata ; $i++) {
-                     $bdiaria = Bsemanal::FindOrFail($request->cve_bdiaria[$i]);
-                     $urls = array_merge(json_decode($bdiaria->archivos),$urls0);
-                     //array_unshift($urls, json_decode($bdiaria->archivos));
-                     //$urls[0]=json_decode($bdiaria->archivos);
-                    // $bdiaria->fecha = $request->bitdate;
-                    // $bdiaria->cve_esquema = $request->cve_esquema[$i];
-                     $bdiaria->cve_estadobackup = $request->selEstadoBackup[$i];
-                     $bdiaria->observaciones = $bdiaria->observaciones . '/'. $h."->EDITAR:\n".$request->observaciones."\n". '/'. $h."->FINEDITAR\n \n";
-                     $bdiaria->archivos = json_encode($urls);
-                     $bdiaria->cve_user = Auth::user()->id;
-                     //return $bdiaria;
-                     $bdiaria->push();
+                     $bsemanal = Bsemanal::FindOrFail($request->cve_bsemanal[$i]);
+                     $urls = array_merge(json_decode($bsemanal->archivos),$urls0);
+                     //array_unshift($urls, json_decode($bsemanal->archivos));
+                     //$urls[0]=json_decode($bsemanal->archivos);
+                    // $bsemanal->fecha = $request->bitdate;
+                    // $bsemanal->cve_esquema = $request->cve_esquema[$i];
+                     $bsemanal->cve_estadobackup = $request->selEstadoBackup[$i];
+                     $bsemanal->observaciones = $bsemanal->observaciones . '/'. $h."->EDITAR:\n".$request->observaciones."\n". '/'. $h."->FINEDITAR\n \n";
+                     $bsemanal->archivos = json_encode($urls);
+                     $bsemanal->cve_user = Auth::user()->id;
+                     //return $bsemanal;
+                     $bsemanal->push();
                  }
              DB::commit();
              } catch (\Exception $e) {
                  DB::rollBack();
                  return $e;
               }
-             return [$bdiaria->fecha];
+             return [$bsemanal->fecha];
          }
      }
     /**

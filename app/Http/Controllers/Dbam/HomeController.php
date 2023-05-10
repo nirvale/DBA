@@ -1,36 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Dbam;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreBaseRequest;
-use App\Http\Requests\UpdateBaseRequest;
-use App\Models\Base;
 use Illuminate\Http\Request;
 
-class BaseController extends Controller
+class HomeController extends Controller
 {
     public function __construct(Request $request)
     {
         $this->middleware(['role_or_permission:Administrador de Base de Datos|DBA Junior|admin|adming']);
-    }
-    /**
+    }    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function dbbydc($idd)
-    {
-      $dbs = Base::select('base','id')
-        ->where('cve_datacenter',$idd)
-        ->orderBy('base','asc')
-        ->get();
-
-      return $dbs;
-    }
     public function index()
-    {
-        //
+  {
+      //return 'ADMINISTRACIÓN DE BASE DE DATOS - DGTG';
+      return View('dbam.index');
     }
 
     /**
@@ -46,10 +34,10 @@ class BaseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBaseRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBaseRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -57,10 +45,10 @@ class BaseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Base  $base
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Base $base)
+    public function show($id)
     {
         //
     }
@@ -68,10 +56,10 @@ class BaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Base  $base
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Base $base)
+    public function edit($id)
     {
         //
     }
@@ -79,11 +67,11 @@ class BaseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBaseRequest  $request
-     * @param  \App\Models\Base  $base
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBaseRequest $request, Base $base)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -91,10 +79,10 @@ class BaseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Base  $base
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Base $base)
+    public function destroy($id)
     {
         //
     }

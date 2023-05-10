@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Inicio')
+@section('title', 'Intranet')
 
 @section('content_header')
 <div class="card">
@@ -8,7 +8,7 @@
       <h1 class="card-title"><i class="fas fa-hat-wizard"></i> Sistema de Administración para Recursos Estratégicos - DGTG</h1>
   </div>
   <div class="card-body">
-    <h4 class="card-subtitle fa-start"> <i class="fas fa-laptop-house"></i> Inicio </h4>
+    <h4 class="card-subtitle fa-start"> <i class="fas fa-laptop-house"></i> Intranet </h4>
   </div>
 </div>
 
@@ -19,9 +19,11 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="/dba/css/admin_custom.css">
 @stop
 
 @section('js')
     <script> console.log('Hi!'); </script>
 @stop
+
+{{-- @extends('adminlte::auth.login') --}}

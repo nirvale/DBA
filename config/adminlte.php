@@ -15,7 +15,7 @@ return [
     */
 
     'title' => '',
-    'title_prefix' => 'DBA-DGTG | ',
+    'title_prefix' => 'SARE-DGTG-IT | ',
     'title_postfix' => '',
 
     /*
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>DBA - </b>DGTG',
+    'logo' => '<b>SARE - </b>DGTG',
     'logo_img' => 'g30-3.png',
     'logo_img_class' => 'brand-image  elevation-3',
     'logo_img_xl' => null,
@@ -211,7 +211,7 @@ return [
     */
 
     'sidebar_mini' => 'lg',
-    'sidebar_collapse' => false,
+    'sidebar_collapse' => true,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
     'sidebar_collapse_remember_no_transition' => true,
@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'admin',
+    'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -294,7 +294,7 @@ return [
         [
             'type'         => 'navbar-search',
             'text'         => 'search',
-            'topnav_right' => true,
+            'topnav_right' => false,
         ],
         [
             'type'         => 'fullscreen-widget',
@@ -302,10 +302,10 @@ return [
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
+        // [
+        //     'type' => 'sidebar-menu-search',
+        //     'text' => 'search',
+        // ],
     /*    [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -329,7 +329,7 @@ return [
             'url'  => '/admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],*/
-        ['header' => 'SISTEMA','can' => ['adming']],
+        ['header' => 'SISTEMA','can' => ['adming','admin']],
         [
             'text' => 'Usuarios',
             'url'  => '/admin/listausuarios',
@@ -339,12 +339,13 @@ return [
         ],
         ['header' => 'ADMINISTRACIÓN','can' => ['adming','admin','ver_esquema','infraestructura']],
         [
-            'text'    => 'Sistema',
+            'text'    => 'Bases de datos',
             'icon'    => 'fas fa-fw fa-laptop-code',
             'submenu' => [
                 [
                     'text' => 'Esquemas',
-                    'url'  => '/admin/esquemahome',
+                    //'url'  => '/admin/esquemahome',
+                    'route'  => 'esquema.home',
                     'icon'    => 'fas fa-fw fa-table',
                     'can' => ['adming','admin','ver_esquema','editar_esquema','crear_esquema','imprimir_esquema','eliminar_esquema'],
                 ],
@@ -376,28 +377,32 @@ return [
                     'text' => 'level_one',
                     'url'  => '#',
                 ],*/
-            ],
+              ],
+            'can' => ['adming','admin','ver_esquema','infraestructura']
         ],
         ['header' => 'BACKUPS','can' => ['adming','admin','ver_bitacora','infraestructura']],
         [
-            'text'    => 'Bitácoras',
+            'text'    => 'Bitácoras','can' => ['adming','admin','ver_bitacora','infraestructura'],
             'icon'    => 'fas fa-clipboard-list',
             'submenu' => [
                 [
                     'text' => 'Diario',
-                    'url'  => '/admin/bdiariahome',
+                    //'url'  => '/admin/bdiariahome',
+                    'route'  => 'bdiaria.home',
                     'icon'    => 'fas fa-clipboard-check',
                     'can' => ['adming','admin','ver_bitacora','editar_bitacora','crear_bitacora','imprimir_bitacora','eliminar_bitacora'],
                 ],
                 [
                     'text' => 'Semanal',
-                    'url'  => '/admin/bsemanalhome',
+                  //  'url'  => '/admin/bsemanalhome',
+                    'route'  => 'bsemanal.home',
                     'icon'    => 'fas fa-calendar-check',
                     'can' => ['adming','admin','ver_bitacora','editar_bitacora','crear_bitacora','imprimir_bitacora','eliminar_bitacora'],
                 ],
                 [
                     'text' => 'Manual',
-                    'url'  => '/admin/bmanualhome',
+                    //'url'  => '/admin/bmanualhome',
+                    'route'  => 'bmanual.home',
                     'icon'    => 'fas fa-tasks',
                     'can' => ['adming','admin','ver_bitacora','editar_bitacora','crear_bitacora','imprimir_bitacora','eliminar_bitacora'],
                 ],

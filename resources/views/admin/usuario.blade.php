@@ -5,10 +5,10 @@
 @section('content_header')
 <div class="card">
   <div class="card-header">
-      <h1 class="card-title"><i class="fas fa-hat-wizard"></i> Sistema de Administración para Bases de Datos - DGTG</h1>
+      <h1 class="card-title"><i class="fas fa-hat-wizard"></i> Sistema de Administración para Recursos Estratégicos - DGTG</h1>
   </div>
   <div class="card-body">
-    <h4 class="card-subtitle"> <i class="fas fa-users-cog"></i> Módulo de Usuarios</h4>
+    <h4 class="card-subtitle"> <i class="fas fa-users-cog"></i> Módulo de Usuarios </h4>
   </div>
 </div>
 
