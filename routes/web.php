@@ -13,36 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-<<<<<<< Updated upstream
-});
-
-Route::get('/password/reset', function () {
-    return view('auth.passwords.email');
-});
-=======
-});*/
 
 Route::get('/home', function () {
     return view('home');
 });
 
-// Route::get('password/reset', function () {
-//     return view('auth.passwords.email');
-// });
->>>>>>> Stashed changes
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::get('password/reset', function () {
+    return view('auth.passwords.email');
 });
-<<<<<<< Updated upstream
-=======
-*/
->>>>>>> Stashed changes
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified'
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });

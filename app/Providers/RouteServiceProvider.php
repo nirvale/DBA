@@ -19,11 +19,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     //public const HOME = '/dashboard';
     //configuracion para la url principal con adminlte
-<<<<<<< Updated upstream
-    public const HOME = '/admin';
-=======
     public const HOME = '/home';
->>>>>>> Stashed changes
+
 
 
     /**
