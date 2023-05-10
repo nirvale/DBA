@@ -128,7 +128,7 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="/dba/css/admin_custom.css">
 @stop
 
 @section('js')
@@ -346,7 +346,7 @@
           observacionesb =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>OBSERVACIONES EN BITÁCORA</label> <textarea readonly value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'>"+response[0][0].observaciones+"</textarea></div> ";
           observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>AGREGAR OBSERVACIONES</label> <textarea value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'></textarea></div> ";
           footermodal = "<button class='btn btn-success' id='updateBackup' >Guardar</button><button class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>";
-          $.getScript( "/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {
+          $.getScript( "/dba/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {
           // console.log( data ); // Data returned
           // console.log( textStatus ); // Success
           // console.log( jqxhr.status ); // 200
@@ -543,7 +543,7 @@
               usuario =  ("<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='sel'>REVISOR</label> <select readonly class='form-control select2' id='selUsuario' name='selUsuario'><option value='{{ Auth::user()->id}}'>{{ Auth::user()->name }}</option>");
               ndata =  ("<div class='form-group col-md-12 ml-auto'><input hidden value='"+response[0].length+"' name='ndata' type='text' id='ndata' class='form-control validate'></div>");
               footermodal = "<button class='btn btn-success' id='createBitacora' >Crear</button><button class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>";
-              $.getScript( "/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {
+              $.getScript( "/dba/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {
               // console.log( data ); // Data returned
               // console.log( textStatus ); // Success
               // console.log( jqxhr.status ); // 200
