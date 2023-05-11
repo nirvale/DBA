@@ -232,7 +232,7 @@ return [
     |
     */
 
-    'right_sidebar' => true, //habilita menu de configuracion de usuario
+    'right_sidebar' => false, //habilita menu de configuracion de usuario
     'right_sidebar_icon' => 'fas fa-cogs',
     'right_sidebar_theme' => 'dark',
     'right_sidebar_slide' => true,
@@ -254,7 +254,7 @@ return [
 
     'use_route_url' => false,
     'dashboard_url' => 'home',
-    'logout_url' => 'logout',
+    'logout_url' => 'cerrarsp',
     'login_url' => 'login',
     'register_url' => 'register',
     'password_reset_url' => 'password/reset',
@@ -329,7 +329,7 @@ return [
             'url'  => '/admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],*/
-        ['header' => 'SISTEMA','can' => ['adming','admin']],
+        ['header' => 'SISTEMA','can' => ['adming','admin'],'key'=>'menu_sistema'],
         [
             'text' => 'Usuarios',
             'url'  => '/admin/listausuarios',

@@ -17,7 +17,6 @@
 @section('content')
 
 
-
   <div class="card" id="content">
     <div class="card-body">
         <p>
@@ -87,7 +86,7 @@
 
 
 
-
+@include('layouts.footer')
 
 @stop
 
