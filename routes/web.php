@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PrivateController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,9 +18,11 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('password/reset', function () {
-    return view('auth.passwords.email');
-});
+Route::get('/cerrars', [PrivateController::class, 'cerrars'])->name('cerrars');
+Route::post('/cerrarsp', [PrivateController::class, 'cerrarsp'])->name('cerrarsp');
+// Route::get('password/reset', function () {
+//     return view('auth.passwords.email');
+// });
 // Route::middleware([
 //     'auth:sanctum',
 //     config('jetstream.auth_session'),

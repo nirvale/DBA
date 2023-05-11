@@ -122,7 +122,7 @@
 {{-- fin Editar Esquema --}}
 
 
-
+@include('layouts.footer')
 
 
 @stop

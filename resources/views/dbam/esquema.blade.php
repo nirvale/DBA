@@ -41,8 +41,10 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-12">
-             <a href="" type="button" id="consultaEsquemas" class="btn btn-secondary" >CONSULTAR ESQUEMAS <i class="fas fa-search"></i></a>
-             <a href="" type="button" id="agregaEsquemas" class="btn btn-success" >AGREGAR ESQUEMAS <i class="fas fa-plus-circle"></i></a>
+            <a href="" type="button" id="consultaEsquemas" class="btn btn-secondary" >CONSULTAR ESQUEMAS <i class="fas fa-search"></i></a>
+            @can(['crear_esquema'])
+            <a href="" type="button" id="agregaEsquemas" class="btn btn-success" >AGREGAR ESQUEMAS <i class="fas fa-plus-circle"></i></a>
+            @endcan
           </div>
         </div>
       </form>
@@ -111,7 +113,7 @@
 {{-- fin Editar Esquema --}}
 
 
-
+@include('layouts.footer')
 
 
 @stop
@@ -527,7 +529,7 @@
           estado =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>ESTADO</label> <select class='form-control select2' id='selEstadoesquema' name='cve_estadoesquema'><option value='' disabled selected>Seleciona un estado del esquema...</option>");
           observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>OBSERVACIONES</label> <textarea value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'></textarea></div> ";
           pwd =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='cmb_PWD'>PASSWORD</label> <input value='' name='pwd' type='text' id='pwd' class='form-control validate' placeholder='Contraseña...'></div> ";
-          footermodal = "<button class='btn btn-success' id='createEsquema' >Crear</button><button class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>";
+          footermodal = "@can(['crear_esquema'])<button class='btn btn-success' id='createEsquema' >Crear</button>@endcan<button class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>";
 
 
             $('#tituloModal').html("<i class='fas fa-edit'></i> - Crear Esquema ");
