@@ -477,7 +477,7 @@ return [
                 [
                     'type' => 'css',
                     'asset' => true,
-                    'location' => 'vendor/datatables/css/dataTables.bootstrap5.min.css',
+                    'location' => '/vendor/datatables/css/dataTables.bootstrap5.min.css',
                 ],
             ],
         ],
@@ -487,17 +487,17 @@ return [
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => 'vendor/datatables/plugins/Responsive-2.3.0/js/dataTables.responsive.min.js',
+                    'location' => '/vendor/datatables/plugins/Responsive-2.3.0/js/dataTables.responsive.min.js',
                 ],
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => 'vendor/datatables/plugins/Responsive-2.3.0/js/responsive.bootstrap5.min.js',
+                    'location' => '/vendor/datatables/plugins/Responsive-2.3.0/js/responsive.bootstrap5.min.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => true,
-                    'location' => 'vendor/datatables/plugins/Responsive-2.3.0/css/responsive.bootstrap5.min.css',
+                    'location' => '/vendor/datatables/plugins/Responsive-2.3.0/css/responsive.bootstrap5.min.css',
                 ],
             ],
         ],
@@ -522,17 +522,17 @@ return [
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => 'vendor/alertify/alertifyjs/alertify.min.js',
+                    'location' => '/vendor/alertify/alertifyjs/alertify.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => true,
-                    'location' => 'vendor/alertify/alertifyjs/css/alertify.min.css',
+                    'asset' => false,
+                    'location' => '/vendor/alertify/alertifyjs/css/alertify.min.css',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => true,
-                    'location' => 'vendor/alertify/alertifyjs/css/themes/default.min.css',
+                    'asset' => false,
+                    'location' => '/vendor/alertify/alertifyjs/css/themes/default.min.css',
                 ],
             ],
         ],
