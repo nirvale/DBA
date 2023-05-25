@@ -10,7 +10,6 @@ use App\Http\Controllers\Dbam\BsemanalController;
 use App\Http\Controllers\Dbam\BmanualController;
 use App\Http\Controllers\Dbam\BaseController;
 use App\Http\Controllers\Dbam\GetlogsController;
-use App\Http\Controllers\Dbam\RecoverEsquemaTestController;
 
 Route::get('/', [HomeController::class, 'index']);
 
@@ -39,12 +38,6 @@ Route::get('bmanualhome', [BmanualController::class, 'home'])->name('bmanual.hom
 Route::get('bmanualcreatee', [BmanualController::class, 'createe'])->name('bmanual.createe');
 Route::post('bmanualupdateb', [BmanualController::class, 'updateb'])->name('bmanual.updateb');
 
-//crud test recovery esquemas
-Route::resource('recovere', RecoverEsquemaTestController::class);
-Route::get('recoverehome', [RecoverEsquemaTestController::class, 'home'])->name('recovere.home');
-Route::get('recoverecreatee', [RecoverEsquemaTestController::class, 'createe'])->name('recovere.createe');
-Route::post('recovereupdateb', [RecoverEsquemaTestController::class, 'updateb'])->name('recovere.updateb');
-
 //crud databasesRoute::get('createe', [BdiariaController::class, 'createe'])->name('bdiaria.createe');
 //Route::resource('base', BaseController::class);
 //Route::get('basehome', [BaseController::class, 'home'])->name('base.home');
@@ -56,4 +49,3 @@ Route::get('esquemabydb/{idd}', [EsquemaController::class, 'esquemabydb'])->name
 Route::get('getlogsd/{logfile}', [GetlogsController::class, 'downloadd'])->name('getlogs.get.d');
 Route::get('getlogss/{logfile}', [GetlogsController::class, 'downloads'])->name('getlogs.get.s');
 Route::get('getlogsm/{logfile}', [GetlogsController::class, 'downloadm'])->name('getlogs.get.m');
-Route::get('getlogsr/{logfile}', [GetlogsController::class, 'downloadr'])->name('getlogs.get.r');

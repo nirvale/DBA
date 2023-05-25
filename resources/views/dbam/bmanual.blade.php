@@ -52,12 +52,9 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-12">
-            @canany(['crear_bitacora'])
-              <a href="" type="button" id="agregaBitacora" class="btn btn-success" >AGREGAR BITÁCORA <i class="fas fa-plus-circle"></i></a>
-            @endcanany
-            @canany(['editar_bitacora'])
-              <a href="" type="button" id="editaBitacora" class="btn btn-danger" >EDITAR BITÁCORA <i class="fas fa-minus-circle"></i></a>
-            @endcanany
+
+             <a href="" type="button" id="agregaBitacora" class="btn btn-success" >AGREGAR BITÁCORA <i class="fas fa-plus-circle"></i></a>
+             <a href="" type="button" id="editaBitacora" class="btn btn-danger" >EDITAR BITÁCORA <i class="fas fa-minus-circle"></i></a>
           </div>
         </div>
       </form>

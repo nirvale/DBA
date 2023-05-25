@@ -48,17 +48,6 @@ class GetlogsController extends Controller
             return abort('403');
         }
     }
-    public function downloadr($log)
-    {
-
-         if(Auth::check()) {
-            // filename should be a relative path inside storage/app to your file like 'userfiles/report1253.pdf'
-            //return $log;
-            return Storage::download('/recovere/'.$log);
-        }else{
-            return abort('403');
-        }
-    }
 
 
 

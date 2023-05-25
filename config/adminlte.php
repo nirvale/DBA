@@ -408,20 +408,6 @@ return [
                 ],
               ],
         ],
-        [
-            'text'    => 'Restore','can' => ['adming','admin','ver_bitacora','infraestructura'],
-            'icon'    => 'fas fa-trash-restore',
-            'submenu' => [
-                [
-                    'text' => 'test',
-                    //'url'  => '/admin/bdiariahome',
-                    'route'  => 'recovere.home',
-                    'icon'    => 'fas fa-check-circle',
-                    //'can' => ['adming','admin','ver_bitacora','editar_bitacora','crear_bitacora','imprimir_bitacora','eliminar_bitacora'],
-                    'can' => ['adming','admin'],
-                ],
-              ],
-        ],
    /*     ['header' => 'labels'],
         [
             'text'       => 'important',
