@@ -136,14 +136,20 @@ return [
         'bitcheck' => [
             'required' => 'La bitácora para la fecha seleccionada YA EXISTE, contacte al administrador',
         ],
+        'testcheck' => [
+            'required' => 'La prueba para la fecha seleccionada YA EXISTE, contacte al administrador',
+        ],
         'bitchecke' => [
             'required' => 'La bitácora para el día seleccionado NO EXISTE',
         ],
+        'testchecke' => [
+            'required' => 'La prueba para el día seleccionado NO EXISTE',
+        ],
         'cve_fecha' => [
-            'before' => 'La fecha de la bitácora que intenta crear está en el futuro',
+            'before' => 'La fecha del documento que intenta crear está en el futuro',
         ],
          'cve_fechae' => [
-            'before' => 'La fecha de la bitácora que intenta editar está en el futuro',
+            'before' => 'La fecha del documento que intenta editar está en el futuro',
         ],
         'daysem' => [
            'Rule' => 'El día de la semana es incorrecto',
@@ -178,7 +184,7 @@ return [
         'cve_datacenter' => 'CENTRO DE DATOS',
         'cve_base' => 'BASE DE DATOS',
         'daysem' => 'FECHA Y DÍA DE LA SEMANA',
-
+        'cve_backup' => 'TIPO DE BACKUP',
     ],
 
 ];

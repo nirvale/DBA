@@ -52,9 +52,12 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-12">
-
-             <a href="" type="button" id="agregaBitacora" class="btn btn-success" >AGREGAR BITÁCORA <i class="fas fa-plus-circle"></i></a>
-             <a href="" type="button" id="editaBitacora" class="btn btn-danger" >EDITAR BITÁCORA <i class="fas fa-minus-circle"></i></a>
+            @canany(['crear_bitacora'])
+              <a href="" type="button" id="agregaBitacora" class="btn btn-success" >AGREGAR BITÁCORA <i class="fas fa-plus-circle"></i></a>
+            @endcanany
+            @canany(['editar_bitacora'])
+              <a href="" type="button" id="editaBitacora" class="btn btn-danger" >EDITAR BITÁCORA <i class="fas fa-minus-circle"></i></a>
+            @endcanany
           </div>
         </div>
       </form>
@@ -133,107 +136,107 @@
 
 @section('js')
   <script>
-          $("#inputDatacenter").val("");
-          $("#inputDatabase").val("");
-          $("#inputEsquema").val("");
-          $("#inputFecha").val("");
+            $("#inputDatacenter").val("");
+            $("#inputDatabase").val("");
+            $("#inputEsquema").val("");
+            $("#inputFecha").val("");
 
-          function limpiarFiltros(){
-          event.preventDefault();
+            function limpiarFiltros(){
+            event.preventDefault();
 
-          $("#inputDatacenter").val("");
-          $("#inputDatabase").val("");
-          $("#inputEsquema").val("");
-          $("#inputFecha").val("");
+            $("#inputDatacenter").val("");
+            $("#inputDatabase").val("");
+            $("#inputEsquema").val("");
+            $("#inputFecha").val("");
 
-          }
-
-                // DEPENDENCIA Change
-          $('#inputDatacenter').change(function(){
-
-             // cve_programa
-             var idd = $(this).val();
-             console.log(idd);
-
-             // liberar dropdown
-             $('#inputDatabase').find('option').not(':first').remove();
-             $('#inputEsquema').find('option').not(':first').remove();
-
-             if (idd!='' ) {
-
-
-                 // AJAX request
-                 $.ajax({
-                   url: "{{route('base.bydc','')}}"+"/"+idd,
-                   type: 'get',
-                   dataType: 'json',
-                   success: function(response){
-
-                      len = 0;
-                     if(response.length != null){
-                        len = response.length;
-
-                     }
-
-                     if(len > 0){
-                        // Read data and create <option >
-                        for(var i=0; i<len; i++){
-
-                           var iddb = response[i].id;
-                           var db = response[i].base;
-
-                           var option = "<option value='"+iddb+"'>"+db+"</option>";
-
-                           $("#inputDatabase").append(option);
-                        }
-                     }
-
-                   }
-                 });
             }
-           });
-                // databse Change
-          $('#inputDatabase').change(function(){
 
-             // cve_base
-             var ide = $(this).val();
-             console.log(ide);
+                  // DEPENDENCIA Change
+            $('#inputDatacenter').change(function(){
 
-             // liberar dropdown
-             $('#inputEsquema').find('option').not(':first').remove();
+               // cve_programa
+               var idd = $(this).val();
+               console.log(idd);
 
-             if (ide!='' ) {
+               // liberar dropdown
+               $('#inputDatabase').find('option').not(':first').remove();
+               $('#inputEsquema').find('option').not(':first').remove();
 
-                 // AJAX request
-                 $.ajax({
-                   url: "{{route('esquema.bydb','')}}"+"/"+ide,
-                   type: 'get',
-                   dataType: 'json',
-                   success: function(response){
+               if (idd!='' ) {
 
-                      len = 0;
-                     if(response.length != null){
-                        len = response.length;
+
+                   // AJAX request
+                   $.ajax({
+                     url: "{{route('base.bydc','')}}"+"/"+idd,
+                     type: 'get',
+                     dataType: 'json',
+                     success: function(response){
+
+                        len = 0;
+                       if(response.length != null){
+                          len = response.length;
+
+                       }
+
+                       if(len > 0){
+                          // Read data and create <option >
+                          for(var i=0; i<len; i++){
+
+                             var iddb = response[i].id;
+                             var db = response[i].base;
+
+                             var option = "<option value='"+iddb+"'>"+db+"</option>";
+
+                             $("#inputDatabase").append(option);
+                          }
+                       }
 
                      }
+                   });
+              }
+             });
+                  // databse Change
+            $('#inputDatabase').change(function(){
 
-                     if(len > 0){
-                        // Read data and create <option >
-                        for(var i=0; i<len; i++){
+               // cve_base
+               var ide = $(this).val();
+               console.log(ide);
 
-                           var idesq = response[i].id;
-                           var esq = response[i].esquema;
+               // liberar dropdown
+               $('#inputEsquema').find('option').not(':first').remove();
 
-                           var option = "<option value='"+idesq+"'>"+esq+"</option>";
+               if (ide!='' ) {
 
-                           $("#inputEsquema").append(option);
-                        }
+                   // AJAX request
+                   $.ajax({
+                     url: "{{route('esquema.bydb','')}}"+"/"+ide,
+                     type: 'get',
+                     dataType: 'json',
+                     success: function(response){
+
+                        len = 0;
+                       if(response.length != null){
+                          len = response.length;
+
+                       }
+
+                       if(len > 0){
+                          // Read data and create <option >
+                          for(var i=0; i<len; i++){
+
+                             var idesq = response[i].id;
+                             var esq = response[i].esquema;
+
+                             var option = "<option value='"+idesq+"'>"+esq+"</option>";
+
+                             $("#inputEsquema").append(option);
+                          }
+                       }
+
                      }
-
-                   }
-                 });
-            }
-           });
+                   });
+              }
+             });
 
 
 
