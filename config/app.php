@@ -179,6 +179,8 @@ return [
         //laravel permissions
         Spatie\Permission\PermissionServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
+        //oracle conection
+        Yajra\Oci8\Oci8ServiceProvider::class,
 
 
     ],
