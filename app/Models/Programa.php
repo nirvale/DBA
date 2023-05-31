@@ -15,6 +15,6 @@ class Programa extends Model
     protected $fillable = [
         'cve_dependencia',
         'cve_programa',
-        'nombre',
+        'programa',
     ];
 }

@@ -25,6 +25,7 @@
       <img src="{{url('/loader.png')}}" />
     </div>
   </div>
+      {{-- <livewire:admin.programas /> --}}
 @include('layouts.footer')
 
 @stop
