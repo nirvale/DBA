@@ -29,6 +29,7 @@ class RoleSeeder extends Seeder
       $r_ob = Role::create([ 'guard_name' => 'web' , 'name'=>'Operador de Backup']);
       $r_bitacora = Role::create([ 'guard_name' => 'web' , 'name'=>'Operador']);
       $r_ma = Role::create([ 'guard_name' => 'web' , 'name'=>'Mesa de Ayuda']);
+      $r_oc = Role::create([ 'guard_name' => 'web' , 'name'=>'Operador Catálogos']);
 
       //permisos
       Permission::create([ 'guard_name' => 'web' , 'name' => 'adming'])->syncRoles($r_god);
@@ -49,5 +50,10 @@ class RoleSeeder extends Seeder
       Permission::create([ 'guard_name' => 'web' , 'name' => 'down_logs'])->syncRoles($r_god,$r_dbas,$r_dbaj);
       Permission::create([ 'guard_name' => 'web' , 'name' => 'modusers'])->syncRoles($r_god,$r_admin,$r_dbas,);
       Permission::create([ 'guard_name' => 'web' , 'name' => 'asig_area'])->syncRoles($r_god,$r_admin,$r_dbas,$r_ma);
+      Permission::create([ 'guard_name' => 'web' , 'name' => 'ver_catalogos'])->syncRoles($r_god,$r_admin,$r_oc,$r_dbas,$r_dbaj);
+      Permission::create([ 'guard_name' => 'web' , 'name' => 'imiprimir_catalogos'])->syncRoles($r_god,$r_admin,$r_oc,$r_dbas,$r_dbaj);
+      Permission::create([ 'guard_name' => 'web' , 'name' => 'editar_catalogos'])->syncRoles($r_god,$r_oc,$r_dbas,$r_dbaj);
+      Permission::create([ 'guard_name' => 'web' , 'name' => 'crear_catalogos'])->syncRoles($r_god,$r_oc,$r_dbas,$r_dbaj);
+      Permission::create([ 'guard_name' => 'web' , 'name' => 'eliminar_catalogos'])->syncRoles($r_god,$r_oc,$r_dbas,$r_dbaj);
     }
 }

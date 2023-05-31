@@ -16,16 +16,23 @@ class CreateEsquemasTable extends Migration
         Schema::create('esquemas', function (Blueprint $table) {
             $table->id();
             $table->string('esquema');
-            $table->integer('cve_usuario')->references('users')->on('id')->onDelete('restrict')->onUpdate('cascade');
-            $table->integer('cve_base')->references('bases')->on('id')->onDelete('restric')->onUpdate('cascade');
-            $table->string('cve_dependencia')->references('dependencias')->on('cve_dependencia')->onDelete('restrict')->onUpdate('cascade');
-            $table->integer('cve_programa')->references('programas')->on('cve_programa')->onDelete('restrict')->onUpdate('cascade');
-            $table->integer('cve_backup')->references('backups')->on('id')->onDelete('restrict')->onUpdate('cascade');
-            $table->integer('cve_tipo')->references('tipo')->on('id')->onDelete('restrict')->onUpdate('cascade');
-            $table->integer('cve_estadoesquema')->references('estadoesquemas')->on('id')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer('cve_usuario')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer('cve_base')->references('id')->on('bases')->onDelete('restric')->onUpdate('cascade');
+            $table->string('cve_dependencia')->references('cve_dependencia')->on('dependencias')->onDelete('restrict')->onUpdate('cascade');
+            $table->string('cve_programa')->references('cve_programa')->on('programas')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer('cve_backup')->references('id')->on('backups')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer('cve_tipo')->references('id')->on('tipos')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer('cve_estadoesquema')->references('id')->on('estadoesquemas')->onDelete('restrict')->onUpdate('cascade');
             $table->text('pwd');
             $table->text('observaciones');
             $table->timestamps();
+            $table->foreign('cve_usuario')->references('id')->on('users');
+            $table->foreign('cve_base')->references('id')->on('bases');
+            $table->foreign('cve_dependencia')->references('cve_dependencia')->on('dependencias');
+            $table->foreign('cve_programa')->references('cve_programa')->on('programas');
+            $table->foreign('cve_backup')->references('id')->on('backups');
+            $table->foreign('cve_tipo')->references('id')->on('tipos');
+            $table->foreign('cve_estadoesquema')->references('id')->on('estadoesquemas');
         });
     }
 

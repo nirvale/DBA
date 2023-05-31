@@ -339,8 +339,52 @@ return [
         ],
         ['header' => 'ADMINISTRACIÓN','can' => ['adming','admin','ver_esquema','infraestructura']],
         [
+            'text'    => 'Catálogos',
+            'icon'    => 'fas fa-compress-arrows-alt',
+            'can' => ['adming','admin','ver_esquema','infraestructura'],
+            'submenu' => [
+                [
+                    'text' => 'Programas',
+                    //'url'  => '/admin/esquemahome',
+                    'route'  => 'programashome.index',
+                    'icon'    => 'fas fa-spinner',
+                    'can' => ['adming','admin','ver_catalogos','editar_catalogos','crear_catalogos','imprimir_catalogos','eliminar_catalogos'],
+                ],
+/*                [
+                    'text'    => 'level_one',
+                    'url'     => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'level_two',
+                            'url'  => '#',
+                        ],
+                        [
+                            'text'    => 'level_two',
+                            'url'     => '#',
+                            'submenu' => [
+                                [
+                                    'text' => 'level_three',
+                                    'url'  => '#',
+                                ],
+                                [
+                                    'text' => 'level_three',
+                                    'url'  => '#',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],*/
+/*                [
+                    'text' => 'level_one',
+                    'url'  => '#',
+                ],*/
+              ],
+
+        ],
+        [
             'text'    => 'Bases de datos',
             'icon'    => 'fas fa-fw fa-laptop-code',
+            'can' => ['adming','admin','ver_esquema','infraestructura'],
             'submenu' => [
                 [
                     'text' => 'Esquemas',
@@ -378,7 +422,7 @@ return [
                     'url'  => '#',
                 ],*/
               ],
-            'can' => ['adming','admin','ver_esquema','infraestructura']
+            //'can' => ['adming','admin','ver_esquema','infraestructura']//BORRAR?
         ],
         ['header' => 'BACKUPS','can' => ['adming','admin','ver_bitacora','infraestructura']],
         [
@@ -632,5 +676,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];
