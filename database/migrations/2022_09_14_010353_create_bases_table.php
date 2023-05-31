@@ -23,9 +23,9 @@ class CreateBasesTable extends Migration
             $table->integer('cve_datacenter')->references('id')->on('datacenters')->onDelete('restrict')->onUpdate('cascade');
             $table->integer('cve_tipo')->references('id')->on('tipos')->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
-            $table->foreign('cve_rdbms')->references('id')->on('rdbms');
-            $table->foreign('cve_os')->references('id')->on('os');
-            $table->foreign('cve_tipo')->references('id')->on('tipos');
+            $table->foreign('cve_rdbms')->references('id')->on('rdbms')->onUpdate('cascade');
+            $table->foreign('cve_os')->references('id')->on('os')->onUpdate('cascade');
+            $table->foreign('cve_tipo')->references('id')->on('tipos')->onUpdate('cascade');
         });
     }
 

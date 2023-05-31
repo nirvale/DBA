@@ -14,13 +14,12 @@ use App\Traits\Admin\RoleOrPermissionSpatie;
 class Programas extends Component
 {
     use RoleOrPermissionSpatie;
+    use WithPagination;
     public function __construct()
     {
       $this->handlePermission('Administrador de Base de Datos|DBA Junior|admin|adming');
     }
 
-
-    use WithPagination;
     protected $listeners = ['refreshComponent' => '$refresh'];
 
     protected $paginationTheme='bootstrap';

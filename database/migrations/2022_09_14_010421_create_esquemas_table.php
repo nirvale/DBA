@@ -26,13 +26,13 @@ class CreateEsquemasTable extends Migration
             $table->text('pwd');
             $table->text('observaciones');
             $table->timestamps();
-            $table->foreign('cve_usuario')->references('id')->on('users');
-            $table->foreign('cve_base')->references('id')->on('bases');
-            $table->foreign('cve_dependencia')->references('cve_dependencia')->on('dependencias');
-            $table->foreign('cve_programa')->references('cve_programa')->on('programas');
-            $table->foreign('cve_backup')->references('id')->on('backups');
-            $table->foreign('cve_tipo')->references('id')->on('tipos');
-            $table->foreign('cve_estadoesquema')->references('id')->on('estadoesquemas');
+            $table->foreign('cve_usuario')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('cve_base')->references('id')->on('bases')->onUpdate('cascade');
+            $table->foreign('cve_dependencia')->references('cve_dependencia')->on('dependencias')->onUpdate('cascade');
+            $table->foreign('cve_programa')->references('cve_programa')->on('programas')->onUpdate('cascade');
+            $table->foreign('cve_backup')->references('id')->on('backups')->onUpdate('cascade');
+            $table->foreign('cve_tipo')->references('id')->on('tipos')->onUpdate('cascade');
+            $table->foreign('cve_estadoesquema')->references('id')->on('estadoesquemas')->onUpdate('cascade');
         });
     }
 
