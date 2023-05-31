@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Programa extends Model
 {
@@ -17,4 +18,8 @@ class Programa extends Model
         'cve_programa',
         'programa',
     ];
+    public function esquemas(): HasMany
+    {
+        return $this->hasMany(Esquema::class,'cve_programa');
+    }
 }
