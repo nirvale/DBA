@@ -21,3 +21,13 @@
  background-color: #00BB4A !important;
  border-color: #353535;
 }
+
+div.dataTables_processing>div:last-child>div {
+    position: absolute;
+    top: 0;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #00BB4A !important;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0)
+}

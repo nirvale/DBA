@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Bsemanal extends Model
 {
@@ -16,4 +17,8 @@ class Bsemanal extends Model
         'archivos',
         'observaciones',
     ];
+    public function esquemas(): BelongsToMany
+    {
+        return $this->belongsToMany(Esquema::class);
+    }
 }
