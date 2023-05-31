@@ -185,6 +185,9 @@ return [
         'cve_base' => 'BASE DE DATOS',
         'daysem' => 'FECHA Y DÍA DE LA SEMANA',
         'cve_backup' => 'TIPO DE BACKUP',
+        'cve_dependencia' => 'DEPENDENCIA',
+        'cve_programa' => 'CLAVE DE PROGRAMA',
+        'programa' => 'NOMBRE DEL PROGRAMA',
     ],
 
 ];
