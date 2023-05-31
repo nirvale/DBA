@@ -18,7 +18,7 @@
 
 @section('content')
 
-      <livewire:admin.dependencias />
+      @livewire('admin.dependencias')
 
 @include('layouts.footer')
 @stop

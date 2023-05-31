@@ -19,9 +19,9 @@ class CreateAdscripcionsTable extends Migration
             $table->String('cve_oficina')->references('cve_oficina')->on('oficinas')->onDelete('restrict')->onUpdate('cascade');
             $table->integer('cve_estado')->references('cve_estado')->on('estados')->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
-            $table->foreign('cve_usuario')->references('id')->on('users');
-            $table->foreign('cve_oficina')->references('cve_oficina')->on('oficinas');
-            $table->foreign('cve_estado')->references('cve_estado')->on('estados');
+            $table->foreign('cve_usuario')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('cve_oficina')->references('cve_oficina')->on('oficinas')->onUpdate('cascade');
+            $table->foreign('cve_estado')->references('cve_estado')->on('estados')->onUpdate('cascade');
         });
     }
 

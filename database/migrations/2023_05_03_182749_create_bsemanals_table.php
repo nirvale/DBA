@@ -23,9 +23,9 @@ class CreateBsemanalsTable extends Migration
             $table->text('observaciones');
             $table->integer('cve_user')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
-            $table->foreign('cve_esquema')->references('id')->on('esquemas');
-            $table->foreign('cve_estadobackup')->references('id')->on('backups');
-            $table->foreign('cve_user')->references('id')->on('users');
+            $table->foreign('cve_esquema')->references('id')->on('esquemas')->onUpdate('cascade');
+            $table->foreign('cve_estadobackup')->references('id')->on('backups')->onUpdate('cascade');
+            $table->foreign('cve_user')->references('id')->on('users')->onUpdate('cascade');
         });
     }
 

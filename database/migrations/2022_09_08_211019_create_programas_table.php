@@ -19,7 +19,7 @@ class CreateProgramasTable extends Migration
             $table->String('cve_programa')->primary();
             $table->String('programa');
             $table->timestamps();
-            $table->foreign('cve_dependencia')->references('cve_dependencia')->on('dependencias');
+            $table->foreign('cve_dependencia')->references('cve_dependencia')->on('dependencias')->onUpdate('cascade');
         });
     }
 

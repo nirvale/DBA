@@ -19,7 +19,7 @@ class CreateDatacentersTable extends Migration
             $table->integer('cve_tipodc')->references('id')->on('tipodcs')->onDelete('restrict')->onUpdate('cascade');
             $table->text('desc_datacenter')->nullable();
             $table->timestamps();
-            $table->foreign('cve_tipodc')->references('id')->on('tipodcs');
+            $table->foreign('cve_tipodc')->references('id')->on('tipodcs')->onUpdate('cascade');
         });
     }
 

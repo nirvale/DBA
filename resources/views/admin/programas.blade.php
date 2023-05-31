@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Inicio')
+@section('title', 'Catálogo de Programas')
 
 @section('content_header')
 
@@ -18,7 +18,7 @@
 
 @section('content')
 
-      <livewire:admin.programas />
+    @livewire('admin.programas')
 
 @include('layouts.footer')
 @stop
