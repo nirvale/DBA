@@ -7,16 +7,22 @@ use App\Models\Programa;
 use App\Models\Dependencia;
 use Livewire\WithPagination;
 use DB;
+use App\Traits\Admin\RoleOrPermissionSpatie;
+
 
 
 class Programas extends Component
 {
-//   public function __construct()
-// {
-//     abort_if(\Auth::guard('web')->check(), 401);
-// }
-    protected $listeners = ['refreshComponent' => '$refresh'];
+    use RoleOrPermissionSpatie;
+    public function __construct()
+    {
+      $this->handlePermission('Administrador de Base de Datos|DBA Junior|admin|adming');
+    }
+
+
     use WithPagination;
+    protected $listeners = ['refreshComponent' => '$refresh'];
+
     protected $paginationTheme='bootstrap';
     //variables publicas para poder ser usadas en las vistas
     public $search = '', $selectDependencia='',$programa,$cve_dependencia,$cve_programa,$cve_programa_old;
@@ -34,6 +40,7 @@ class Programas extends Component
 
     public function render()
     {
+
             $programas=Programa::where('programa', 'like' , '%'. strtoupper($this->search) .'%')
               ->join('dependencias','dependencias.cve_dependencia','=','programas.cve_dependencia')
               ->when($this->selectDependencia,
