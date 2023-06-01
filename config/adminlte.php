@@ -350,6 +350,13 @@ return [
                     'icon'    => 'fas fa-spinner',
                     'can' => ['adming','admin','ver_catalogos','editar_catalogos','crear_catalogos','imprimir_catalogos','eliminar_catalogos'],
                 ],
+                [
+                    'text' => 'Dependencias',
+                    //'url'  => '/admin/esquemahome',
+                    'route'  => 'dependenciashome.index',
+                    'icon'    => 'fas fa-boxes',
+                    'can' => ['adming','admin','ver_catalogos','editar_catalogos','crear_catalogos','imprimir_catalogos','eliminar_catalogos'],
+                ],
 /*                [
                     'text'    => 'level_one',
                     'url'     => '#',
@@ -383,7 +390,7 @@ return [
         ],
         [
             'text'    => 'Bases de datos',
-            'icon'    => 'fas fa-fw fa-laptop-code',
+            'icon'    => 'fas fa-database',
             'can' => ['adming','admin','ver_esquema','infraestructura'],
             'submenu' => [
                 [
