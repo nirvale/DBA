@@ -23,11 +23,15 @@
 }
 
 div.dataTables_processing>div:last-child>div {
-    position: absolute;
-    top: 0;
-    width: 13px;
-    height: 13px;
-    border-radius: 50%;
     background: #00BB4A !important;
-    animation-timing-function: cubic-bezier(0, 1, 1, 0)
 }
+/* a {
+  color: $link-color;
+  text-decoration: $link-decoration;
+  background-color: transparent; // Remove the gray background on active links in IE 10.
+
+  @include hover() {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+} */

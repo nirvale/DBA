@@ -54,7 +54,7 @@
         </tbody>
       </table>
     </div>
-    <div class="card-footer col-12 d-flex justify-content-center pt-4" class="li: { list-style: none; }">
+    <div class="card-footer col-12 d-flex justify-content-end pt-4" class="li: { list-style: none; }">
       {{ $programas->links() }}
     </div>
   </div>
