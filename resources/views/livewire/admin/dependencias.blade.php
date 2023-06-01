@@ -16,7 +16,7 @@
       <div class="form-row ">
         <div class="form-group col-md-6">
           {{ Form::label('inputDependencia', 'DEPENDENCIAS')}}
-          {{ Form::select('inputDependencia',  $dependencias ,null, ['class' => 'form-control select2','id' => 'inputDependencia','placeholder' => 'Todas las depedendencias...','wire:model'=>'selectDependencia'],) }}
+          {{ Form::select('inputDependencia',  $dependenciasc ,null, ['class' => 'form-control select2','id' => 'inputDependencia','placeholder' => 'Todas las depedendencias...','wire:model'=>'selectDependencia'],) }}
         </div>
         <div class="form-group col-md-4">
             {{-- vacio --}}
@@ -52,7 +52,7 @@
         </tbody>
       </table>
     </div>
-    <div class="card-footer col-12 d-flex justify-content-center pt-4" class="li: { list-style: none; }">
+    <div class="card-footer col-12 d-flex justify-content-end pt-4" class="li: { list-style: none; }">
       {{ $dependencias->links() }}
     </div>
   </div>

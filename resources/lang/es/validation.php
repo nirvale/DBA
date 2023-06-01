@@ -186,8 +186,10 @@ return [
         'daysem' => 'FECHA Y DÍA DE LA SEMANA',
         'cve_backup' => 'TIPO DE BACKUP',
         'cve_dependencia' => 'DEPENDENCIA',
+        'cve_dependencia2' => 'CLAVE DE LA DEPENDENCIA',
         'cve_programa' => 'CLAVE DE PROGRAMA',
         'programa' => 'NOMBRE DEL PROGRAMA',
+        'dependencia' => 'NOMBRE DE LA DEPENDENCIA',
     ],
 
 ];

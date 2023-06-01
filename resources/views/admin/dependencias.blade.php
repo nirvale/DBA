@@ -31,11 +31,11 @@
   <script type="text/javascript">
     window.livewire.on('dependenciaGuardado', (dependencia) => {
         $('#modalCrearDependencia').modal('hide');
-        var notification = alertify.success('El dependencia:<br>'+dependencia+'<br>Fue creado con éxito...', 5, function(){  console.log(dependencia) });
+        var notification = alertify.success('La dependencia:<br>'+dependencia+'<br>Fue creada con éxito...', 5, function(){  console.log(dependencia) });
 
     });
     window.livewire.on('errorGuardandoDependencia', (error,dependencia) => {
-          var msgerror = alertify.error(""+"Error creando el Dependencia: "+dependencia+"<br>Por favor contacte al administrador... <br><button class='btn btn-danger'>Cerrar</button>",10000);
+          var msgerror = alertify.error(""+"Error creando la Dependencia: "+dependencia+"<br>Por favor contacte al administrador... <br><button class='btn btn-danger'>Cerrar</button>",10000);
           msgerror.callback = function (isClicked) {
                   if(isClicked){
                     console.log(error) ;
@@ -45,7 +45,7 @@
           };
     });
     window.livewire.on('cveDependenciaExistente', (dependencia,dependencian) => {
-          var msgerror = alertify.error(""+"Error actualizando el Dependencia: "+dependencia+"<br>La nueva clave de dependencia:<br> "+dependencian['cve_dependencia']+"<br>Ya existe...<br>Contacte al administrador... <br><button class='btn btn-danger'>Cerrar</button>",10000);
+          var msgerror = alertify.error(""+"Error actualizando la Dependencia:<br> "+dependencia+"<br>La nueva clave para la dependencia:<br> "+dependencian['cve_dependencia']+"<br>Ya existe...<br>Contacte al administrador... <br><button class='btn btn-danger'>Cerrar</button>",10000);
           msgerror.callback = function (isClicked) {
                   if(isClicked){
                     console.log(dependencian) ;
@@ -55,7 +55,7 @@
           };
     });
     window.livewire.on('DependenciaExistente', (dependencia,dependencian) => {
-          var msgerror = alertify.error(""+"Error actualizando el Dependencia: "+dependencia+"<br>El dependencia con nombre:<br> "+dependencian[0].dependencia+"<br>Ya existe...<br>Contacte al administrador... <br><button class='btn btn-danger'>Cerrar</button>",10000);
+          var msgerror = alertify.error(""+"Error actualizando la Dependencia:<br> "+dependencia+"<br>La dependencia con nombre:<br> "+dependencian[0].nombre+"<br>Ya existe...<br>Contacte al administrador... <br><button class='btn btn-danger'>Cerrar</button>",10000);
           msgerror.callback = function (isClicked) {
                   if(isClicked){
                     console.log(dependencian) ;
@@ -66,11 +66,11 @@
     });
     window.livewire.on('dependenciaActualizado', (dependencia) => {
         $('#modalEditarDependencia').modal('hide');
-        var notification = alertify.success('El dependencia:<br>'+dependencia+'<br>Actualizado con éxito...', 5, function(){  console.log(dependencia) });
+        var notification = alertify.success('La dependencia:<br>'+dependencia+'<br>Actualizada con éxito...', 5, function(){  console.log(dependencia) });
 
     });
     window.livewire.on('errorEditandoDependencia', (error,dependencia) => {
-          var msgerror = alertify.error(""+"Error editando el Dependencia: "+dependencia+"<br>Por favor contacte al administrador... <br><button class='btn btn-danger'>Cerrar</button>",10000);
+          var msgerror = alertify.error(""+"Error editando la Dependencia:<br> "+dependencia+"<br>Por favor contacte al administrador... <br><button class='btn btn-danger'>Cerrar</button>",10000);
           msgerror.callback = function (isClicked) {
                   if(isClicked){
                     console.log(error) ;
@@ -81,7 +81,7 @@
     });
     window.livewire.on('dependenciaEliminado', (dependencia) => {
         $('#modalEditarDependencia').modal('hide');
-        var notification = alertify.error('El dependencia:<br>'+dependencia+'<br>Eliminado con éxito, no se puede deshacer...', 5, function(){  console.log(dependencia) });
+        var notification = alertify.error('La dependencia:<br>'+dependencia+'<br>Eliminada con éxito, no se puede deshacer...', 20, function(){  console.log(dependencia) });
 
     });
     window.livewire.on('errorEliminandoDependencia', (error,dependencia) => {

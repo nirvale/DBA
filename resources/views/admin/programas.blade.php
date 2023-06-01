@@ -45,7 +45,7 @@
           };
     });
     window.livewire.on('cveProgramaExistente', (programa,programan) => {
-          var msgerror = alertify.error(""+"Error actualizando el Programa: "+programa+"<br>La nueva clave de programa:<br> "+programan['cve_programa']+"<br>Ya existe...<br>Contacte al administrador... <br><button class='btn btn-danger'>Cerrar</button>",10000);
+          var msgerror = alertify.error(""+"Error actualizando el Programa:<br> "+programa+"<br>La nueva clave de programa:<br> "+programan['cve_programa']+"<br>Ya existe...<br>Contacte al administrador... <br><button class='btn btn-danger'>Cerrar</button>",10000);
           msgerror.callback = function (isClicked) {
                   if(isClicked){
                     console.log(programan) ;
@@ -81,7 +81,7 @@
     });
     window.livewire.on('programaEliminado', (programa) => {
         $('#modalEditarPrograma').modal('hide');
-        var notification = alertify.error('El programa:<br>'+programa+'<br>Eliminado con éxito, no se puede deshacer...', 5, function(){  console.log(programa) });
+        var notification = alertify.error('El programa:<br>'+programa+'<br>Eliminado con éxito, no se puede deshacer...', 20, function(){  console.log(programa) });
 
     });
     window.livewire.on('errorEliminandoPrograma', (error,programa) => {
