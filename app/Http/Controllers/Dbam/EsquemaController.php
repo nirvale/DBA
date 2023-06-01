@@ -210,15 +210,15 @@ class EsquemaController extends Controller
       ->join('estadoesquemas','estadoesquemas.id','=','esquemas.cve_estadoesquema')
       ->where('esquemas.id','=',$id)
       ->get();
-      if ($user->hasRole(['God','Administrador de Base de Datos'])) {
+      if ( $user->hasRole(['God','Administrador de Base de Datos']) ) {
         try {
-          $decrypted = Crypt::decryptString($esquema[0]->pwd);
-          $esquema[0]->pwd = $decrypted;
-          } catch (DecryptException $e) {
-              //
+          $decrypted =  Crypt::decryptString($esquema[0]->pwd);
+          $esquema[0]->pwd =  $decrypted;
+          } catch ( DecryptException $e) {
+              //no hagaw nada
           }
       }else {
-        $esquema[0]->pwd = 'PROTEGIDO';
+        $esquema[0]->pwd = 'Ds#4s&M8XFw3h7';
       }
 
 
