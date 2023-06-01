@@ -75,21 +75,21 @@ class EsquemaController extends Controller
 
       $totalEsquemas = $listadoEsquemas->count();
 
-      if ($user->hasRole(['Administrador de Base de Datos','God'])) {
+      if ( $user->hasRole(['Administrador de Base de Datos','God']) ) {
 
-              for ($i=0; $i <= $totalEsquemas-1 ; $i++) {
+              for ( $i=0; $i <= $totalEsquemas-1 ; $i++ ) {
                 try {
-                  $decrypted = Crypt::decryptString($listadoEsquemas[$i]->pwd);
+                  $decrypted = Crypt::decryptString( $listadoEsquemas[$i]->pwd );
                   $listadoEsquemas[$i]->pwd = $decrypted;
-                  } catch (DecryptException $e) {
-                      //
+                  } catch ( DecryptException $e ) {
+                      //NO HAGAS NADA
                   }
               }
       }else {
-        for ($i=0; $i <= $totalEsquemas-1 ; $i++) {
+        for ( $i=0; $i <= $totalEsquemas-1 ; $i++ ) {
           try {
-            $listadoEsquemas[$i]->pwd = 'PROTEGIDO';
-            } catch (DecryptException $e) {
+            $listadoEsquemas[$i]->pwd = 'Ds#4s&M8XFw3h7';
+            } catch ( DecryptException $e ) {
                 //
             }
         }
