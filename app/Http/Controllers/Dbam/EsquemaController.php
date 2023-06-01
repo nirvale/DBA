@@ -88,7 +88,7 @@ class EsquemaController extends Controller
       }else {
         for ( $i=0; $i <= $totalEsquemas-1 ; $i++ ) {
           try {
-            $listadoEsquemas[$i]->pwd = 'Ds#4s&M8XFw3h7';
+            $listadoEsquemas[$i]->pwd = str_shuffle((bin2hex(random_bytes(4))).'#$');
             } catch ( DecryptException $e ) {
                 //
             }
@@ -218,7 +218,7 @@ class EsquemaController extends Controller
               //no hagaw nada
           }
       }else {
-        $esquema[0]->pwd = 'Ds#4s&M8XFw3h7';
+        $esquema[0]->pwd = str_shuffle((bin2hex(random_bytes(4))).'#$');
       }
 
 
