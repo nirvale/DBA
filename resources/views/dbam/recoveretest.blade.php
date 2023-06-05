@@ -349,6 +349,7 @@
                                 selected='';
                               }
                             $("#selBackup"+i+"").append("<option value='"+response[2][j].id+"' "+selected+ " >"+response[2][j].backup+"</option>");
+                            $("#selBackup"+i+" option:not(:selected)").attr('disabled', "disabled");
                             }
                           }
                     $("#modalc1").append(estado);
@@ -362,6 +363,7 @@
                               selected='';
                             }
                             $("#selEstadoBackup"+i+"").append("<option value='"+response[1][j].id+"' "+selected+ " >"+response[1][j].estatusrecovert+"</option>");
+                            $("#selEstadoBackup"+i+" option:not(:selected)").attr('disabled', "disabled");
                           }
                       }
 
@@ -543,7 +545,7 @@
             fecha =  "<div class='form-group col-md-2 ml-auto'><label data-error='error' data-success='ok' for='cmb_fecha'>FECHA</label> <input value='"+response[0][0].fecha+"' name='fecha' type='date' id='fecha' class='form-control validate' disabled='disabled' placeholder='fecha'></div> ";
             esquema =  "<div class='form-group col-md-4 ml-auto'><label data-error='error' data-success='ok' for='cmb_esquema'>ESQUEMA</label> <input value='"+response[0][0].esquema+"' name='esquema' type='text' id='esquema' class='form-control validate' readonly placeholder='Nombre del Esquema'></div> ";
             base =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>BASE</label> <input value='"+response[0][0].base+"' name='base' type='text' id='base' class='form-control validate' readonly placeholder='Nombre de la base de datos...'>");
-            estado =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>ESTADO</label> <select class='form-control select2' id='selEstadoBackup' name='cve_estatusrecovertest'><option value='' disabled selected>Seleciona un estado del esquema...</option>");
+            estado =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>ESTADO</label> <select class='form-control select2' id='selEstadoBackup' name='cve_estatusrecovertest'><option value='' disabled selected>Seleciona un estado de la prueba...</option>");
             archivos =   "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='erecover_archivos' >ARCHIVOS (Selección multiple - Sólo arcvhivos tar.gz son permitidos)</label><input type='file' class='filestyle' data-text='archivos' data-btnClass='btn-success'  data-buttonBefore='true' data-badge='true' data-placeholder='Ningún archivo seleccionado...' name='erecover_archivos[]' id='erecover_archivos' multiple ></div>";
             observacionesb =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>OBSERVACIONES EN BITÁCORA</label> <textarea readonly value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'>"+response[0][0].observaciones+"</textarea></div> ";
             observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>AGREGAR OBSERVACIONES</label> <textarea value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'></textarea></div> ";
