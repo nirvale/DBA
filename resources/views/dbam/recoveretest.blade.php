@@ -75,7 +75,7 @@
     </div>
   </div>
 
-  {{-- Editar Backup  --}}
+  {{-- Editar recovertest  --}}
   <div class="modal fade" id="modalrecover" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true" >
     <div class="modal-dialog modal-lg" style="min-width:70%" role="document" >
@@ -182,46 +182,7 @@
         });
       }
      });
-          // databse Change
-    // $('#inputDatabase').change(function(){
-    //
-    //   // cve_base
-    //   var ide = $(this).val();
-    //   console.log(ide);
-    //
-    //   // liberar dropdown
-    //   $('#inputBackup').find('option').not(':first').remove();
-    //
-    //   if (ide!='' ) {
-    //
-    //        // AJAX request
-    //     $.ajax({
-    //       url: "{{route('esquema.bydb','')}}"+"/"+ide,
-    //       type: 'get',
-    //       dataType: 'json',
-    //       success: function(response){
-    //
-    //       len = 0;
-    //       if(response.length != null){
-    //         len = response.length;
-    //       }
-    //       if(len > 0){
-    //         // Read data and create <option >
-    //         for(var i=0; i<len; i++){
-    //
-    //           var idesq = response[i].id;
-    //           var esq = response[i].esquema;
-    //
-    //           var option = "<option value='"+idesq+"'>"+esq+"</option>";
-    //
-    //           $("#inputBackup").append(option);
-    //         }
-    //       }
-    //
-    //       }
-    //     });
-    //   }
-    // });
+
     $(document).ready(function(){
       $('#consultaTests').click(function(event){
         event.preventDefault();
@@ -258,9 +219,13 @@
                           urls = JSON.parse(data.replace(/&quot;/g,'"'));
                           //console.log(urls.lengt);
                           var urls2 = '';
+                          var j=0;
                           for (var i = 0; i < urls.length; i++) {
-                            //urls2 =  urls2 + '<a href="/admin/getlogs/'+urls[i]+'">logfile '+ (i+1) +'</a> <br>';
-                            urls2 =  urls2 + '<a href="{{route('getlogs.get.r','')}}'+'/'+urls[i]+'">logfile '+ (i+1) +'</a> <br>';
+                            if (urls[i]) {
+                              j++;
+                              //urls2 =  urls2 + '<a href="/admin/getlogs/'+urls[i]+'">logfile '+ (i+1) +'</a> <br>';
+                              urls2 =  urls2 + '<a style="color:green;" href="{{route('getlogs.get.r','')}}'+'/'+urls[i]+'">logfile '+ j +'</a> <br>';
+                            }
                         }
                       return urls2;
                     }
@@ -320,135 +285,120 @@
                 });
                 $(response.errors).empty();
               }else{
-                //construir forma
-                fecha =  ("<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='bitdate'>FECHA</label><input readonly value='"+$("#inputFecha").val()+"' name='bitdate' type='date' id='bitdate' class='form-control validate'> </div>");
-                cve_backup =  ("<div class='form-group col-md-3 ml-auto' id='cvebackup'><label data-error='error' data-success='ok' for='cve_backup'>TIPO DE BACKUP</label> </div>");
+                if (response[0].length) {
+                  //construir forma
+                  fecha =  ("<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='bitdate'>FECHA</label><input readonly value='"+$("#inputFecha").val()+"' name='bitdate' type='date' id='bitdate' class='form-control validate'> </div>");
+                  cve_backup =  ("<div class='form-group col-md-3 ml-auto' id='cvebackup'><label data-error='error' data-success='ok' for='cve_backup'>TIPO DE BACKUP</label> </div>");
 
-                cve_esquema =  "<div class='form-group col-md-1 ml-auto' id='cveesquema'><label data-error='error' data-success='ok' for='cve_esquema'>ID</label> </div> ";
-                esquema =  "<div class='form-group col-md-3 ml-auto' id='esquema'><label data-error='error' data-success='ok' for='esquema'>ESQUEMA</label> </div> ";
-                base =  "<div class='form-group col-md-3 ml-auto' id='base'><label data-error='error' data-success='ok' for='cmb_base'>BASE</label></div> ";
-                estado =  ("<div class='form-group col-md-2 ml-auto' id='estado'><label data-error='error' data-success='ok' for='sel'>ESTADO</label> </div>");
-                archivos =   "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='recovere_archivos' >ARCHIVOS (Selección multiple - Sólo arcvhivos tar.gz son permitidos)</label><input type='file' class='filestyle' data-text='archivos' data-btnClass='btn-success'  data-buttonBefore='true' data-badge='true' data-placeholder='Ningún archivo seleccionado...' name='recovere_archivos[]' id='recovere_archivos' multiple ></div>";
-                observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>OBSERVACIONES</label> <textarea value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'></textarea></div> ";
-                usuario =  ("<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='sel'>REVISOR</label> <select readonly class='form-control select2' id='selUsuario' name='selUsuario'><option value='{{ Auth::user()->id}}'>{{ Auth::user()->name }}</option>");
-                ndata =  ("<div class='form-group col-md-12 ml-auto'><input hidden value='"+response[0].length+"' name='ndata' type='text' id='ndata' class='form-control validate'></div>");
-                footermodal = "<button class='btn btn-success' id='createTest' >Crear</button><button class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>";
-                $.getScript( "/dba/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {
-                // console.log( data ); // Data returned
-                // console.log( textStatus ); // Success
-                // console.log( jqxhr.status ); // 200
-                // console.log( "Load was performed." );
-                });
+                  cve_esquema =  "<div class='form-group col-md-1 ml-auto' id='cveesquema'><label data-error='error' data-success='ok' for='cve_esquema'>ESQUEMA</label> </div> ";
+                  cve_bitrecord =  "<div class='form-group col-md-1 ml-auto' id='cvebitrecord'><label data-error='error' data-success='ok' for='cve_bitrecord'>BITÁCORA</label> </div> ";
+                  esquema =  "<div class='form-group col-md-3 ml-auto' id='esquema'><label data-error='error' data-success='ok' for='esquema'>NOMBRE ESQUEMA</label> </div> ";
+                  base =  "<div class='form-group col-md-2 ml-auto' id='base'><label data-error='error' data-success='ok' for='cmb_base'>BASE</label></div> ";
+                  estado =  ("<div class='form-group col-md-2 ml-auto' id='estado'><label data-error='error' data-success='ok' for='sel'>ESTADO</label> </div>");
+                  archivos =   "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='recovere_archivos' >ARCHIVOS (Selección multiple - Sólo arcvhivos tar.gz son permitidos)</label><input type='file' class='filestyle' data-text='archivos' data-btnClass='btn-success'  data-buttonBefore='true' data-badge='true' data-placeholder='Ningún archivo seleccionado...' name='recovere_archivos[]' id='recovere_archivos' multiple ></div>";
+                  archivosbit =   "<div class='form-group col-md-12 ml-auto' id='archivosbitacora'><label data-error='error' data-success='ok' for='recovere_archivosbit' >LOGS DE BACKUP EN BITÁCORA</label></div>";
+                  observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>OBSERVACIONES</label> <textarea value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'></textarea></div> ";
+                  usuario =  ("<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='sel'>REVISOR</label> <select readonly class='form-control select2' id='selUsuario' name='selUsuario'><option value='{{ Auth::user()->id}}'>{{ Auth::user()->name }}</option>");
+                  ndata =  ("<div class='form-group col-md-12 ml-auto'><input hidden value='"+response[0].length+"' name='ndata' type='text' id='ndata' class='form-control validate'></div>");
+                  footermodal = "<button class='btn btn-success' id='createTest' >Crear</button><button class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>";
+                  $.getScript( "/dba/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {
+                  // console.log( data ); // Data returned
+                  // console.log( textStatus ); // Success
+                  // console.log( jqxhr.status ); // 200
+                  // console.log( "Load was performed." );
+                  });
 
 
-                  $('#tituloModal').html("<i class='fas fa-edit'></i> - Registrar Prueba");
-                  $("#modalc1").append(fecha);
-                  $("#modalc1").append(cve_esquema);
+                    $('#tituloModal').html("<i class='fas fa-edit'></i> - Registrar Prueba de Recuperación");
+                    $("#modalc1").append(fecha);
+                    $("#modalc1").append(cve_bitrecord);
 
-                    for (var i = 0; i < response[0].length; i++) {
-                      $("#cveesquema").append("<input value='"+response[0][i].cve_esquema+"' name='cve_esquema["+i+"]' type='text' id='cve_esquema"+i+"' class='form-control validate' readonly>");
-                    }
+                      for (var i = 0; i < response[0].length; i++) {
+                        $("#cvebitrecord").append("<input value='"+response[3].id+"' name='cve_bitrecord["+i+"]' type='text' id='cve_bitrecord"+i+"' class='form-control validate' readonly>");
+                      }
+                    $("#modalc1").append(cve_esquema);
 
-                  $("#modalc1").append(esquema);
+                      for (var i = 0; i < response[0].length; i++) {
+                        $("#cveesquema").append("<input value='"+response[0][i].cve_esquema+"' name='cve_esquema["+i+"]' type='text' id='cve_esquema"+i+"' class='form-control validate' readonly>");
+                      }
 
-                    for (var i = 0; i < response[0].length; i++) {
-                      $("#esquema").append("<input readonly value='"+response[0][i].esquema+"' name='esquema["+i+"]' type='text' id='esquema"+i+"' class='form-control validate'>");
-                    }
+                    $("#modalc1").append(esquema);
 
-                  $("#modalc1").append(base);
+                      for (var i = 0; i < response[0].length; i++) {
+                        $("#esquema").append("<input readonly value='"+response[0][i].esquema+"' name='esquema["+i+"]' type='text' id='esquema"+i+"' class='form-control validate'>");
+                      }
 
-                    for (var i = 0; i < response[0].length; i++) {
-                      $("#base").append("<input readonly value='"+response[0][i].base+"' name='base["+i+"]' type='text' id='base"+i+"' class='form-control validate'>");
-                    }
-                  $("#modalc1").append(cve_backup);
+                    $("#modalc1").append(base);
 
-                    for (var i = 0; i < response[0].length; i++) {
-                        $("#cvebackup").append("<select class='form-control select2' id='selBackup"+i+"' name='selBackup["+i+"]'><option value='' disabled='disabled'>Seleciona un tipo de backup...</option>");
+                      for (var i = 0; i < response[0].length; i++) {
+                        $("#base").append("<input readonly value='"+response[0][i].base+"' name='base["+i+"]' type='text' id='base"+i+"' class='form-control validate'>");
+                      }
+                    $("#modalc1").append(cve_backup);
+
+                      for (var i = 0; i < response[0].length; i++) {
+                          $("#cvebackup").append("<select readonly class='form-control select2' id='selBackup"+i+"' name='selBackup["+i+"]'><option value='' disabled >Seleciona un tipo de backup...</option>");
+                            for (var j = 0; j < response[2].length; j++) {
+
+                              if (response[0][i].backup == response[2][j].backup) {
+                                selected='selected';
+                              }else if (response[0][i].backup == response[2][j].backup) {
+                                selected='selected';
+                              }else if (response[0][i].backup == response[2][j].backup) {
+                              selected='selected';
+                              }else{
+                                selected='';
+                              }
+                            $("#selBackup"+i+"").append("<option value='"+response[2][j].id+"' "+selected+ " >"+response[2][j].backup+"</option>");
+                            }
+                          }
+                    $("#modalc1").append(estado);
+
+                      for (var i = 0; i < response[0].length; i++) {
+                          $("#estado").append("<select readonly class='form-control select2' id='selEstadoBackup"+i+"' name='selEstadoBackup["+i+"]'><option value='' disabled>Seleciona un estado de la prueba...</option>");
                           for (var j = 0; j < response[1].length; j++) {
-                            if (response[1][j].backup == 'AUTOMÁTICO DIARIO (L-V)') {
+                            if (response[1][j].estatusrecovert == 'EN PROCESO') {
                               selected='selected';
-                            }else if (response[1][j].backup == 'AUTOMÁTICO SEMANAL (S)') {
-                              selected='selected';
-                            }else if (response[1][j].backup == 'MANUAL') {
-                            selected='selected';
-                            }else{
+                            }else {
                               selected='';
                             }
-                          $("#selBackup"+i+"").append("<option value='"+response[2][j].id+"' "+selected+ " >"+response[2][j].backup+"</option>");
+                            $("#selEstadoBackup"+i+"").append("<option value='"+response[1][j].id+"' "+selected+ " >"+response[1][j].estatusrecovert+"</option>");
                           }
-                        }
-                  $("#modalc1").append(estado);
-
-                    for (var i = 0; i < response[0].length; i++) {
-                        $("#estado").append("<select class='form-control select2' id='selEstadoBackup"+i+"' name='selEstadoBackup["+i+"]'><option value='' disabled='disabled'>Seleciona un estado de la prueba...</option>");
-                        for (var j = 0; j < response[1].length; j++) {
-                          if (response[1][j].estatusrecovert == 'EN PROCESO') {
-                            selected='selected';
-                          }else {
-                            selected='';
-                          }
-                        $("#selEstadoBackup"+i+"").append("<option value='"+response[1][j].id+"' "+selected+ " >"+response[1][j].estatusrecovert+"</option>");
-                    }
                       }
 
 
 
-                  $("#modalc2").append(archivos);
-                  $("#modalc2").append(observaciones);
-                  $("#modalc2").append(usuario);
-                  $("#modalc2").append(ndata);
-                  $("#footermodal").append(footermodal);
+                    $("#modalc2").append(archivos);
+                    $("#modalc2").append(archivosbit);
 
-                //fin construir la forma
+                    urls = JSON.parse(response[3].archivos);
 
-                $('#modalrecover').modal('show');
-                $('#modalrecover').on('hide.bs.modal', function () {
-                //  alertify.warning('Edición Cancelada');
-                });
+                          for (var i = 0; i < urls.length; i++) {
 
-                      //       // DEPENDENCIA Change
-                      // $('#selDependencia').change(function(){
-                      //
-                      //    // entidad id
-                      //    var idd = $(this).val();
-                      //   // console.log(idd);
-                      //
-                      //    // liberar dropdown
-                      //    $('#selPrograma').find('option').not(':first').remove();
-                      //
-                      //    // AJAX request
-                      //    $.ajax({
-                      //      url: '{{route('programa.index')}}',
-                      //      type: 'get',
-                      //      dataType: 'json',
-                      //      data: {
-                      //          _token: $('input[name="_token"]').val(),
-                      //           CVE_DEPENDENCIA:idd,
-                      //      },
-                      //      success: function(response){
-                      //
-                      //         len = 0;
-                      //        if(response != null){
-                      //           len = response.length;
-                      //
-                      //        }
-                      //
-                      //        if(len > 0){
-                      //           // Read data and create <option >
-                      //           for(var i=0; i<len; i++){
-                      //
-                      //              var idpro = response[i].cve_programa;
-                      //              var pro = response[i].PROGRAMA;
-                      //
-                      //              var option = "<option value='"+idpro+"'>"+pro+"</option>";
-                      //
-                      //              $("#selPrograma").append(option);
-                      //           }
-                      //        }
-                      //
-                      //      }
-                      //    });
-                      //  });
+                            $("#archivosbitacora").append("<div class='col-md-12 ml-auto' ><a style='color:green;' href='{{route('getlogs.get.d','')}}"+"/"+urls[i]+"'>"+urls[i]+"</a><br></div>");
+
+                          }
+
+                    $("#modalc2").append(observaciones);
+                    $("#modalc2").append(usuario);
+                    $("#modalc2").append(ndata);
+                    $("#footermodal").append(footermodal);
+
+                  //fin construir la forma
+
+                  $('#modalrecover').modal('show');
+                  $('#modalrecover').on('hide.bs.modal', function () {
+                  //  alertify.warning('Edición Cancelada');
+                  });
+                }else {
+                  console.log('No se encontraron esquemas');
+                  var msg = alertify.error("Ningún esquema tiene un plan de backup coincidente con la búsqueda...<br><button class='btn btn-danger'>Cerrar</button>",10000);
+                  msg.callback = function (isClicked) {
+                          if(isClicked)
+                              console.log('notification dismissed by user');
+                          else
+                              console.log('notification auto-dismissed');
+                  };
+                }
               }
 
 
@@ -544,6 +494,254 @@
         });
 
       });
+
+      $(document).on("click", "#editarecovertest", function(){
+        event.preventDefault();
+        //para tabla responsive
+        var fila = $(this.closest("tr"));
+        if(fila.hasClass("child")){
+            fila = fila.prev();
+        }
+        id = fila.find('td:eq(0)').text();
+        fec = fila.find('td:eq(1)').text();
+        esq = fila.find('td:eq(2)').text();
+        bas = fila.find('td:eq(3)').text();
+        est = fila.find('td:eq(4)').text();
+        arc = fila.find('td:eq(5)').text();
+        obs = fila.find('td:eq(6)').text();
+        usr = fila.find('td:eq(7)').text();
+
+
+        $('#modalc1').empty();
+        $('#modalc2').empty();
+        $('#footermodal').empty();
+
+
+        $.ajax({
+          url: "{{route('recovere.show','')}}"+"/"+id,
+          type: 'GET',
+          // async: false,
+          dataType: 'json',
+          data: {
+              // _token: $('input[name="_token"]').val(),
+              // enco_id:enco_id,
+
+          },
+          success: function(response) {
+
+            console.log(response);
+            if (response[0][0].cve_dbitrecord) {
+              bitrecord0=response[0][0].cve_dbitrecord;
+            }else if (response[0][0].cve_sbitrecord) {
+              bitrecord0=response[0][0].cve_sbitrecord;
+            }
+
+            //construir forma
+            id =   "<div class='form-group col-md-1 ml-auto'><label data-error='error' data-success='ok' for='id'>ID</label><input value='"+response[0][0].id+"' name='id' type='text' id='id' class='form-control validate' readonly></div>";
+            bitrecord =  "<div class='form-group col-md-2 ml-auto'><label data-error='error' data-success='ok' for='bitrecord'>BITÁCORA</label><input value='"+bitrecord0+"' name='bitrecord' type='text' id='bitrecord' class='form-control validate' disabled='disabled'></div>";
+            backup =  "<div class='form-group col-md-3 ml-auto'><label data-error='error' data-success='ok' for='backup'>BACKUP</label><input value='"+response[0][0].backup+"' name='backup' type='text' id='backup' class='form-control validate' disabled='disabled'></div>";
+            fecha =  "<div class='form-group col-md-2 ml-auto'><label data-error='error' data-success='ok' for='cmb_fecha'>FECHA</label> <input value='"+response[0][0].fecha+"' name='fecha' type='date' id='fecha' class='form-control validate' disabled='disabled' placeholder='fecha'></div> ";
+            esquema =  "<div class='form-group col-md-4 ml-auto'><label data-error='error' data-success='ok' for='cmb_esquema'>ESQUEMA</label> <input value='"+response[0][0].esquema+"' name='esquema' type='text' id='esquema' class='form-control validate' readonly placeholder='Nombre del Esquema'></div> ";
+            base =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>BASE</label> <input value='"+response[0][0].base+"' name='base' type='text' id='base' class='form-control validate' readonly placeholder='Nombre de la base de datos...'>");
+            estado =  ("<div class='form-group col-md-6 ml-auto'><label data-error='error' data-success='ok' for='sel'>ESTADO</label> <select class='form-control select2' id='selEstadoBackup' name='cve_estatusrecovertest'><option value='' disabled selected>Seleciona un estado del esquema...</option>");
+            archivos =   "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='erecover_archivos' >ARCHIVOS (Selección multiple - Sólo arcvhivos tar.gz son permitidos)</label><input type='file' class='filestyle' data-text='archivos' data-btnClass='btn-success'  data-buttonBefore='true' data-badge='true' data-placeholder='Ningún archivo seleccionado...' name='erecover_archivos[]' id='erecover_archivos' multiple ></div>";
+            observacionesb =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>OBSERVACIONES EN BITÁCORA</label> <textarea readonly value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'>"+response[0][0].observaciones+"</textarea></div> ";
+            observaciones =  "<div class='form-group col-md-12 ml-auto'><label data-error='error' data-success='ok' for='txt_observaciones'>AGREGAR OBSERVACIONES</label> <textarea value='' name='observaciones' type='text' id='observaciones' class='form-control validate' placeholder='Observaciones...'></textarea></div> ";
+            footermodal = "<button class='btn btn-success' id='updateRecover' >Guardar</button><button class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>";
+            $.getScript( "/dba/assets/bootstrap-filestyle.min.js", function( data, textStatus, jqxhr ) {
+            // console.log( data ); // Data returned
+            // console.log( textStatus ); // Success
+            // console.log( jqxhr.status ); // 200
+            // console.log( "Load was performed." );
+            });
+
+              $('#tituloModal').html("<i class='fas fa-edit'></i> - Editar Prueba de Recuperación ");
+              $("#modalc1").append(id);
+              $("#modalc1").append(bitrecord);
+              $("#modalc1").append(backup);
+              $("#modalc1").append(fecha);
+              // for (var j = 0; j < response[1].length; j++) {
+              //     if (fec == response[1][j].name) {
+              //       selected='selected';
+              //     }else {
+              //       selected='';
+              //     }
+              //     $("#selUsuario").append("<option value='"+response[1][j].id+"' "+selected+ ">"+response[1][j].name+"</option>");
+              //   }
+              $("#modalc1").append(esquema);
+              $("#modalc1").append(base);
+              $("#modalc1").append(estado);
+              for (var j = 0; j < response[1].length; j++) {
+                  if (est == response[1][j].estatusrecovert) {
+                    selected='selected';
+                  }else {
+                    selected='';
+                  }
+                  $("#selEstadoBackup").append("<option value='"+response[1][j].id+"' "+selected+ ">"+response[1][j].estatusrecovert+"</option>");
+                }
+                $("#modalc2").append(observacionesb);
+                $("#modalc2").append(observaciones);
+                $("#modalc2").append(archivos);
+                //urls
+                urls = JSON.parse(response[0][0].archivos);
+
+                      for (var i = 0; i < urls.length; i++) {
+                        if (urls[i]) {
+                          $("#modalc2").append("<div class='col-md-12 ml-auto' ><a style='color:green;' style='color:green;' href='{{route('getlogs.get.r','')}}"+"/"+urls[i]+"'>"+urls[i]+"</a><br></div>");
+                        }
+                      }
+              $("#footermodal").append(footermodal);
+              //$("#footermodal").append(id);
+            //fin construir la forma
+
+            $('#modalrecover').modal('show');
+            $('#modalrecover').on('hide.bs.modal', function () {
+            //  alertify.warning('Edición Cancelada');
+            });
+
+
+
+
+          },
+          error: function(response) {
+              console.log(response);
+          },
+        });
+      });
+
+      $(document).on("click", "#updateRecover", function(){
+        event.preventDefault();
+
+        var data = new FormData(document.getElementById("form-test"));
+
+        data.append('_method', 'PUT');
+        for (var value of data.values()) {
+          console.log(value);
+        }
+
+        alertify.minimalDialog || alertify.dialog('minimalDialog',function(){
+          return {
+              main:function(content){
+                  this.setContent(content);
+              }
+          };
+        });
+        alertify.confirm('ACTUALIZACIÓN DE INFORMACIÓN DE BACKUP ','Actualizar backup: '+data.get('esquema')+'', function(){
+
+          $.ajax({
+            url: "{{route('recovere.update','')}}"+"/"+data.get('id'),
+            type: 'POST',
+            headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            cache:false,
+            data:data,
+
+            success: function(response) {
+              //validando formulario
+              if(response.errors)
+              {
+
+
+                $.each(response.errors, function(key, value){
+                  var msg = alertify.error(value+"<br><button class='btn btn-danger'>Cerrar</button>",10000);
+                  msg.callback = function (isClicked) {
+                          if(isClicked)
+                              console.log('notification dismissed by user');
+                          else
+                              console.log('notification auto-dismissed');
+                  };
+                });
+                $(response.errors).empty();
+              }
+              else
+              {
+                $('#modalrecover').modal('hide');
+                alertify.success ("Actualizado con éxito: <br>"+data.get('esquema'));
+                if ($('.sorting_1').length)
+                {
+                  $('#tablaBackups').DataTable().ajax.reload();
+                }
+                console.log(response);
+              }
+
+
+            },
+            error: function(response) {
+
+              alertify.error("Error actualizando la prueba: <br>"+data.get('esquema'));
+              if ($('.sorting_1').length)
+                {
+                  $('#tablaBackups').DataTable().ajax.reload();
+                }
+                for (var value of data.values()) {
+                  console.log(value);
+                  }
+              console.log(response);
+            //  console.log(xhr.status);
+            //  console.log(xhr.responseText);
+            //  console.log(thrownError);
+
+            },
+          });
+
+        },function(){
+
+
+          alertify.error('Actualización Cancelada')
+
+        });
+
+      });
+
+      $(document).on("click", "#eliminarecovertest", function(){
+        event.preventDefault();
+        //para tabla responsive
+        var fila = $(this.closest("tr"));
+        if(fila.hasClass("child")){
+            fila = fila.prev();
+        }
+        id = fila.find('td:eq(0)').text();
+
+
+
+
+        $.ajax({
+          url: "{{route('recovere.destroy','')}}",
+          type: 'POST',
+          // async: false,
+          dataType: 'json',
+          data: {
+             _token: $('input[name="_token"]').val(),
+              id:id,
+
+          },
+          success: function(response) {
+
+
+              alertify.error("Eliminado: <br>"+response+"<br>No se puede deshacer...<br>");
+              if ($('.sorting_1').length)
+                {
+                  $('#tablaBackups').DataTable().ajax.reload();
+                }
+                  console.log(response);
+
+
+
+          },
+          error: function(response) {
+            alertify.error("Error eliminando: <br>"+response);
+            if ($('.sorting_1').length)
+              {
+                $('#tablaBackups').DataTable().ajax.reload();
+              }
+                console.log(response);
+
+          },
+        });
+      });
+
     });
   </script>
   <script> console.log('Hi!'); </script>

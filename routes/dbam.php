@@ -40,10 +40,11 @@ Route::get('bmanualcreatee', [BmanualController::class, 'createe'])->name('bmanu
 Route::post('bmanualupdateb', [BmanualController::class, 'updateb'])->name('bmanual.updateb');
 
 //crud test recovery esquemas
-Route::resource('recovere', RecoverEsquemaTestController::class);
+Route::resource('recovere', RecoverEsquemaTestController::class)->except('destroy');
 Route::get('recoverehome', [RecoverEsquemaTestController::class, 'home'])->name('recovere.home');
 Route::get('recoverecreatee', [RecoverEsquemaTestController::class, 'createe'])->name('recovere.createe');
-Route::post('recovereupdateb', [RecoverEsquemaTestController::class, 'updateb'])->name('recovere.updateb');
+//Route::post('recovereupdateb', [RecoverEsquemaTestController::class, 'updateb'])->name('recovere.updateb');
+Route::post('recovered', [RecoverEsquemaTestController::class, 'destroy'])->name('recovere.destroy');
 
 //crud databasesRoute::get('createe', [BdiariaController::class, 'createe'])->name('bdiaria.createe');
 //Route::resource('base', BaseController::class);
