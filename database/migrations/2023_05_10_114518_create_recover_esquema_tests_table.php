@@ -18,8 +18,9 @@ class CreateRecoverEsquemaTestsTable extends Migration
             $table->date('fecha');
             $table->integer('cve_backup')->references('id')->on('backups')->onDelete('restrict')->onUpdate('cascade');
             $table->integer('cve_esquema')->references('id')->on('esquemas')->onDelete('restrict')->onUpdate('cascade');
-            //$table->integer('CVE_BASE')->references('bases')->on('id')->onDelete('restrict')->onUpdate('cascade');
-            $table->integer('cve_estatusrecovertest')->references('id')->on('estadobackups')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer('cve_dbitrecord')->nullable()->references('id')->on('bdiarias')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer('cve_sbitrecord')->nullable()->references('id')->on('bsemanales')->onDelete('restrict')->onUpdate('cascade');
+            $table->integer('cve_estatusrecovertest')->references('id')->on('estatus_recover_tests')->onDelete('restrict')->onUpdate('cascade');
             $table->json('archivos')->nullable();
             $table->text('observaciones');
             $table->integer('cve_user')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
@@ -27,8 +28,11 @@ class CreateRecoverEsquemaTestsTable extends Migration
             $table->softDeletes();
             $table->foreign('cve_esquema')->references('id')->on('esquemas')->onUpdate('cascade');
             $table->foreign('cve_backup')->references('id')->on('backups')->onUpdate('cascade');
+            $table->foreign('cve_dbitrecord')->references('id')->on('bdiarias')->onUpdate('cascade');
+            $table->foreign('cve_sbitrecord')->references('id')->on('bsemanales')->onUpdate('cascade');
             $table->foreign('cve_user')->references('id')->on('users')->onUpdate('cascade');
-            $table->foreign('cve_estatusrecovertest')->references('id')->on('estadobackups')->onUpdate('cascade');
+            $table->foreign('cve_estatusrecovertest')->references('id')->on('estatus_recover_tests')->onUpdate('cascade');
+
         });
     }
 

@@ -183,7 +183,7 @@ return [
         'selEstadoBackup' => 'ESTADO DE BACKUP',
         'cve_datacenter' => 'CENTRO DE DATOS',
         'cve_base' => 'BASE DE DATOS',
-        'daysem' => 'FECHA Y DÍA DE LA SEMANA',
+        'daysem' => 'DÍA DE LA SEMANA',
         'cve_backup' => 'TIPO DE BACKUP',
         'cve_dependencia' => 'DEPENDENCIA',
         'cve_dependencia2' => 'CLAVE DE LA DEPENDENCIA',

@@ -278,7 +278,7 @@
                           var urls2 = '';
                           for (var i = 0; i < urls.length; i++) {
                             //urls2 =  urls2 + '<a href="/admin/getlogs/'+urls[i]+'">logfile '+ (i+1) +'</a> <br>';
-                            urls2 =  urls2 + '<a href="{{route('getlogs.get.m','')}}'+'/'+urls[i]+'">logfile '+ (i+1) +'</a> <br>';
+                            urls2 =  urls2 + '<a style="color:green;" href="{{route('getlogs.get.m','')}}'+'/'+urls[i]+'">logfile '+ (i+1) +'</a> <br>';
                         }
                       return urls2;
                     }
@@ -385,7 +385,7 @@
 
                     for (var i = 0; i < urls.length; i++) {
 
-                      $("#modalc2").append("<div class='col-md-12 ml-auto' ><a href='{{route('getlogs.get.m','')}}"+"/"+urls[i]+"'>"+urls[i]+"</a><br></div>");
+                      $("#modalc2").append("<div class='col-md-12 ml-auto' ><a style='color:green;' href='{{route('getlogs.get.m','')}}"+"/"+urls[i]+"'>"+urls[i]+"</a><br></div>");
 
                     }
             $("#footermodal").append(footermodal);
