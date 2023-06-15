@@ -153,7 +153,10 @@ return [
         ],
         'daysem' => [
            'Rule' => 'El día de la semana es incorrecto',
-       ],
+        ],
+        'bitrecord' => [
+            'required' => 'La bitácora de backups para el día seleccionado NO EXISTE',
+        ],
 
     ],
 

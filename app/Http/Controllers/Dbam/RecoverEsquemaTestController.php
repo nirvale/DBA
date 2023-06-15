@@ -223,19 +223,34 @@ class RecoverEsquemaTestController extends Controller
               $estatus_recover_tests=EstatusRecoverTest::select('id','estatusrecovert')->get();
               $backups=Backup::select('id','backup')->get();
               if ($request->name_tabla=='bdiaria' && isset($esquemas[0]) ) {
-                $bitrecord = Esquema::find($esquemas[0]->cve_esquema)
+                $bitrecord = Esquema::findOrFail($esquemas[0]->cve_esquema)
                                     ->bdiarias()
                                     ->where('fecha',$request->cve_fecha)
                                     ->first();
-                $bitrecord->table=$request->name_tabla;
+                if ($bitrecord) {
+                  $bitrecord->table=$request->name_tabla;
+                }
+
               }elseif ($request->name_tabla=='bsemanal' &&  isset($esquemas[0])) {
-                $bitrecord = Esquema::find($esquemas[0]->cve_esquema)
+                $bitrecord = Esquema::findorFail($esquemas[0]->cve_esquema)
                                     ->bsemanales()
                                     ->where('fecha',$request->cve_fecha)
                                     ->first();
-              $bitrecord->table=$request->name_tabla;
+                if ($bitrecord) {
+                  $bitrecord->table=$request->name_tabla;
+                }
               }else {
                 $bitrecord=null;
+              }
+              if ($bitrecord==null) {
+                $request->merge(['bitrecord' => $bitrecord]);
+                //dd($request->bitrecord);
+                $validated=\Validator::make($request->all(), [
+                   'bitrecord' => 'bail|required',
+                ]);
+                if ($validated->fails()) {
+                  return response()->json(['errors'=>$validated->errors()->all()]);
+                }
               }
 
 
