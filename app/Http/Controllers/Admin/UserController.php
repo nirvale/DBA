@@ -232,7 +232,7 @@ class UserController extends Controller
            DB::beginTransaction();
            try {
              $usuario->delete();
-             $adscripcion->delete();
+             // $adscripcion->delete();
              DB::commit();
            } catch (\Exception $e) {
              return $e;

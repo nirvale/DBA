@@ -17,5 +17,7 @@ class EstadoesquemaSeeder extends Seeder
         $estadoesquema = Estadoesquema::create(['estadoesquema' => 'ACTIVO']);
         $estadoesquema = Estadoesquema::create(['estadoesquema' => 'INACTIVO']);
         $estadoesquema = Estadoesquema::create(['estadoesquema' => 'BORRADO']);
+        $estadoesquema = Estadoesquema::create(['estadoesquema' => 'BLOQUEADO']);
     }
+
 }

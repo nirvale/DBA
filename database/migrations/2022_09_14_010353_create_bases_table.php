@@ -26,6 +26,7 @@ class CreateBasesTable extends Migration
             $table->foreign('cve_rdbms')->references('id')->on('rdbms')->onUpdate('cascade');
             $table->foreign('cve_os')->references('id')->on('os')->onUpdate('cascade');
             $table->foreign('cve_tipo')->references('id')->on('tipos')->onUpdate('cascade');
+            $table->foreign('cve_datacenter')->references('id')->on('datacenters')->onUpdate('cascade');
         });
     }
 
