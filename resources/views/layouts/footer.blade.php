@@ -6,7 +6,7 @@
 
            <img src="/dba/g30-3.png" alt="GEM" height="25">
         </a>&nbsp
-        <span class="text-muted">© 2023 Gobierno del Estado de México | Coordinación de Gestión Gubernamental | Dirección General de Tecnologías para la Gestión | Infraestructura Tecnológica </span>
+        <span class="text-muted">© 2024 Gobierno del Estado de México | Coordinación de Gestión Gubernamental | Dirección General de Tecnologías para la Gestión | Infraestructura Tecnológica </span>
       </div>
 
       <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">

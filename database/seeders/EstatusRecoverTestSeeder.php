@@ -18,7 +18,7 @@ class EstatusRecoverTestSeeder extends Seeder
 
           $estatusrecovert = EstatusRecoverTest::create(['id' => '1','estatusrecovert' => 'CORRECTA']);
           $estatusrecovert = EstatusRecoverTest::create(['id' => '2','estatusrecovert' => 'FALLÓ']);
-          $estatusrecovert = EstatusRecoverTest::create(['id' => '2','estatusrecovert' => 'EN PROCESO']);
+          $estatusrecovert = EstatusRecoverTest::create(['id' => '3','estatusrecovert' => 'EN PROCESO']);
 
     }
 }

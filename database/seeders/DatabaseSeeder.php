@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             DependenciaSeeder::class,
+            DominioSeeder::class,
+            TnicSeeder::class,
             ProgramaSeeder::class,
             OficinaSeeder::class,
             EstadoSeeder::class,
@@ -34,6 +36,18 @@ class DatabaseSeeder extends Seeder
             DatacenterSeeder::class,
             BaseSeeder::class,
             EstadobackupSeeder::class,
+            EstatusRecoverTestSeeder::class,
+            TecremotadiscoSeeder::class,
+            TdiscoSeeder::class,
+            AmbienteSeeder::class,
+            DistribucionSeeder::class,
+            AprocesadorSeeder::class,
+            MhardwareSeeder::class,
+            VirtualizadorSeeder::class,
+            MprocesadorSeeder::class,
+            OsVersionSeeder::class,
+            RdbmsVersionSeeder::class,
+
 
         ]);
     }
